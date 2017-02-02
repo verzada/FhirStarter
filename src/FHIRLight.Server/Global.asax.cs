@@ -25,7 +25,7 @@ namespace FHIRLight.Server
 
         public void Configure(HttpConfiguration config)
         {
-          //  UnityConfig.RegisterComponents(config);
+            UnityConfig.RegisterComponents(config);
             GlobalConfiguration.Configure(WebApiConfig.Register);
             config.AddFhir();
         }

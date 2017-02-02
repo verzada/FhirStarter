@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHIRLight.Server", "FHIRLig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHIRLight.Library", "FHIRLight.Library\FHIRLight.Library.csproj", "{27136165-08A5-4FB7-8C3E-F431518BD2D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{1AB75DBB-AE0D-4803-8314-7AFB25401D1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{27136165-08A5-4FB7-8C3E-F431518BD2D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27136165-08A5-4FB7-8C3E-F431518BD2D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27136165-08A5-4FB7-8C3E-F431518BD2D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AB75DBB-AE0D-4803-8314-7AFB25401D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AB75DBB-AE0D-4803-8314-7AFB25401D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AB75DBB-AE0D-4803-8314-7AFB25401D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AB75DBB-AE0D-4803-8314-7AFB25401D1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

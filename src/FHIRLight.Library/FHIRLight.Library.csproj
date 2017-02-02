@@ -69,6 +69,8 @@
   <ItemGroup>
     <Compile Include="Interface\IFhirService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spark.Engine\App_Start\UnityControllerFactory.cs" />
+    <Compile Include="Spark.Engine\App_Start\UnityLogExtension.cs" />
     <Compile Include="Spark.Engine\Auxiliary\LimitedStream.cs" />
     <Compile Include="Spark.Engine\Auxiliary\XmlSignatureHelper.cs" />
     <Compile Include="Spark.Engine\Core\Const.cs" />

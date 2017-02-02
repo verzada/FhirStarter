@@ -25,12 +25,12 @@ namespace FHIRLight.Server.Controllers
         }
 
         [HttpGet, Route("{type}/{id}"), Route("{type}/identifier/{id}")]
-        public HttpResponseMessage Read(string type, string id)
+        public FhirResponse Read(string type, string id)
         {
             //var result = _interpreter.ResourceQuery(type, id);
 
             //return SendResponse(result);
-            return new HttpResponseMessage();
+            return new FhirResponse(HttpStatusCode.Ambiguous);
         }
 
         [HttpGet, Route("{type}")]
