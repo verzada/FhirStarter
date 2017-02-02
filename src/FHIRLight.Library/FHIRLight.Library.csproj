@@ -45,6 +45,20 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,12 +67,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\IFhirService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spark.Engine\Auxiliary\LimitedStream.cs" />
+    <Compile Include="Spark.Engine\Auxiliary\XmlSignatureHelper.cs" />
+    <Compile Include="Spark.Engine\Core\Const.cs" />
+    <Compile Include="Spark.Engine\Core\Error.cs" />
+    <Compile Include="Spark.Engine\Core\FhirMediaType.cs" />
     <Compile Include="Spark.Engine\Core\FhirResponse.cs" />
+    <Compile Include="Spark.Engine\Core\Interaction.cs" />
     <Compile Include="Spark.Engine\Core\Key.cs" />
+    <Compile Include="Spark.Engine\Core\KeyKind.cs" />
+    <Compile Include="Spark.Engine\Core\Localhost.cs" />
+    <Compile Include="Spark.Engine\Core\LocalhostExtensions.cs" />
+    <Compile Include="Spark.Engine\Core\SingleLocalhost.cs" />
+    <Compile Include="Spark.Engine\Core\SparkException.cs" />
+    <Compile Include="Spark.Engine\Core\UriHelper.cs" />
+    <Compile Include="Spark.Engine\ExceptionHandling\ExceptionResponseMessageFactory.cs" />
+    <Compile Include="Spark.Engine\ExceptionHandling\FhirErrorMessageHandler.cs" />
+    <Compile Include="Spark.Engine\ExceptionHandling\FhirGlobalExceptionHandler.cs" />
+    <Compile Include="Spark.Engine\ExceptionHandling\IExceptionResponseMessageFactory.cs" />
+    <Compile Include="Spark.Engine\Extensions\ETag.cs" />
+    <Compile Include="Spark.Engine\Extensions\HttpConfigurationFhirExtensions.cs" />
+    <Compile Include="Spark.Engine\Extensions\HttpHeadersExtensions.cs" />
+    <Compile Include="Spark.Engine\Extensions\HttpRequestFhirExtensions.cs" />
+    <Compile Include="Spark.Engine\Extensions\KeyExtensions.cs" />
+    <Compile Include="Spark.Engine\Extensions\OperationOutcomeExtensions.cs" />
+    <Compile Include="Spark.Engine\Filters\CompressionHandler.cs" />
+    <Compile Include="Spark.Engine\Filters\FhirExceptionFilter.cs" />
+    <Compile Include="Spark.Engine\Filters\FhirResponseHandler.cs" />
+    <Compile Include="Spark.Engine\Filters\GzipCompressedContent.cs" />
+    <Compile Include="Spark.Engine\Filters\GzipContent.cs" />
+    <Compile Include="Spark.Engine\Formatters\BinaryFormatter.cs" />
+    <Compile Include="Spark.Engine\Formatters\FhirMediaTypeFormatter.cs" />
+    <Compile Include="Spark.Engine\Formatters\HtmlFhirFormatter.cs" />
+    <Compile Include="Spark.Engine\Formatters\JsonBundleFormatter.cs" />
+    <Compile Include="Spark.Engine\Formatters\JsonFhirFormatter.cs" />
+    <Compile Include="Spark.Engine\Formatters\ResourceJsonFormatter.cs" />
+    <Compile Include="Spark.Engine\Formatters\ResourceXmlFormatter.cs" />
+    <Compile Include="Spark.Engine\Formatters\XmlBundleFormatter.cs" />
+    <Compile Include="Spark.Engine\Formatters\XmlFhirFormatter.cs" />
+    <Compile Include="Spark.Engine\Handlers\MediaTypeHandler.cs" />
+    <Compile Include="Spark.Engine\Interfaces\IGenerator.cs" />
+    <Compile Include="Spark.Engine\Resources.Designer.cs" />
+    <Compile Include="Spark.Engine\Service\Const.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Spark.Engine\Resources\renderxmlashtml.xslt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Spark.Engine\Resources.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

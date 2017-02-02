@@ -1,4 +1,6 @@
-﻿namespace FHIRLight.Library.Spark.Engine.Core
+﻿using FHIRLight.Library.Spark.Engine.Extensions;
+
+namespace FHIRLight.Library.Spark.Engine.Core
 {
     // BALLOT: ResourceId is in the standard called "Logical Id" but this term doesn't have a lot of meaning. I propose "Technical Id" or "Surrogate key"
     // http://en.wikipedia.org/wiki/Surrogate_key
@@ -22,10 +24,10 @@
 
         public Key(string _base, string type, string resourceid, string versionid)
         {
-            this.Base = _base != null ? _base.TrimEnd('/') : null;
-            this.TypeName = type;
-            this.ResourceId = resourceid;
-            this.VersionId = versionid;
+            Base = _base?.TrimEnd('/');
+            TypeName = type;
+            ResourceId = resourceid;
+            VersionId = versionid;
         }
 
         public static Key Create(string type)
@@ -43,19 +45,13 @@
             return new Key(null, type, resourceid, versionid);
         }
 
-        public static Key Null
-        {
-            get
-            {
-                return default(Key);
-            }
-        }
+        public static Key Null => default(Key);
 
         public static Key ParseOperationPath(string path)
         {
-            Key key = new Key();
+            var key = new Key();
             path = path.Trim('/');
-            string[] segments = path.Split('/');
+            var segments = path.Split('/');
             if (segments.Length >= 1) key.TypeName = segments[0];
             if (segments.Length >= 2) key.ResourceId = segments[1];
             if (segments.Length == 4 && segments[2] == "_history") key.VersionId = segments[3];
