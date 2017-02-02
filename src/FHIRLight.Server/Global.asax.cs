@@ -16,7 +16,7 @@ namespace FHIRLight.Server
         protected void Application_Start()
         {
         
-            GlobalConfiguration.Configure(this.Configure);
+            GlobalConfiguration.Configure(Configure);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

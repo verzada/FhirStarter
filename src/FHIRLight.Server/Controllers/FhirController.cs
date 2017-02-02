@@ -4,13 +4,17 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using FHIRLight.Library.Interface;
 using FHIRLight.Library.Spark.Engine.Core;
+using FHIRLight.Library.Spark.Engine.Infrastructure;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
 
 namespace FHIRLight.Server.Controllers
 {
+    [RoutePrefix("fhir"), EnableCors("*", "*", "*", "*")]
+    [RouteDataValuesOnly]
     public class FhirController : ApiController
     {
         private ICollection<IFhirService> _services;

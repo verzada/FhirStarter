@@ -108,6 +108,7 @@
     <Compile Include="Spark.Engine\Formatters\XmlBundleFormatter.cs" />
     <Compile Include="Spark.Engine\Formatters\XmlFhirFormatter.cs" />
     <Compile Include="Spark.Engine\Handlers\MediaTypeHandler.cs" />
+    <Compile Include="Spark.Engine\Infrastructure\RouteDataValuesOnlyAttribute.cs" />
     <Compile Include="Spark.Engine\Interfaces\IGenerator.cs" />
     <Compile Include="Spark.Engine\Resources.Designer.cs" />
     <Compile Include="Spark.Engine\Service\Const.cs" />
