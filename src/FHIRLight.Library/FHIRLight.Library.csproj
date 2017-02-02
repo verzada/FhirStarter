@@ -43,6 +43,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -72,29 +73,50 @@
     <Compile Include="Spark.Engine\App_Start\UnityControllerFactory.cs" />
     <Compile Include="Spark.Engine\App_Start\UnityLogExtension.cs" />
     <Compile Include="Spark.Engine\Auxiliary\LimitedStream.cs" />
+    <Compile Include="Spark.Engine\Auxiliary\ResourceVisitor.cs" />
     <Compile Include="Spark.Engine\Auxiliary\XmlSignatureHelper.cs" />
+    <Compile Include="Spark.Engine\Core\ConditionalHeaderParameters.cs" />
     <Compile Include="Spark.Engine\Core\Const.cs" />
+    <Compile Include="Spark.Engine\Core\ElementQuery.cs" />
     <Compile Include="Spark.Engine\Core\Error.cs" />
     <Compile Include="Spark.Engine\Core\FhirMediaType.cs" />
+    <Compile Include="Spark.Engine\Core\FhirModel.cs" />
+    <Compile Include="Spark.Engine\Core\FhirPropertyIndex.cs" />
     <Compile Include="Spark.Engine\Core\FhirResponse.cs" />
+    <Compile Include="Spark.Engine\Core\IFhirModel.cs" />
     <Compile Include="Spark.Engine\Core\Interaction.cs" />
     <Compile Include="Spark.Engine\Core\Key.cs" />
     <Compile Include="Spark.Engine\Core\KeyKind.cs" />
     <Compile Include="Spark.Engine\Core\Localhost.cs" />
     <Compile Include="Spark.Engine\Core\LocalhostExtensions.cs" />
+    <Compile Include="Spark.Engine\Core\Namespaces.cs" />
+    <Compile Include="Spark.Engine\Core\Respond.cs" />
+    <Compile Include="Spark.Engine\Core\SearchResults.cs" />
     <Compile Include="Spark.Engine\Core\SingleLocalhost.cs" />
+    <Compile Include="Spark.Engine\Core\Snapshot.cs" />
     <Compile Include="Spark.Engine\Core\SparkException.cs" />
     <Compile Include="Spark.Engine\Core\UriHelper.cs" />
     <Compile Include="Spark.Engine\ExceptionHandling\ExceptionResponseMessageFactory.cs" />
     <Compile Include="Spark.Engine\ExceptionHandling\FhirErrorMessageHandler.cs" />
     <Compile Include="Spark.Engine\ExceptionHandling\FhirGlobalExceptionHandler.cs" />
     <Compile Include="Spark.Engine\ExceptionHandling\IExceptionResponseMessageFactory.cs" />
+    <Compile Include="Spark.Engine\Extensions\BundleExtensions.cs" />
     <Compile Include="Spark.Engine\Extensions\ETag.cs" />
+    <Compile Include="Spark.Engine\Extensions\GeneratorKeyExtensions.cs" />
     <Compile Include="Spark.Engine\Extensions\HttpConfigurationFhirExtensions.cs" />
+    <Compile Include="Spark.Engine\Extensions\HttpFhirTagExtensions.cs" />
     <Compile Include="Spark.Engine\Extensions\HttpHeadersExtensions.cs" />
     <Compile Include="Spark.Engine\Extensions\HttpRequestFhirExtensions.cs" />
+    <Compile Include="Spark.Engine\Extensions\InteractionExtensions.cs" />
     <Compile Include="Spark.Engine\Extensions\KeyExtensions.cs" />
     <Compile Include="Spark.Engine\Extensions\OperationOutcomeExtensions.cs" />
+    <Compile Include="Spark.Engine\Extensions\RegexExtensions.cs" />
+    <Compile Include="Spark.Engine\Extensions\SearchParameterExtensions.cs" />
+    <Compile Include="Spark.Engine\Extensions\StringExtensions.cs" />
+    <Compile Include="Spark.Engine\FhirResponseFactory\ConditionalHeaderFhirResponseInterceptor.cs" />
+    <Compile Include="Spark.Engine\FhirResponseFactory\FhirResponseFactory.cs" />
+    <Compile Include="Spark.Engine\FhirResponseFactory\FhirResponseFactoryOld.cs" />
+    <Compile Include="Spark.Engine\FhirResponseFactory\FhirResponseInterceptorRunner.cs" />
     <Compile Include="Spark.Engine\Filters\CompressionHandler.cs" />
     <Compile Include="Spark.Engine\Filters\FhirExceptionFilter.cs" />
     <Compile Include="Spark.Engine\Filters\FhirResponseHandler.cs" />
@@ -111,9 +133,47 @@
     <Compile Include="Spark.Engine\Formatters\XmlFhirFormatter.cs" />
     <Compile Include="Spark.Engine\Handlers\MediaTypeHandler.cs" />
     <Compile Include="Spark.Engine\Infrastructure\RouteDataValuesOnlyAttribute.cs" />
+    <Compile Include="Spark.Engine\Interfaces\IFhirResponseFactoryOld.cs" />
+    <Compile Include="Spark.Engine\Interfaces\IFhirResponseInterceptor.cs" />
+    <Compile Include="Spark.Engine\Interfaces\IFhirResponseInterceptorRunner.cs" />
     <Compile Include="Spark.Engine\Interfaces\IGenerator.cs" />
+    <Compile Include="Spark.Engine\Model\CompartmentInfo.cs" />
+    <Compile Include="Spark.Engine\Model\SparkModelInfo.cs" />
     <Compile Include="Spark.Engine\Resources.Designer.cs" />
+    <Compile Include="Spark.Engine\Search\Support\IPositionInfo.cs" />
+    <Compile Include="Spark.Engine\Search\Support\Logging.cs" />
+    <Compile Include="Spark.Engine\Search\Support\StringExtensions.cs" />
+    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\ChoiceValue.cs" />
+    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\CompositeValue.cs" />
+    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\Criterium.cs" />
+    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\DateValue.cs" />
+    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\Expression.cs" />
+    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\NumberValue.cs" />
+    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\QuantityValue.cs" />
+    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\ReferenceValue.cs" />
+    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\StringValue.cs" />
+    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\TokenValue.cs" />
+    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\UntypedValue.cs" />
     <Compile Include="Spark.Engine\Service\Const.cs" />
+    <Compile Include="Spark.Engine\Service\Export.cs" />
+    <Compile Include="Spark.Engine\Service\FhirService.cs" />
+    <Compile Include="Spark.Engine\Service\FhirServiceExtensions\IFhirServiceExtension.cs" />
+    <Compile Include="Spark.Engine\Service\FhirServiceExtensions\InteractionHandler.cs" />
+    <Compile Include="Spark.Engine\Service\FhirServiceExtensions\IResourceStorageService.cs" />
+    <Compile Include="Spark.Engine\Service\FhirServiceExtensions\ISearchService.cs" />
+    <Compile Include="Spark.Engine\Service\FhirServiceExtensions\SearchService.cs" />
+    <Compile Include="Spark.Engine\Service\ICompositeServiceListener.cs" />
+    <Compile Include="Spark.Engine\Service\IFhirService.cs" />
+    <Compile Include="Spark.Engine\Service\Import.cs" />
+    <Compile Include="Spark.Engine\Service\IServiceListener.cs" />
+    <Compile Include="Spark.Engine\Service\ITransfer.cs" />
+    <Compile Include="Spark.Engine\Service\KeyMapper.cs" />
+    <Compile Include="Spark.Engine\Service\ServiceListener.cs" />
+    <Compile Include="Spark.Engine\Service\Transfer.cs" />
+    <Compile Include="Spark.Engine\Service\Validate.cs" />
+    <Compile Include="Spark.Engine\Service\XDocumentVisitor.cs" />
+    <Compile Include="Spark.Engine\Store\ExtendableWith.cs" />
+    <Compile Include="Spark.Engine\Store\Interfaces\IExtendableWith.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -125,6 +185,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Spark.Engine\Resources.resx" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

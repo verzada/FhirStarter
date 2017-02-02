@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
+using FHIRLight.Library.Spark.Engine.Core;
+using FHIRLight.Library.Spark.Engine.Extensions;
+using FHIRLight.Library.Spark.Engine.FhirResponseFactory;
+using FHIRLight.Library.Spark.Engine.Service.FhirServiceExtensions;
+using FHIRLight.Library.Spark.Engine.Store;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
-using Spark.Core;
-using Spark.Engine.Core;
-using Spark.Engine.Extensions;
-using Spark.Engine.FhirResponseFactory;
-using Spark.Engine.Service.FhirServiceExtensions;
-using Spark.Engine.Storage;
 using Spark.Service;
+using IFhirService = FHIRLight.Library.Interface.IFhirService;
 
-namespace Spark.Engine.Service
+namespace FHIRLight.Library.Spark.Engine.Service
 {
     public class FhirService : ExtendableWith<IFhirServiceExtension>, IFhirService, IInteractionHandler 
         //CCCR: FhirService now implementents InteractionHandler that is used by the TransactionService to actually perform the operation. 

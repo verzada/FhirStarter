@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using FHIRLight.Library.Spark.Engine.Extensions;
+using Spark;
 
 namespace FHIRLight.Server
 {

@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Xml.Linq;
+using FHIRLight.Library.Spark.Engine.Auxiliary;
 using FHIRLight.Library.Spark.Engine.Core;
 using FHIRLight.Library.Spark.Engine.Extensions;
 using FHIRLight.Library.Spark.Engine.Interfaces;
@@ -182,7 +183,7 @@ namespace FHIRLight.Library.Spark.Engine.Service
 
             Type[] types = { typeof(ResourceReference), typeof(FhirUri), typeof(Narrative) };
             
-            global::Spark.Engine.Auxiliary.ResourceVisitor.VisitByType(resource, action, types);
+            global::FHIRLight.Library.Spark.Engine.Auxiliary.ResourceVisitor.VisitByType(resource, action, types);
         }
 
         IKey InternalizeReference(IKey localkey)

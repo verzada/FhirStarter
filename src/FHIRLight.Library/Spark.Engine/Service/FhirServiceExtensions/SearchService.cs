@@ -2,14 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using FHIRLight.Library.Spark.Engine.Core;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
-using Spark.Core;
-using Spark.Engine.Core;
-using Spark.Engine.Extensions;
 using Spark.Service;
 
-namespace Spark.Engine.Service.FhirServiceExtensions
+namespace FHIRLight.Library.Spark.Engine.Service.FhirServiceExtensions
 {
     public class SearchService : ISearchService, IServiceListener
     {

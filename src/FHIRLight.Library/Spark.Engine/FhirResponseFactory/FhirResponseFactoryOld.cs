@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using Spark.Engine.Core;
-using Spark.Engine.Extensions;
-using Spark.Engine.Interfaces;
-using Spark.Service;
+using FHIRLight.Library.Spark.Engine.Core;
+using FHIRLight.Library.Spark.Engine.Extensions;
+using FHIRLight.Library.Spark.Engine.Interfaces;
+using FHIRLight.Library.Spark.Engine.Service;
 
-namespace Spark.Engine.FhirResponseFactory
+namespace FHIRLight.Library.Spark.Engine.FhirResponseFactory
 {
     public class FhirResponseFactoryOld : IFhirResponseFactoryOld
     {

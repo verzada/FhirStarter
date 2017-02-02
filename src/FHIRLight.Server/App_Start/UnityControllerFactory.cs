@@ -1,11 +1,8 @@
-﻿using Microsoft.Practices.Unity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System;
 using System.Web.Mvc;
+using Microsoft.Practices.Unity;
 
-namespace Spark
+namespace FHIRLight.Server
 {
     /// <summary>
     /// Needed for injection in MVC controllers. DefaultControllerFactory does not take Unity into account.
