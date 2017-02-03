@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Web.Http;
 using System.Web.Http.Cors;
@@ -97,7 +98,8 @@ namespace FHIRLight.Server.Controllers
             //}
             var headers = Request.Headers;
             var accept = headers.Accept;
-            var returnJson = accept.Any(x => x.MediaType.Contains("json"));
+            //var returnJson = accept.Any(x => x.MediaType.Contains(Hl7.Fhir.Rest.ContentType.JSON_CONTENT_HEADER));
+            var returnJson = ReturnJson(accept);
 
             StringContent httpContent;
             if (!returnJson)
@@ -105,16 +107,32 @@ namespace FHIRLight.Server.Controllers
                 var xml = FhirSerializer.SerializeToXml(resource);
                 httpContent =
                     new StringContent(xml, Encoding.UTF8,
-                        "application/xml");
+                       Hl7.Fhir.Rest.ContentType.XML_CONTENT_HEADER);
             }
             else
             {
                 httpContent =
                     new StringContent(FhirSerializer.SerializeToJson(resource), Encoding.UTF8,
-                        "application/json");
+                      Hl7.Fhir.Rest.ContentType.JSON_CONTENT_HEADER);
             }
             var response = new HttpResponseMessage(HttpStatusCode.OK) { Content = httpContent };
             return response;
+        }
+
+        private static bool ReturnJson(HttpHeaderValueCollection<MediaTypeWithQualityHeaderValue> accept)
+        {
+            var jsonHeaders = Hl7.Fhir.Rest.ContentType.JSON_CONTENT_HEADERS;
+            var returnJson = false;
+            foreach (var x in accept)
+            {
+                foreach (var y in jsonHeaders)
+                {
+                    if (!x.MediaType.Contains(y)) continue;
+                    returnJson = true;
+                    break;
+                }
+            }
+            return returnJson;
         }
 
         //[HttpGet, Route("metadata")]

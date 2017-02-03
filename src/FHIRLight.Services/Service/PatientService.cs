@@ -5,7 +5,6 @@ using FHIRLight.Library.Parameters;
 using FHIRLight.Library.Spark.Engine.Core;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
-using Hl7.Fhir.Support;
 
 namespace FHIRLight.Services.Service
 {
