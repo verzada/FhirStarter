@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace FHIRLight.Server
 {
@@ -24,6 +21,11 @@ namespace FHIRLight.Server
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            config.EnableSystemDiagnosticsTracing();
+            config.EnsureInitialized();
+
+            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
         }
     }
 }

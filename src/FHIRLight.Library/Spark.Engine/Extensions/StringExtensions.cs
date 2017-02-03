@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Spark.Engine.Extensions
+namespace FHIRLight.Library.Spark.Engine.Extensions
 {
     public static class StringExtensions
     {

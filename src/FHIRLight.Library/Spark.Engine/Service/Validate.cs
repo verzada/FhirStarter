@@ -7,15 +7,14 @@
  */
 
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using FHIRLight.Library.Spark.Engine.Core;
 using FHIRLight.Library.Spark.Engine.Extensions;
 using Hl7.Fhir.Model;
-using Spark.Engine.Core;
 
-namespace Spark.Service
+namespace FHIRLight.Library.Spark.Engine.Service
 {
     public static class Validate
     {

@@ -12,40 +12,33 @@ namespace FHIRLight.Library.Spark.Engine.Core
         public FhirResponse(HttpStatusCode code, IKey key, Resource resource)
         {
             StatusCode = code;
-            this.Key = key;
-            this.Resource = resource;
+            Key = key;
+            Resource = resource;
         }
 
         public FhirResponse(HttpStatusCode code, Resource resource)
         {
-            this.StatusCode = code;
-            this.Key = null;
-            this.Resource = resource;
+            StatusCode = code;
+            Key = null;
+            Resource = resource;
         }
 
         public FhirResponse(HttpStatusCode code)
         {
-            this.StatusCode = code;
-            this.Key = null;
-            this.Resource = null;
+            StatusCode = code;
+            Key = null;
+            Resource = null;
         }
 
         public bool IsValid
         {
             get
             {
-                int code = (int)this.StatusCode;
+                var code = (int)StatusCode;
                 return code <= 300;
             }
         }
 
-        public bool HasBody
-        {
-            get
-            {
-                return Resource != null;
-            }
-        }
-
+        public bool HasBody => Resource != null;
     }
 }

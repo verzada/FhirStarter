@@ -59,7 +59,7 @@ namespace FHIRLight.Library.Spark.Engine.Core
 
         }
 
-        public static string GetContentType(Type type, ResourceFormat format) 
+        public static string GetContentType(Type type, ResourceFormat format)
         {
             if (typeof(Resource).IsAssignableFrom(type) || type == typeof(Resource))
             {
@@ -70,8 +70,7 @@ namespace FHIRLight.Library.Spark.Engine.Core
                     default: return XmlResource;
                 }
             }
-            else 
-                return "application/octet-stream";
+            return "application/octet-stream";
         }
 
         public static string GetMediaType(this HttpRequestMessage request)

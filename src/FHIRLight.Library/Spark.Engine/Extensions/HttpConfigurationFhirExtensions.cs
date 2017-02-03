@@ -6,7 +6,6 @@ using FHIRLight.Library.Spark.Engine.ExceptionHandling;
 using FHIRLight.Library.Spark.Engine.Filters;
 using FHIRLight.Library.Spark.Engine.Formatters;
 using FHIRLight.Library.Spark.Engine.Handlers;
-using Spark.Filters;
 
 namespace FHIRLight.Library.Spark.Engine.Extensions
 {

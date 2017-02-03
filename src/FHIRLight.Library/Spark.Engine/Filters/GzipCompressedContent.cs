@@ -12,7 +12,6 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FHIRLight.Library.Spark.Engine.Auxiliary;
-using Spark.Filters;
 
 namespace FHIRLight.Library.Spark.Engine.Filters 
 {

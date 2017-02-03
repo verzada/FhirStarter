@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using FHIRLight.Library.Interface;
-using FHIRLight.Library.Spark.Engine.Core;
+using FHIRLight.Library.Spark.Engine.Extensions;
 using FHIRLight.Library.Spark.Engine.Infrastructure;
+using FHIRLight.Services.Service;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
 
@@ -17,27 +17,40 @@ namespace FHIRLight.Server.Controllers
     [RouteDataValuesOnly]
     public class FhirController : ApiController
     {
-        private ICollection<IFhirService> _services;
+        private IFhirLightService lightService;
 
-        public FhirController(ICollection<IFhirService> services )
+        public FhirController()
         {
-            _services = services;
+            lightService = new PatientService();
         }
 
+        //public FhirController(ICollection<IFhirService> services )
+        //{
+        //    _services = services;
+        //}
+
         [HttpGet, Route("{type}/{id}"), Route("{type}/identifier/{id}")]
-        public FhirResponse Read(string type, string id)
+        public HttpResponseMessage Read(string type, string id)
         {
             //var result = _interpreter.ResourceQuery(type, id);
 
             //return SendResponse(result);
-            return new FhirResponse(HttpStatusCode.Ambiguous);
+            var result = lightService.Read(id);
+            
+            return SendResponse(result);
         }
 
         [HttpGet, Route("{type}")]
-        public HttpResponseMessage ResourceQuery(string type)
+        public HttpResponseMessage Read(string type)
         {
+            var parameters = Request.GetSearchParams();
+            if (parameters.Count > 0)
+            {
+                var results = lightService.Read(parameters);
+                return SendResponse(results);
+            }
 
-            return new HttpResponseMessage();
+          return new HttpResponseMessage(HttpStatusCode.ExpectationFailed);
         }
 
         [HttpGet, Route("")]
@@ -48,13 +61,13 @@ namespace FHIRLight.Server.Controllers
         }
 
         [HttpPost, Route("{type}")]
-        public FhirResponse Create(string type, Resource resource)
+        public HttpResponseMessage Create(string type, Resource resource)
         {
-            return new FhirResponse(HttpStatusCode.Ambiguous);
+            return new HttpResponseMessage(HttpStatusCode.Ambiguous);
         }
 
         [HttpPut, Route("{type}/{id}")]
-        public FhirResponse Update(string type, string id, Resource resource)
+        public HttpResponseMessage Update(string type, string id, Resource resource)
         {
             //if (!string.IsNullOrEmpty(type) && resource != null && !string.IsNullOrEmpty(id))
             //{
@@ -63,16 +76,16 @@ namespace FHIRLight.Server.Controllers
             //    if (result != null)
             //        return result;
             //}
-            return new FhirResponse(HttpStatusCode.ExpectationFailed, resource);
+            return new HttpResponseMessage(HttpStatusCode.ExpectationFailed);
         }
 
         [HttpDelete, Route("{type}/{id}")]
-        public FhirResponse Delete(string type, string id)
+        public HttpResponseMessage Delete(string type, string id)
         {
             //Key key = Key.Create(type, id);
             //var response = _interpreter.ResourceDelete(type, key);
             //return response;
-            return  new FhirResponse(HttpStatusCode.ExpectationFailed);
+            return  new HttpResponseMessage(HttpStatusCode.ExpectationFailed);
         }
 
         private HttpResponseMessage SendResponse(Base resource)
@@ -110,33 +123,33 @@ namespace FHIRLight.Server.Controllers
             return response;
         }
 
-        [HttpGet, Route("metadata")]
-        public HttpResponseMessage MetaData()
-        {
-            return new HttpResponseMessage(HttpStatusCode.Ambiguous);
-            /*
-            var headers = Request.Headers;
-            var accept = headers.Accept;
-            var returnJson = accept.Any(x => x.MediaType.Contains("json"));
+        //[HttpGet, Route("metadata")]
+//        public HttpResponseMessage MetaData()
+//        {
+////            return new HttpResponseMessage(HttpStatusCode.Ambiguous);
+            
+//            var headers = Request.Headers;
+//            var accept = headers.Accept;
+//            var returnJson = accept.Any(x => x.MediaType.Contains("json"));
 
-            StringContent httpContent;
-            var metaData = _interpreter.CreateMetaData();
-            if (!returnJson)
-            {
-                var xml = FhirSerializer.SerializeToXml(metaData);              
-                httpContent =
-                    new StringContent(xml, Encoding.UTF8,
-                        "application/xml");
+//            StringContent httpContent;
+//            //var metaData = lightService.;
+//            if (!returnJson)
+//            {
+//                var xml = FhirSerializer.SerializeToXml(metaData);              
+//                httpContent =
+//                    new StringContent(xml, Encoding.UTF8,
+//                        "application/xml");
 
-            }
-            else
-            {
-                httpContent =
-                    new StringContent(FhirSerializer.SerializeToJson(metaData), Encoding.UTF8,
-                        "application/json");
-            }
-            var response = new HttpResponseMessage(HttpStatusCode.OK) { Content = httpContent };
-            return response; */
-        }
+//            }
+//            else
+//            {
+//                httpContent =
+//                    new StringContent(FhirSerializer.SerializeToJson(metaData), Encoding.UTF8,
+//                        "application/json");
+//            }
+//            var response = new HttpResponseMessage(HttpStatusCode.OK) { Content = httpContent };
+//            return response; 
+//        }
     }
 }

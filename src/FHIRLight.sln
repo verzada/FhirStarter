@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHIRLight.Server", "FHIRLig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHIRLight.Library", "FHIRLight.Library\FHIRLight.Library.csproj", "{27136165-08A5-4FB7-8C3E-F431518BD2D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{1AB75DBB-AE0D-4803-8314-7AFB25401D1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHIRLight.Services", "FHIRLight.Services\FHIRLight.Services.csproj", "{8F64E783-0044-4C52-A2A1-FB6324918207}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{AFFE35A4-C41C-43FE-81B0-FF0C21C4BF01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +25,16 @@ Global
 		{27136165-08A5-4FB7-8C3E-F431518BD2D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27136165-08A5-4FB7-8C3E-F431518BD2D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27136165-08A5-4FB7-8C3E-F431518BD2D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1AB75DBB-AE0D-4803-8314-7AFB25401D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1AB75DBB-AE0D-4803-8314-7AFB25401D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1AB75DBB-AE0D-4803-8314-7AFB25401D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1AB75DBB-AE0D-4803-8314-7AFB25401D1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F64E783-0044-4C52-A2A1-FB6324918207}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F64E783-0044-4C52-A2A1-FB6324918207}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F64E783-0044-4C52-A2A1-FB6324918207}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F64E783-0044-4C52-A2A1-FB6324918207}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{27136165-08A5-4FB7-8C3E-F431518BD2D3} = {AFFE35A4-C41C-43FE-81B0-FF0C21C4BF01}
+		{8F64E783-0044-4C52-A2A1-FB6324918207} = {AFFE35A4-C41C-43FE-81B0-FF0C21C4BF01}
 	EndGlobalSection
 EndGlobal

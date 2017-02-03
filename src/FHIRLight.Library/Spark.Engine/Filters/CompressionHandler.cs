@@ -14,10 +14,9 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
-using FHIRLight.Library.Spark.Engine.Filters;
 using Hl7.Fhir.Model;
 
-namespace Spark.Filters 
+namespace FHIRLight.Library.Spark.Engine.Filters 
 {
     /// <summary>
     ///   A GZip encoder/decoder for a HTTP messages.

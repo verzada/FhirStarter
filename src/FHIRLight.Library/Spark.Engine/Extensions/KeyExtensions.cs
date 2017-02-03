@@ -35,13 +35,13 @@ namespace FHIRLight.Library.Spark.Engine.Extensions
             return key;
         }
 
-        public static Key ExtractKey(this Localhost localhost, Bundle.EntryComponent entry)
-        {
-            var uri = new Uri(entry.Request.Url, UriKind.RelativeOrAbsolute);
-          //  var compare = ExtractKey(uri); // This fails!! ResourceIdentity does not work in this case.
-            return localhost.LocalUriToKey(uri);   
+        //public static Key ExtractKey(this Localhost localhost, Bundle.EntryComponent entry)
+        //{
+        //    var uri = new Uri(entry.Request.Url, UriKind.RelativeOrAbsolute);
+        //  //  var compare = ExtractKey(uri); // This fails!! ResourceIdentity does not work in this case.
+        //    return localhost.LocalUriToKey(uri);   
             
-        }
+        //}
                 
         public static void ApplyTo(this IKey key, Resource resource)
         {

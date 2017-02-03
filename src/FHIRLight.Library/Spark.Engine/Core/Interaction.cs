@@ -43,7 +43,7 @@ namespace FHIRLight.Library.Spark.Engine.Core
         {
             get
             {
-                if (Resource != null && Resource.Meta != null)
+                if (Resource?.Meta != null)
                 {
                     return Resource.Meta.LastUpdated;
                 }

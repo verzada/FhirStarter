@@ -19,7 +19,6 @@ using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
 using Hl7.Fhir.Serialization;
 using Newtonsoft.Json;
-using static Hl7.Fhir.Serialization.FhirParser;
 
 namespace FHIRLight.Library.Spark.Engine.Formatters
 {
@@ -47,7 +46,8 @@ namespace FHIRLight.Library.Spark.Engine.Formatters
 
                     if (typeof(Resource).IsAssignableFrom(type))
                     {
-                        var resource = ParseResourceFromJson(body);
+                        var fhirparser = new FhirJsonParser();
+                        var resource = fhirparser.Parse(body, type);
                         return resource;
                     }
                     throw Error.Internal("Cannot read unsupported type {0} from body", type.Name);
@@ -61,7 +61,6 @@ namespace FHIRLight.Library.Spark.Engine.Formatters
 
         public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
         {
-
             return Task.Factory.StartNew(() =>
             {
                 using(var streamwriter = new StreamWriter(writeStream))

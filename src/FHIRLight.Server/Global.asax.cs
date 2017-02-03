@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using FHIRLight.Library.Spark.Engine.Extensions;
-using Spark;
+using log4net.Config;
 
 namespace FHIRLight.Server
 {
@@ -16,18 +16,21 @@ namespace FHIRLight.Server
 
         protected void Application_Start()
         {
-        
-            GlobalConfiguration.Configure(Configure);
+
             AreaRegistration.RegisterAllAreas();
+            WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            GlobalConfiguration.Configure(Configure);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+
+            XmlConfigurator.Configure();
         }
 
         public void Configure(HttpConfiguration config)
         {
-            UnityConfig.RegisterComponents(config);
-            GlobalConfiguration.Configure(WebApiConfig.Register);
             config.AddFhir();
         }
     }

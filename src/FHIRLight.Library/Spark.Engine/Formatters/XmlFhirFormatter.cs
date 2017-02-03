@@ -60,7 +60,9 @@ namespace FHIRLight.Library.Spark.Engine.Formatters
                     if (!typeof(Resource).IsAssignableFrom(type))
                         throw Error.Internal("The type {0} expected by the controller can not be deserialized",
                             type.Name);
-                    var resource = FhirParser.ParseResourceFromXml(body);
+
+                    var fhirparser = new FhirJsonParser();
+                    var resource = fhirparser.Parse(body, type);
                     return resource;
                 }
                 catch (FormatException exc)

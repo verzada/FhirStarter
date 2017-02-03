@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using FHIRLight.Library.Spark.Engine.Core;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
-using Spark.Engine.Core;
 
-namespace Spark.Service
+namespace FHIRLight.Library.Spark.Engine.Service
 {
     public interface IFhirService
     {

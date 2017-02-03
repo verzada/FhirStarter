@@ -20,26 +20,26 @@ namespace FHIRLight.Library.Spark.Engine.Core
     
     public class ElementQuery
     {
-        private List<Chain> chains = new List<Chain>();
+        private readonly List<Chain> _chains = new List<Chain>();
         public void Add(string path)
         {
-            chains.Add(new Chain(path));
+            _chains.Add(new Chain(path));
         }
         public ElementQuery(params string[] paths)
         {
-            foreach (string path in paths)
+            foreach (var path in paths)
             {
-                this.Add(path);
+                Add(path);
             }
         }
         public ElementQuery(string path)
         {
-            this.Add(path);
+            Add(path);
         }
 
         public void Visit(object field, Action<object> action)
         {
-            foreach (Chain chain in chains)
+            foreach (var chain in _chains)
             {
                 chain.Visit(field, action);
             }
@@ -64,26 +64,23 @@ namespace FHIRLight.Library.Spark.Engine.Core
                 {
                     return null;
                 }
-                else
-                {
-                    return Property.GetValue(field);
-                }
+                return Property.GetValue(field);
             }
         }
 
         public class Chain
         {
-            private List<Segment> segments = new List<Segment>();
+            private readonly List<Segment> _segments;
 
             public Chain(string path)
             {
-                List<string> chain = SplitPath(path);
+                var chain = SplitPath(path);
 
                 // Keep the typename separate.
                 var typeName = chain.First();
                 chain.RemoveAt(0);
 
-                segments = BuildSegments(typeName, chain);
+                _segments = BuildSegments(typeName, chain);
             }
 
             // segments is a cache of PropertyInfo elements for every link in the chain. We have to cache this for performance.
@@ -98,22 +95,22 @@ namespace FHIRLight.Library.Spark.Engine.Core
                 // todo: This whole function can probably be replaced by a single RegExp. --MH
                 //var path = path.Replace("[x]", ""); // we won't remove this, and start treating it as a predicate.
 
-                path = Regex.Replace((string)path, @"\b(\w)", match => match.Value.ToUpper());
+                path = Regex.Replace(path, @"\b(\w)", match => match.Value.ToUpper());
                 var chain = new List<string>();
 
                 // Split on the dots, except when the dot is inside square brackets, because then it is part of a predicate value.
                 while (path.Length > 0)
                 {
-                    int firstBracket = path.IndexOf('[');
-                    int firstDot = path.IndexOf('.');
+                    var firstBracket = path.IndexOf('[');
+                    var firstDot = path.IndexOf('.');
                     if (firstDot == -1)
                     {
-                        chain.Add((string)path);
+                        chain.Add(path);
                         break;
                     }
                     if (firstBracket > -1 && firstBracket < firstDot)
                     {
-                        int endBracket = path.IndexOf(']');
+                        var endBracket = path.IndexOf(']');
                         chain.Add(path.Substring(0, endBracket + 1)); //+1 to include the bracket itself.
                         path = path.Remove(0, Math.Min(path.Length, endBracket + 2)); //+2 for the bracket itself and the dot after the bracket
                     }
@@ -130,8 +127,8 @@ namespace FHIRLight.Library.Spark.Engine.Core
             {
                 var segments = new List<Segment>();
 
-                Type baseType = ModelInfo.FhirTypeToCsType[classname];
-                foreach (string linkString in chain)
+                var baseType = ModelInfo.FhirTypeToCsType[classname];
+                foreach (var linkString in chain)
                 {
                     var segment = new Segment();
                     segment.FhirType = baseType;
@@ -142,23 +139,23 @@ namespace FHIRLight.Library.Spark.Engine.Core
 
                     segment.Filter = ParsePredicate(predicate);
 
-                    var matchingFhirElements = baseType.FindMembers(MemberTypes.Property, BindingFlags.Instance | BindingFlags.Public, new MemberFilter(IsFhirElement), segment.Name);
+                    var matchingFhirElements = baseType.FindMembers(MemberTypes.Property, BindingFlags.Instance | BindingFlags.Public, IsFhirElement, segment.Name);
                     if (matchingFhirElements.Any())
                     {
                         segment.Property = baseType.GetProperty(matchingFhirElements.First().Name);
                         //TODO: Ugly repetitive code from IsFhirElement(), since that method can only return a boolean...
-                        FhirElementAttribute feAtt = segment.Property.GetCustomAttribute<FhirElementAttribute>();
+                        var feAtt = segment.Property.GetCustomAttribute<FhirElementAttribute>();
                         if (feAtt != null)
                         {
                             if (feAtt.Choice == ChoiceType.DatatypeChoice || feAtt.Choice == ChoiceType.ResourceChoice)
                             {
-                                AllowedTypesAttribute atAtt = segment.Property.GetCustomAttribute<AllowedTypesAttribute>();
+                                var atAtt = segment.Property.GetCustomAttribute<AllowedTypesAttribute>();
                                 if (atAtt != null)
                                 {
-                                    foreach (Type allowedType in atAtt.Types)
+                                    foreach (var allowedType in atAtt.Types)
                                     {
                                         var curTypeName = segment.Name.Remove(0, feAtt.Name.Length);
-                                        Type curType = ModelInfo.GetTypeForFhirType(curTypeName);
+                                        var curType = ModelInfo.GetTypeForFhirType(curTypeName);
                                         if (allowedType.IsAssignableFrom(curType))
                                         //if (link.propertyName.Equals(feAtt.Name + ModelInfo.FhirCsTypeToString[allowedType], StringComparison.InvariantCultureIgnoreCase))
                                         {
@@ -197,7 +194,7 @@ namespace FHIRLight.Library.Spark.Engine.Core
                 //TODO: CK: Search for 'FhirElement' with the name 'propname' first, just like we do in fillChainLinks above.
                 var predicateRegex = new Regex(@"(?<propname>[^=]*)=(?<filterValue>.*)");
                 var match = predicateRegex.Match(predicate);
-                if (match == null || !match.Success)
+                if (!match.Success)
                     return null;
 
                 var propertyName = match.Groups["propname"].Value;
@@ -212,10 +209,10 @@ namespace FHIRLight.Library.Spark.Engine.Core
 
             private bool GetPredicateForPropertyAndFilter(string propertyName, string filterValue, object obj)
             {
-                PropertyInfo property = obj.GetType().GetProperty(propertyName);
+                var property = obj.GetType().GetProperty(propertyName);
                 if (property != null)
                 {
-                    object value = property.GetValue(obj);
+                    var value = property.GetValue(obj);
                     if (value != null)
                     {
                         return filterValue.Equals(value.ToString(), StringComparison.CurrentCultureIgnoreCase);
@@ -227,8 +224,8 @@ namespace FHIRLight.Library.Spark.Engine.Core
 
             private static bool IsFhirElement(MemberInfo member, object criterium)
             {
-                string fhirElementName = (string)criterium;
-                FhirElementAttribute feAtt = member.GetCustomAttribute<FhirElementAttribute>();
+                var fhirElementName = (string)criterium;
+                var feAtt = member.GetCustomAttribute<FhirElementAttribute>();
 
                 if (feAtt != null)
                 {
@@ -240,13 +237,13 @@ namespace FHIRLight.Library.Spark.Engine.Core
                     {
                         if (feAtt.Choice == ChoiceType.DatatypeChoice || feAtt.Choice == ChoiceType.ResourceChoice)
                         {
-                            AllowedTypesAttribute atAtt = member.GetCustomAttribute<AllowedTypesAttribute>();
+                            var atAtt = member.GetCustomAttribute<AllowedTypesAttribute>();
                             if (atAtt != null)
                             {
-                                foreach (Type allowedType in atAtt.Types)
+                                foreach (var allowedType in atAtt.Types)
                                 {
                                     var curTypeName = fhirElementName.Remove(0, feAtt.Name.Length);
-                                    Type curType = ModelInfo.GetTypeForFhirType(curTypeName);
+                                    var curType = ModelInfo.GetTypeForFhirType(curTypeName);
                                     if (allowedType.IsAssignableFrom(curType))
                                     //                                        if (link.propertyName.Equals(feAtt.Name + ModelInfo.FhirCsTypeToString[allowedType], StringComparison.InvariantCultureIgnoreCase))
                                     {
@@ -265,7 +262,7 @@ namespace FHIRLight.Library.Spark.Engine.Core
 
             public void Visit(object field, Action<object> action)
             {
-                Visit(field, this.segments, action, null);
+                Visit(field, _segments, action, null);
             }
 
             /// <summary>
@@ -290,18 +287,18 @@ namespace FHIRLight.Library.Spark.Engine.Core
                     throw new ArgumentNullException("type");
                 }
 
-                bool? codedEnum = type.GenericTypeArguments?.FirstOrDefault()?.IsEnum;
+                var codedEnum = type.GenericTypeArguments?.FirstOrDefault()?.IsEnum;
                 return codedEnum.HasValue && codedEnum.Value;
             }
 
             private void Visit(object field, IEnumerable<Segment> chain, Action<object> action, Predicate<object> predicate)
             {
-                Type type = field.GetType();
+                var type = field.GetType();
 
                 if (TestIfGenericList(type))
                 {
                     var list = field as IEnumerable<object>;
-                    if ((list != null) && (list.Count() > 0))
+                    if ((list != null) && (list.Any()))
                     {
                         foreach (var subfield in list)
                         {
@@ -319,17 +316,17 @@ namespace FHIRLight.Library.Spark.Engine.Core
                     //Patient.address.city, current field is address
                     if (predicate == null || predicate(field))
                     {
-                        if ((chain != null) && (chain.Count() > 0)) //not at the end of the chain, follow the next link in the chain
+                        if ((chain != null) && chain.Any()) //not at the end of the chain, follow the next link in the chain
                         {
                             var next = chain.First(); //{ FhirString, "city", (propertyInfo of city), AllowedTypes = null, Filter = null }
-                            IEnumerable<Segment> subchain = chain.Skip(1); //subpath = <empty> (city is the last item)
+                            var subchain = chain.Skip(1); //subpath = <empty> (city is the last item)
 
                             //if (field.GetType().GetProperty(next.Name) == null)
                             //    throw new ArgumentException(string.Format("'{0}' is not a valid property for '{1}'", next.Name, field.GetType().Name));
                             // resolved this issue by using next.GetValue() which may return null -- MH
 
                             var subfield = next.GetValue(field); //value of city
-                            if (subfield != null && next != null && next.Property != null && (next.AllowedType == null || next.AllowedType.IsAssignableFrom(subfield.GetType())))
+                            if (subfield != null && next.Property != null && (next.AllowedType == null || next.AllowedType.IsInstanceOfType(subfield)))
                             {
                                 Visit(subfield, subchain, action, next.Filter);
                             }
@@ -346,64 +343,25 @@ namespace FHIRLight.Library.Spark.Engine.Core
                 }
             }
 
-            /// <summary>
-            /// Returns the property matching the propertyname, and if it is a FhirElement with DatatypeChoice or ResourceChoice, the allowed type as stated in the path.
-            /// </summary>
-            /// <param name="x"></param>
-            /// <param name="propertyname"></param>
-            /// <returns></returns>
-
-            //private Tuple<ChainLink, object> GetObjectProperty(object x, string propertyname)
-            //{
-            //    Type type = x.GetType();
-            //    //var match = infoChain.Find(t => t.Item1 == type && t.Item2 == propertyname);
-            //    var match = links.Find(t => t.FhirType == type && t.propertyName == propertyname);
-            //    if (match != null && match.propertyInfo != null)
-            //    {
-            //        return Tuple.Create<ChainLink, object>(match, match.propertyInfo.GetValue(x));
-            //    }
-            //    else return null;
-            //}
-
-            //private static object GetObjectProperty(object x, string propertyname)
-            //{
-            //    Type type = x.GetType();
-            //    PropertyInfo info;
-            //    var matchingFhirElements = type.FindMembers(MemberTypes.Property, BindingFlags.Instance | BindingFlags.Public, new MemberFilter(IsFhirElement), propertyname);
-            //    if (matchingFhirElements.Count() > 0)
-            //    {
-            //        info = type.GetProperty(matchingFhirElements.First().Name);
-            //    }
-            //    else
-            //    {
-            //        info = type.GetProperty(propertyname);
-            //    }
-            //    if (info != null)
-            //        return info.GetValue(x);
-            //    else
-            //        return null;
-
-            //}
-
             public override string ToString()
             {
-                return string.Join(".", segments.Select(l => l.Name));
+                return string.Join(".", _segments.Select(l => l.Name));
             }
 
         }
 
         public override string ToString()
         {
-            return string.Join(", ", chains.Select(chain => string.Join(".", chain)));
+            return string.Join(", ", _chains.Select(chain => string.Join(".", chain)));
         }
     }
 
-    public static class ChainExtensions
-    {
-        public static bool IsEmpty(this IEnumerable<ElementQuery.Segment> chain)
-        {
-            return chain.Count() == 0;
-        }
+    //public static class ChainExtensions
+    //{
+    //    public static bool IsEmpty(this IEnumerable<ElementQuery.Segment> chain)
+    //    {
+    //        return !chain.Any();
+    //    }
 
-    }
+    //}
 }
