@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using FHIRLight.Library.Filters;
 using FHIRLight.Library.Interface;
 using FHIRLight.Library.Spark.Engine.Extensions;
 using FHIRLight.Library.Spark.Engine.Infrastructure;
@@ -15,13 +16,14 @@ namespace FHIRLight.Server.Controllers
 {
     [RoutePrefix("fhir"), EnableCors("*", "*", "*", "*")]
     [RouteDataValuesOnly]
+    [ExceptionFilter]
     public class FhirController : ApiController
     {
-        private IFhirLightService lightService;
+        private readonly IFhirLightService _lightService;
 
         public FhirController()
         {
-            lightService = new PatientService();
+            _lightService = new PatientService();
         }
 
         //public FhirController(ICollection<IFhirService> services )
@@ -32,10 +34,7 @@ namespace FHIRLight.Server.Controllers
         [HttpGet, Route("{type}/{id}"), Route("{type}/identifier/{id}")]
         public HttpResponseMessage Read(string type, string id)
         {
-            //var result = _interpreter.ResourceQuery(type, id);
-
-            //return SendResponse(result);
-            var result = lightService.Read(id);
+            var result = _lightService.Read(id);
             
             return SendResponse(result);
         }
@@ -46,7 +45,7 @@ namespace FHIRLight.Server.Controllers
             var parameters = Request.GetSearchParams();
             if (parameters.Count > 0)
             {
-                var results = lightService.Read(parameters);
+                var results = _lightService.Read(parameters);
                 return SendResponse(results);
             }
 
@@ -103,15 +102,9 @@ namespace FHIRLight.Server.Controllers
             if (!returnJson)
             {
                 var xml = FhirSerializer.SerializeToXml(resource);
-                //#if DEBUG
-                //                var xmlDocument = new XmlDocument();
-                //                xmlDocument.LoadXml(xml);
-                //                xmlDocument.Save(@"c:\temp\arntzen3.xml");
-                //#endif
                 httpContent =
                     new StringContent(xml, Encoding.UTF8,
                         "application/xml");
-
             }
             else
             {
