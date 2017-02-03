@@ -42,7 +42,8 @@ namespace FHIRLight.Services.Service
 
         public Base Read(SearchParams searchParams)
         {
-            return MockPatient();
+            throw new ArgumentException("Using " + nameof(SearchParams) +
+                                        " in Read(SearchParams searchParams) should throw an exception which is put into an OperationOutcomes issues");
         }
 
         private static Base MockPatient()

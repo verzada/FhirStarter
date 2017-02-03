@@ -1,6 +1,5 @@
 ﻿using System.Net.Http.Formatting;
 using System.Web.Http;
-using System.Web.Http.ExceptionHandling;
 using System.Web.Http.Validation;
 using FHIRLight.Library.Spark.Engine.ExceptionHandling;
 using FHIRLight.Library.Spark.Engine.Filters;
@@ -11,7 +10,7 @@ namespace FHIRLight.Library.Spark.Engine.Extensions
 {
     public static class HttpConfigurationFhirExtensions
     {
-        public static void AddFhirFormatters(this HttpConfiguration config, bool clean = true)
+        private static void AddFhirFormatters(this HttpConfiguration config, bool clean = true)
         {
             // remove existing formatters
             if (clean) config.Formatters.Clear();
@@ -28,13 +27,7 @@ namespace FHIRLight.Library.Spark.Engine.Extensions
             config.Formatters.Add(new XmlMediaTypeFormatter());
         }
 
-        public static void AddFhirExceptionHandling(this HttpConfiguration config)
-        {
-            config.Filters.Add(new FhirExceptionFilter(new ExceptionResponseMessageFactory()));
-            config.Services.Replace(typeof(IExceptionHandler), new FhirGlobalExceptionHandler(new ExceptionResponseMessageFactory()));
-        }
-        
-        public static void AddFhirMessageHandlers(this HttpConfiguration config)
+        private static void AddFhirMessageHandlers(this HttpConfiguration config)
         {
             // TODO: Should compression handler be before InterceptBodyHandler.  Have not checked.
             config.MessageHandlers.Add((new CompressionHandler()));
@@ -44,11 +37,10 @@ namespace FHIRLight.Library.Spark.Engine.Extensions
 
         }
 
-        public static void AddFhir(this HttpConfiguration config, params string[] endpoints)
+        public static void AddFhir(this HttpConfiguration config)
         {
             
             config.AddFhirMessageHandlers();
-            config.AddFhirExceptionHandling();
             
             // Hook custom formatters            
             config.AddFhirFormatters();

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Configuration;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -23,7 +24,11 @@ namespace FHIRLight.Server.Controllers
 
         public FhirController()
         {
-            _lightService = new PatientService();
+            var appConfig = ConfigurationManager.AppSettings;
+            if (appConfig["UnitTesting"].Equals("true"))
+            {
+                _lightService = new PatientService();
+            }
         }
 
         //public FhirController(ICollection<IFhirService> services )
@@ -43,13 +48,9 @@ namespace FHIRLight.Server.Controllers
         public HttpResponseMessage Read(string type)
         {
             var parameters = Request.GetSearchParams();
-            if (parameters.Count > 0)
-            {
-                var results = _lightService.Read(parameters);
-                return SendResponse(results);
-            }
-
-          return new HttpResponseMessage(HttpStatusCode.ExpectationFailed);
+            if (!(parameters.Parameters.Count > 0)) return new HttpResponseMessage(HttpStatusCode.ExpectationFailed);
+            var results = _lightService.Read(parameters);
+            return SendResponse(results);
         }
 
         [HttpGet, Route("")]
