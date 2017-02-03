@@ -64,11 +64,10 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Controller\FhirController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

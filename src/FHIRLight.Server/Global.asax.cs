@@ -29,7 +29,7 @@ namespace FHIRLight.Server
             XmlConfigurator.Configure();
         }
 
-        public void Configure(HttpConfiguration config)
+        private void Configure(HttpConfiguration config)
         {
             config.AddFhir();
         }
