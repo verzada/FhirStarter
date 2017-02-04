@@ -107,13 +107,13 @@ namespace FHIRLight.Server.Controllers
                 var xml = FhirSerializer.SerializeToXml(resource);
                 httpContent =
                     new StringContent(xml, Encoding.UTF8,
-                       Hl7.Fhir.Rest.ContentType.XML_CONTENT_HEADER);
+                       "application/xml");
             }
             else
             {
                 httpContent =
                     new StringContent(FhirSerializer.SerializeToJson(resource), Encoding.UTF8,
-                      Hl7.Fhir.Rest.ContentType.JSON_CONTENT_HEADER);
+                     "application/json");
             }
             var response = new HttpResponseMessage(HttpStatusCode.OK) { Content = httpContent };
             return response;

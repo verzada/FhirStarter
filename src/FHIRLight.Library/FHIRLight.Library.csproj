@@ -132,17 +132,6 @@
     <Compile Include="Spark.Engine\Search\Support\IPositionInfo.cs" />
     <Compile Include="Spark.Engine\Search\Support\Logging.cs" />
     <Compile Include="Spark.Engine\Search\Support\StringExtensions.cs" />
-    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\ChoiceValue.cs" />
-    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\CompositeValue.cs" />
-    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\Criterium.cs" />
-    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\DateValue.cs" />
-    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\Expression.cs" />
-    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\NumberValue.cs" />
-    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\QuantityValue.cs" />
-    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\ReferenceValue.cs" />
-    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\StringValue.cs" />
-    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\TokenValue.cs" />
-    <Compile Include="Spark.Engine\Search\ValueExpressionTypes\UntypedValue.cs" />
     <Compile Include="Spark.Engine\Service\Const.cs" />
   </ItemGroup>
   <ItemGroup>
