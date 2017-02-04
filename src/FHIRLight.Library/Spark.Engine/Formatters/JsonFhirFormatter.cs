@@ -66,7 +66,7 @@ namespace FHIRLight.Library.Spark.Engine.Formatters
                 using(var streamwriter = new StreamWriter(writeStream))
                 using (JsonWriter writer = new JsonTextWriter(streamwriter))
                 {
-                    var summary = requestMessage.RequestSummary();
+                    var summary = RequestMessage.RequestSummary();
 
                     if (type == typeof(OperationOutcome))
                     {

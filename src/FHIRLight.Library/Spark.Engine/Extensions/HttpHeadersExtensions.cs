@@ -17,49 +17,13 @@ namespace FHIRLight.Library.Spark.Engine.Extensions
 {
     public static class HttpRequestExtensions
     {
-        
-        public static bool Exists(this HttpHeaders headers, string key)
-        {
-            IEnumerable<string> values;
-            if (headers.TryGetValues(key, out values))
-            {
-                return values.Any();
-            }
-            return false;
-        }
-        
         public static void Replace(this HttpHeaders headers, string header, string value)
         {
             //if (headers.Exists(header)) 
             headers.Remove(header);
             headers.Add(header, value);
         }
-        
-        public static string Value(this HttpHeaders headers, string key)
-        {
-            IEnumerable<string> values;
-            if (headers.TryGetValues(key, out values))
-            {
-                return values.FirstOrDefault();
-            }
-            return null;
-        }
-        
-        public static void ReplaceHeader(this HttpRequestMessage request, string header, string value)
-        {
-            request.Headers.Replace(header, value);
-        }
 
-        public static string Header(this HttpRequestMessage request, string key)
-        {
-            IEnumerable<string> values;
-            if (request.Content.Headers.TryGetValues(key, out values))
-            {
-                return values.FirstOrDefault();
-            }
-            return null;
-        }
-        
         public static string GetParameter(this HttpRequestMessage request, string key)
         {
             foreach (var param in request.GetQueryNameValuePairs())
@@ -69,11 +33,11 @@ namespace FHIRLight.Library.Spark.Engine.Extensions
             return null;
         }
 
-        public static List<Tuple<string, string>> TupledParameters(this HttpRequestMessage request)
+        private static List<Tuple<string, string>> TupledParameters(this HttpRequestMessage request)
         {
             var list = new List<Tuple<string, string>>();
 
-            IEnumerable<KeyValuePair<string, string>> query = request.GetQueryNameValuePairs();
+            var query = request.GetQueryNameValuePairs();
             foreach (var pair in query)
             {
                 list.Add(new Tuple<string, string>(pair.Key, pair.Value));
@@ -86,19 +50,6 @@ namespace FHIRLight.Library.Spark.Engine.Extensions
             var parameters = request.TupledParameters().Where(tp => tp.Item1 != "_format");
             var searchCommand = SearchParams.FromUriParamList(parameters);
             return searchCommand;
-        }
-    }
-
-    public static class FhirHttpHeaders
-    {
-        public const string IfNoneExist = "If-None-Exist";
-    }
-    public static class HttpHeadersFhirExtensions
-    {
-        public static bool IsSummary(this HttpHeaders headers)
-        {
-            string summary = headers.Value("_summary");
-            return (summary != null) ? summary.ToLower() == "true" : false;
         }
     }
 }

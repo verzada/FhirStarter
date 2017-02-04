@@ -9,17 +9,17 @@ namespace FHIRLight.Library.Spark.Engine.ExceptionHandling
 {
     public class FhirErrorMessageHandler : DelegatingHandler
     {
-        protected async override Task<HttpResponseMessage> SendAsync(
+        protected override async Task<HttpResponseMessage> SendAsync(
             HttpRequestMessage request, CancellationToken cancellationToken)
         {
             var response =  await base.SendAsync(request, cancellationToken);
 
             if (!response.IsSuccessStatusCode)
             {
-                ObjectContent content = response.Content as ObjectContent;
+                var content = response.Content as ObjectContent;
                 if (content != null && content.ObjectType == typeof (HttpError))
                 {
-                    OperationOutcome outcome = new OperationOutcome().AddError(response.ReasonPhrase);
+                    var outcome = new OperationOutcome().AddError(response.ReasonPhrase);
                     return request.CreateResponse(response.StatusCode, outcome);
                 }
             }

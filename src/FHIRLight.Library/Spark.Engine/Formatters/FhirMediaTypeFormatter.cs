@@ -20,29 +20,27 @@ namespace FHIRLight.Library.Spark.Engine.Formatters
 {
     public abstract class FhirMediaTypeFormatter : MediaTypeFormatter
     {
-        public FhirMediaTypeFormatter()
+        protected FhirMediaTypeFormatter()
         {
             SupportedEncodings.Clear();
             SupportedEncodings.Add(Encoding.UTF8);
         }
 
-        protected Entry entry;
-        protected HttpRequestMessage requestMessage;
+        private Entry _entry;
+        protected HttpRequestMessage RequestMessage;
 
         private void SetEntryHeaders(HttpContentHeaders headers)
         {
-            if (entry != null)
-            {
-                headers.LastModified = entry.When;
-                // todo: header.contentlocation
-                //headers.ContentLocation = entry.Key.ToUri(Localhost.Base); dit moet door de exporter gezet worden.
+            if (_entry == null) return;
+            headers.LastModified = _entry.When;
+            // todo: header.contentlocation
+            //headers.ContentLocation = entry.Key.ToUri(Localhost.Base); dit moet door de exporter gezet worden.
 
-                var resource = entry.Resource as Binary;
-                if (resource != null)
-                {
-                    var binary = resource;
-                    headers.ContentType = new MediaTypeHeaderValue(binary.ContentType);
-                }
+            var resource = _entry.Resource as Binary;
+            if (resource != null)
+            {
+                var binary = resource;
+                headers.ContentType = new MediaTypeHeaderValue(binary.ContentType);
             }
         }
 
@@ -66,8 +64,8 @@ namespace FHIRLight.Library.Spark.Engine.Formatters
 
         public override MediaTypeFormatter GetPerRequestFormatterInstance(Type type, HttpRequestMessage request, MediaTypeHeaderValue mediaType)
         {
-            entry = request.GetEntry();
-            requestMessage = request;
+            _entry = request.GetEntry();
+            RequestMessage = request;
             return base.GetPerRequestFormatterInstance(type, request, mediaType);
         }
 

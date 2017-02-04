@@ -78,7 +78,7 @@ namespace FHIRLight.Library.Spark.Engine.Formatters
             return Task.Factory.StartNew(() =>
             {
                 XmlWriter writer = new XmlTextWriter(writeStream, new UTF8Encoding(false));
-                var summary = requestMessage.RequestSummary();
+                var summary = RequestMessage.RequestSummary();
 
                 if (type == typeof(OperationOutcome)) 
                 {

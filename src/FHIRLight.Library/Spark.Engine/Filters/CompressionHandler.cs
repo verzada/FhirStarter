@@ -25,28 +25,23 @@ namespace FHIRLight.Library.Spark.Engine.Filters
     {
         public CompressionHandler(long maxDecompressedBodySizeInBytes = 1048576)
         {
-            this.maxDecompressedBodySizeInBytes = maxDecompressedBodySizeInBytes;
-
-            compressors = new Dictionary<string, Func<HttpContent, HttpContent>>(StringComparer.InvariantCultureIgnoreCase)
+            _compressors = new Dictionary<string, Func<HttpContent, HttpContent>>(StringComparer.InvariantCultureIgnoreCase)
         {
-            { "gzip",  (c) => new GZipContent(c) }
+            { "gzip",  c => new GZipContent(c) }
         };
-            decompressors = new Dictionary<string, Func<HttpContent, HttpContent>>(StringComparer.InvariantCultureIgnoreCase)
+            _decompressors = new Dictionary<string, Func<HttpContent, HttpContent>>(StringComparer.InvariantCultureIgnoreCase)
         {
-            { "gzip",  (c) => new GZipCompressedContent(c, maxDecompressedBodySizeInBytes) }
+            { "gzip",  c => new GZipCompressedContent(c, maxDecompressedBodySizeInBytes) }
         };
         }
-
-        private long maxDecompressedBodySizeInBytes = 1048576; //Default value of 1 MB
 
         /// <summary>
         ///  The MIME types that will not be compressed.
         /// </summary>
-        string[] mediaTypeBlacklist = new[]
-        {
+        readonly string[] _mediaTypeBlacklist = {
             "image/", "audio/", "video/",
             "application/x-rar-compressed",
-            "application/zip", "application/x-gzip",
+            "application/zip", "application/x-gzip"
         };
 
         /// <summary>
@@ -55,7 +50,7 @@ namespace FHIRLight.Library.Spark.Engine.Filters
         /// <remarks>
         ///   The key is the value of an "Accept-Encoding" HTTP header.
         /// </remarks>
-        Dictionary<string, Func<HttpContent, HttpContent>> compressors;
+        readonly Dictionary<string, Func<HttpContent, HttpContent>> _compressors;
 
         /// <summary>
         ///   The decompressors that are supported.
@@ -63,26 +58,27 @@ namespace FHIRLight.Library.Spark.Engine.Filters
         /// <remarks>
         ///   The key is the value of an "Content-Encoding" HTTP header.
         /// </remarks>
-        Dictionary<string, Func<HttpContent, HttpContent>> decompressors;
+        readonly Dictionary<string, Func<HttpContent, HttpContent>> _decompressors;
 
         /// <inheritdoc />
-        async protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             // Decompress the request content, if needed.
             if (request.Content != null && request.Content.Headers.ContentEncoding.Count > 0)
             {
                 var encoding = request.Content.Headers.ContentEncoding.First();
                 Func<HttpContent, HttpContent> decompressor;
-                if (!decompressors.TryGetValue(encoding, out decompressor))
+                if (!_decompressors.TryGetValue(encoding, out decompressor))
                 {
                     var outcome = new OperationOutcome
                     {
-                        Issue = new List<OperationOutcome.IssueComponent>()
+                        Issue = new List<OperationOutcome.IssueComponent>
                         {
                             new OperationOutcome.IssueComponent
                             {
                                 Code = OperationOutcome.IssueType.NotSupported,
-                                Details = new CodeableConcept("http://hl7.org/fhir/ValueSet/operation-outcome", "MSG_BAD_FORMAT", string.Format("The Content-Encoding '{0}' is not supported.", encoding)),
+                                Details = new CodeableConcept("http://hl7.org/fhir/ValueSet/operation-outcome", "MSG_BAD_FORMAT",
+                                    $"The Content-Encoding '{encoding}' is not supported."),
                                 Severity = OperationOutcome.IssueSeverity.Error
                             }
                         }
@@ -97,9 +93,9 @@ namespace FHIRLight.Library.Spark.Engine.Filters
                 {
                     var outcome = new OperationOutcome
                     {
-                        Issue = new List<OperationOutcome.IssueComponent>()
+                        Issue = new List<OperationOutcome.IssueComponent>
                         {
-                            new OperationOutcome.IssueComponent()
+                            new OperationOutcome.IssueComponent
                             {
                                 Code = OperationOutcome.IssueType.Forbidden,
                                 Details = new CodeableConcept("http://hl7.org/fhir/ValueSet/operation-outcome", "MSG_BAD_FORMAT", ex.Message),
@@ -116,26 +112,20 @@ namespace FHIRLight.Library.Spark.Engine.Filters
 
 
             // Is the media type blacklisted; because compression does not help?
-            if (response == null
-                || response.Content == null
-                || response.Content.Headers.ContentType == null
-                || mediaTypeBlacklist.Any(s => response.Content.Headers.ContentType.MediaType.StartsWith(s)))
+            if (response?.Content?.Headers.ContentType == null || _mediaTypeBlacklist.Any(s => response.Content.Headers.ContentType.MediaType.StartsWith(s)))
                 return response;
 
             // If the client has requested compression and the compression algorithm is known, 
             // then compress the response.
-            if (request.Headers.AcceptEncoding != null)
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            var compressor = request.Headers.AcceptEncoding?.Where(e => !e.Quality.HasValue || e.Quality != 0)
+                .Where(e => _compressors.ContainsKey(e.Value))
+                .OrderByDescending(e => e.Quality ?? 1.0)
+                .Select(e => _compressors[e.Value])
+                .FirstOrDefault();
+            if (compressor != null)
             {
-                var compressor = request.Headers.AcceptEncoding
-                    .Where(e => !e.Quality.HasValue || e.Quality != 0)
-                    .Where(e => compressors.ContainsKey(e.Value))
-                    .OrderByDescending(e => e.Quality ?? 1.0)
-                    .Select(e => compressors[e.Value])
-                    .FirstOrDefault();
-                if (compressor != null)
-                {
-                    response.Content = compressor(response.Content);
-                }
+                response.Content = compressor(response.Content);
             }
 
             return response;

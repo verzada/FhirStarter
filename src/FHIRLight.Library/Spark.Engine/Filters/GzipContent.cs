@@ -13,7 +13,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace FHIRLight.Library.Spark.Engine.Filters 
+namespace FHIRLight.Library.Spark.Engine.Filters
 {
     /// <summary>
     ///   GZip encoded <see cref="HttpContent"/>.
@@ -22,7 +22,7 @@ namespace FHIRLight.Library.Spark.Engine.Filters
     /// <seealso cref="GZipStream"/>
     public class GZipContent : HttpContent
     {
-        readonly HttpContent content;
+        readonly HttpContent _content;
 
         /// <summary>
         ///   Creates a new instance of the <see cref="GZipContent"/> from the
@@ -37,7 +37,7 @@ namespace FHIRLight.Library.Spark.Engine.Filters
         /// </remarks>
         public GZipContent(HttpContent content)
         {
-            this.content = content;
+            _content = content;
             foreach (var header in content.Headers)
             {
                 Headers.TryAddWithoutValidation(header.Key, header.Value);
@@ -53,12 +53,12 @@ namespace FHIRLight.Library.Spark.Engine.Filters
         }
 
         /// <inheritdoc />
-        protected async override Task SerializeToStreamAsync(Stream stream, TransportContext context)
+        protected override async Task SerializeToStreamAsync(Stream stream, TransportContext context)
         {
-            using (content)
+            using (_content)
             using (var compressedStream = new GZipStream(stream, CompressionMode.Compress, leaveOpen: true))
             {
-                await content.CopyToAsync(compressedStream);
+                await _content.CopyToAsync(compressedStream);
             }
         }
 

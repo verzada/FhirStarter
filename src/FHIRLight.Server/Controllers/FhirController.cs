@@ -8,6 +8,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using FHIRLight.Library.Filters;
 using FHIRLight.Library.Interface;
+using FHIRLight.Library.Spark.Engine.Core;
 using FHIRLight.Library.Spark.Engine.Extensions;
 using FHIRLight.Library.Spark.Engine.Infrastructure;
 using FHIRLight.Services.Service;
@@ -107,13 +108,13 @@ namespace FHIRLight.Server.Controllers
                 var xml = FhirSerializer.SerializeToXml(resource);
                 httpContent =
                     new StringContent(xml, Encoding.UTF8,
-                       "application/xml");
+                     FhirMediaType.XmlResource);
             }
             else
             {
                 httpContent =
                     new StringContent(FhirSerializer.SerializeToJson(resource), Encoding.UTF8,
-                     "application/json");
+                     FhirMediaType.JsonResource);
             }
             var response = new HttpResponseMessage(HttpStatusCode.OK) { Content = httpContent };
             return response;

@@ -22,7 +22,7 @@ namespace FHIRLight.Library.Spark.Engine.Filters
     /// <seealso cref="GZipStream"/>
     public class GZipCompressedContent : HttpContent
     {
-        readonly HttpContent content;
+        readonly HttpContent _content;
 
         /// <summary>
         ///   Creates a new instance of the <see cref="GZipCompressedContent"/> from the
@@ -31,22 +31,23 @@ namespace FHIRLight.Library.Spark.Engine.Filters
         /// <param name="content">
         ///   The compressed <see cref="HttpContent"/>.
         /// </param>
+        /// <param name="maxDecompressedBodySizeInBytes"></param>
         /// <remarks>
         ///   All <see cref="HttpContent.Headers"/> from the <paramref name="content"/> are copied 
         ///   except 'Content-Encoding'.
         /// </remarks>
         public GZipCompressedContent(HttpContent content, long? maxDecompressedBodySizeInBytes = null)
         {
-            this.maxDecompressedBodySizeInBytes = maxDecompressedBodySizeInBytes;
-            this.content = content;
+            _maxDecompressedBodySizeInBytes = maxDecompressedBodySizeInBytes;
+            _content = content;
             foreach (var header in content.Headers)
             {
-                this.Headers.TryAddWithoutValidation(header.Key, header.Value);
+                Headers.TryAddWithoutValidation(header.Key, header.Value);
             }
             Headers.ContentEncoding.Remove("gzip");
         }
 
-        private long? maxDecompressedBodySizeInBytes = null;
+        private long? _maxDecompressedBodySizeInBytes;
 
         /// <inheritdoc />
         protected override bool TryComputeLength(out long length)
@@ -56,16 +57,16 @@ namespace FHIRLight.Library.Spark.Engine.Filters
         }
 
         /// <inheritdoc />
-        protected async override Task SerializeToStreamAsync(Stream stream, TransportContext context)
+        protected override async Task SerializeToStreamAsync(Stream stream, TransportContext context)
         {
-            using (content)
+            using (_content)
             {
-                var compressedStream = await content.ReadAsStreamAsync();
+                var compressedStream = await _content.ReadAsStreamAsync();
                 using (var uncompressedStream = new GZipStream(compressedStream, CompressionMode.Decompress))
                 {
-                    if (maxDecompressedBodySizeInBytes.HasValue)
+                    if (_maxDecompressedBodySizeInBytes.HasValue)
                     {
-                        var limitedStream = new LimitedStream(stream, maxDecompressedBodySizeInBytes.Value);
+                        var limitedStream = new LimitedStream(stream, _maxDecompressedBodySizeInBytes.Value);
                         await uncompressedStream.CopyToAsync(limitedStream);
                     }
                     else

@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Net;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using FHIRLight.Library.Spark.Engine.Core;
@@ -21,7 +22,7 @@ namespace FHIRLight.Library.Spark.Engine.Filters
                         }
                         return task.Result;
                     }
-                    return new HttpResponseMessage(System.Net.HttpStatusCode.InternalServerError);
+                    return new HttpResponseMessage(HttpStatusCode.InternalServerError);
                     //return task.Result;
                 }, 
                 cancellationToken

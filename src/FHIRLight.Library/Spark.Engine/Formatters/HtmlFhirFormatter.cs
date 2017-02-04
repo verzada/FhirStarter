@@ -78,9 +78,10 @@ namespace FHIRLight.Library.Spark.Engine.Formatters
             }
             else if (type == typeof(Resource))
             {
-                if (value is Bundle)
+                var bundle = value as Bundle;
+                if (bundle != null)
                 {
-                    var resource = (Bundle)value;
+                    var resource = bundle;
 
                     if (resource.SelfLink != null)
                     {
@@ -158,17 +159,18 @@ namespace FHIRLight.Library.Spark.Engine.Formatters
 
                             writer.WriteLine(
                                 $"<a style=\"word-wrap: break-word; display:block;\" href=\"{realurl}\">{visualurl}</a>");
-                            if (item.Resource.Meta != null && item.Resource.Meta.LastUpdated.HasValue)
+                            if (item.Resource.Meta?.LastUpdated != null)
                                 writer.WriteLine(
-                                    $"<i>Modified: {item.Resource.Meta.LastUpdated.Value.ToString()}</i><br/>");
+                                    $"<i>Modified: {item.Resource.Meta.LastUpdated.Value}</i><br/>");
                             writer.WriteLine("<hr/>");
 
-                            if (item.Resource is DomainResource)
+                            var itemResource = item.Resource as DomainResource;
+                            if (itemResource != null)
                             {
-                                if ((item.Resource as DomainResource).Text != null && !string.IsNullOrEmpty((item.Resource as DomainResource).Text.Div))
-                                    writer.Write((item.Resource as DomainResource).Text.Div);
+                                if (!string.IsNullOrEmpty(itemResource.Text?.Div))
+                                    writer.Write(itemResource.Text.Div);
                                 else
-                                    writer.WriteLine($"Blank Text: {item.Resource.ExtractKey().ToUriString()}<br/>");
+                                    writer.WriteLine($"Blank Text: {itemResource.ExtractKey().ToUriString()}<br/>");
                             }
                             else 
                             {
@@ -182,16 +184,16 @@ namespace FHIRLight.Library.Spark.Engine.Formatters
                 else
                 {
                     var resource = (DomainResource)value;
-                    var org = resource.ResourceBase + "/" + resource.ResourceType.ToString() + "/" + resource.Id;
+                    var org = resource.ResourceBase + "/" + resource.ResourceType + "/" + resource.Id;
                     // TODO: This is probably a bug in the service (Id is null can throw ResourceIdentity == null
                     // reference ResourceIdentity : org = resource.ResourceIdentity().OriginalString;
                     writer.WriteLine($"Retrieved: {org}<hr/>");
 
-                    var text = (resource.Text != null) ? resource.Text.Div : null;
+                    var text = resource.Text?.Div;
                     writer.Write(text);
                     writer.WriteLine("<hr/>");
 
-                    var summary = requestMessage.RequestSummary();
+                    var summary = RequestMessage.RequestSummary();
                     var xml = FhirSerializer.SerializeResourceToXml(resource, summary);
                     var xmlDoc = new System.Xml.XPath.XPathDocument(new StringReader(xml));
 
