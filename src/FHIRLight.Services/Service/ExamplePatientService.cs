@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using FHIRLight.Library.Interface;
 using FHIRLight.Library.Parameters;
 using FHIRLight.Library.Service;
@@ -10,7 +9,7 @@ using Hl7.Fhir.Rest;
 
 namespace FHIRLight.Services.Service
 {
-    public class PatientService : IFhirLightService
+    public class ExamplePatientService : IFhirLightService
     {
         public List<string> GetSupportedResources()
         {

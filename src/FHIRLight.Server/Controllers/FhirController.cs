@@ -29,7 +29,7 @@ namespace FHIRLight.Server.Controllers
             var appConfig = ConfigurationManager.AppSettings;
             if (appConfig["UnitTesting"].Equals("true"))
             {
-                _lightService = new PatientService();
+                _lightService = new ExamplePatientService();
             }
         }
 

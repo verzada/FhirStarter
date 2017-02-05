@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="Parameters\PatientParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\PatientService.cs" />
+    <Compile Include="Service\ExamplePatientService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FHIRLight.Library\FHIRLight.Library.csproj">
