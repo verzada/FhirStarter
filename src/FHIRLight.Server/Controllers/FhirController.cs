@@ -99,7 +99,6 @@ namespace FHIRLight.Server.Controllers
             //}
             var headers = Request.Headers;
             var accept = headers.Accept;
-            //var returnJson = accept.Any(x => x.MediaType.Contains(Hl7.Fhir.Rest.ContentType.JSON_CONTENT_HEADER));
             var returnJson = ReturnJson(accept);
 
             StringContent httpContent;
@@ -136,33 +135,33 @@ namespace FHIRLight.Server.Controllers
             return returnJson;
         }
 
-        //[HttpGet, Route("metadata")]
-//        public HttpResponseMessage MetaData()
-//        {
-////            return new HttpResponseMessage(HttpStatusCode.Ambiguous);
-            
-//            var headers = Request.Headers;
-//            var accept = headers.Accept;
-//            var returnJson = accept.Any(x => x.MediaType.Contains("json"));
+        [HttpGet, Route("metadata")]
+        public HttpResponseMessage MetaData()
+        {
+            //            return new HttpResponseMessage(HttpStatusCode.Ambiguous);
 
-//            StringContent httpContent;
-//            //var metaData = lightService.;
-//            if (!returnJson)
-//            {
-//                var xml = FhirSerializer.SerializeToXml(metaData);              
-//                httpContent =
-//                    new StringContent(xml, Encoding.UTF8,
-//                        "application/xml");
+            var headers = Request.Headers;
+            var accept = headers.Accept;
+            var returnJson = accept.Any(x => x.MediaType.Contains(FhirMediaType.HeaderTypeJson));
 
-//            }
-//            else
-//            {
-//                httpContent =
-//                    new StringContent(FhirSerializer.SerializeToJson(metaData), Encoding.UTF8,
-//                        "application/json");
-//            }
-//            var response = new HttpResponseMessage(HttpStatusCode.OK) { Content = httpContent };
-//            return response; 
-//        }
+            StringContent httpContent;
+            var metaData = _lightService.CreateMetaData();
+            if (!returnJson)
+            {
+                var xml = FhirSerializer.SerializeToXml(metaData);
+                httpContent =
+                    new StringContent(xml, Encoding.UTF8,
+                        "application/xml");
+
+            }
+            else
+            {
+                httpContent =
+                    new StringContent(FhirSerializer.SerializeToJson(metaData), Encoding.UTF8,
+                        "application/json");
+            }
+            var response = new HttpResponseMessage(HttpStatusCode.OK) { Content = httpContent };
+            return response;
+        }
     }
 }

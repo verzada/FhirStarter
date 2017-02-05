@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using FHIRLight.Library.Interface;
 using FHIRLight.Library.Parameters;
+using FHIRLight.Library.Service;
 using FHIRLight.Library.Spark.Engine.Core;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
@@ -88,6 +90,28 @@ namespace FHIRLight.Services.Service
         public FhirResponse Delete(IKey key)
         {
             throw new System.NotImplementedException();
+        }
+
+
+        // todo put this in the fhircontroller
+        public Conformance CreateMetaData()
+        {
+            var serviceName = GetAlias();
+            var vsn = ModelInfo.Version;
+            var services = new List<IFhirLightService> {this};
+
+            var conformance = ConformanceBuilderFhirLight.CreateServer(serviceName, "the world", vsn);
+            conformance.AddUsedResources(services, false, false,
+                Conformance.ResourceVersionPolicy.VersionedUpdate);
+            conformance.AddSearchSetInteraction().AddSearchTypeInteractionForResources();
+            conformance.AddCoreSearchParamsAllResources(services);
+            conformance.AddOperationDefintion(services);
+            conformance.AcceptUnknown = Conformance.UnknownContentCode.Both;
+            conformance.Experimental = true;
+            conformance.Format = new[] {FhirMediaType.HeaderTypeJson, FhirMediaType.HeaderTypeXml};
+            conformance.Description = "Write whatever here";
+
+            return conformance;
         }
     }
 }

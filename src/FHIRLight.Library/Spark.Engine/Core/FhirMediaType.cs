@@ -24,6 +24,8 @@ namespace FHIRLight.Library.Spark.Engine.Core
         public const string XmlResource = "application/xml";
         public const string JsonResource = "application/json";
         public const string BinaryResource = "application/fhir";
+        public const string HeaderTypeJson = "json";
+        public const string HeaderTypeXml = "xml";
 
         private static string GetContentType(Type type, ResourceFormat format)
         {

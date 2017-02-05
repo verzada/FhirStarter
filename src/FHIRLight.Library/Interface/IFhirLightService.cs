@@ -22,5 +22,7 @@ namespace FHIRLight.Library.Interface
         FhirResponse Create(IKey key, Resource resource);
         FhirResponse Update(IKey key, Resource resource);
         FhirResponse Delete(IKey key);
+
+        Conformance CreateMetaData();
     }
 }
