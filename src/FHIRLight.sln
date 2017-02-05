@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{AFFE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{D5A0632F-77A2-4D0D-A8C3-AAECDA1494A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHIRLight.Server.UnitTests", "FHIRLight.Server.UnitTests\FHIRLight.Server.UnitTests.csproj", "{52D180F8-B791-4EFC-93D4-144A14A55E9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHIRLight.Server.UnitTests", "..\tests\FHIRLight.Server.UnitTests\FHIRLight.Server.UnitTests.csproj", "{52D180F8-B791-4EFC-93D4-144A14A55E9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
