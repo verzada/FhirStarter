@@ -1,22 +1,21 @@
 ﻿using System;
 using FHIRLight.Library.Interface;
-using FHIRLight.Services.Service;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 
-namespace FHIRLight.Server.UnitTests.Controller
+namespace FHIRLight.Server.UnitTests.Service
 {
     [TestFixture]
-   public class FhirController
+   public class ExamplePatientService
     {
         private IFhirLightService _patientService;
 
         [SetUp]
         public void Setup()
         {
-            _patientService = new PatientService();
+            _patientService = new Services.Service.ExamplePatientService();
         }
 
         [Test]
