@@ -11,6 +11,11 @@ namespace FHIRLight.Services.Service
 {
     public class ExamplePatientService : IFhirLightService
     {
+
+        public ExamplePatientService()
+        {
+            
+        }
         public List<string> GetSupportedResources()
         {
             return new List<string> {nameof(Patient), nameof(Bundle)};

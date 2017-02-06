@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using FHIRLight.Library.Interface;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(FHIRLight.Server.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(FHIRLight.Server.App_Start.NinjectWebCommon), "Stop")]
 
@@ -61,6 +64,20 @@ namespace FHIRLight.Server.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            var lightService = typeof(IFhirLightService);
+
+            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                foreach (Type classType in asm.GetTypes())
+                {
+                    if (lightService.IsAssignableFrom(classType) && !classType.IsInterface && !classType.IsAbstract)
+                    {
+                        var instance = (IFhirLightService) Activator.CreateInstance(classType);
+                        kernel.Bind<IFhirLightService>().ToConstant(instance);                        
+                    }
+                }
+            }            
+
         }        
     }
 }

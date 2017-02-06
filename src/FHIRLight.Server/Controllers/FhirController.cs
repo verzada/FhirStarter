@@ -26,14 +26,7 @@ namespace FHIRLight.Server.Controllers
         private readonly IFhirLightService _lightService;
             private readonly ICollection<IFhirLightService> _lightServices;
 
-        //public FhirController()
-        //{
-        //    var appConfig = ConfigurationManager.AppSettings;
-        //    if (appConfig["UnitTesting"].Equals("true"))
-        //    {
-        //        _lightService = new ExamplePatientService();
-        //    }
-        //}
+      
 
         public FhirController(ICollection<IFhirLightService> services)
         {
@@ -41,6 +34,8 @@ namespace FHIRLight.Server.Controllers
             //_services = services;
 
         }
+
+     
 
         [HttpGet, Route("{type}/{id}"), Route("{type}/identifier/{id}")]
         public HttpResponseMessage Read(string type, string id)
