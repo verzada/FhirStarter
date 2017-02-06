@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using FHIRLight.Library.Interface;
 using FHIRLight.Library.Parameters;
 using FHIRLight.Library.Service;
@@ -81,17 +82,17 @@ namespace FHIRLight.Services.Service
             return MockPatient();
         }
 
-        public FhirResponse Create(IKey key, Resource resource)
+        public HttpResponseMessage Create(IKey key, Resource resource)
         {
             throw new System.NotImplementedException();
         }
 
-        public FhirResponse Update(IKey key, Resource resource)
+        public HttpResponseMessage Update(IKey key, Resource resource)
         {
             throw new System.NotImplementedException();
         }
 
-        public FhirResponse Delete(IKey key)
+        public HttpResponseMessage Delete(IKey key)
         {
             throw new System.NotImplementedException();
         }

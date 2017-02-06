@@ -109,7 +109,7 @@ namespace FHIRLight.Library.Service
                 {
                     foreach (var service in fhirCommonServices)
                     {
-                        var resourceService = service as IFhirLightService;
+                        var resourceService = service;
                         if (resourceService != null)
                         {
                             conformance.Rest().Resource.Remove(r);

@@ -87,6 +87,7 @@
     <Compile Include="Filters\AbstractExceptionFilter.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
     <Compile Include="Interface\IFhirLightService.cs" />
+    <Compile Include="Interface\ServiceHandler.cs" />
     <Compile Include="Parameters\CommonParameters.cs" />
     <Compile Include="Parameters\OperatorType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
