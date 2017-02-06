@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -23,20 +24,23 @@ namespace FHIRLight.Server.Controllers
     public class FhirController : ApiController
     {
         private readonly IFhirLightService _lightService;
+            private readonly ICollection<IFhirLightService> _lightServices;
 
-        public FhirController()
-        {
-            var appConfig = ConfigurationManager.AppSettings;
-            if (appConfig["UnitTesting"].Equals("true"))
-            {
-                _lightService = new ExamplePatientService();
-            }
-        }
-
-        //public FhirController(ICollection<IFhirService> services )
+        //public FhirController()
         //{
-        //    _services = services;
+        //    var appConfig = ConfigurationManager.AppSettings;
+        //    if (appConfig["UnitTesting"].Equals("true"))
+        //    {
+        //        _lightService = new ExamplePatientService();
+        //    }
         //}
+
+        public FhirController(ICollection<IFhirLightService> services)
+        {
+            _lightServices = services;
+            //_services = services;
+
+        }
 
         [HttpGet, Route("{type}/{id}"), Route("{type}/identifier/{id}")]
         public HttpResponseMessage Read(string type, string id)
