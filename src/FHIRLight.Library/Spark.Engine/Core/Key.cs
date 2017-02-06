@@ -32,5 +32,20 @@ namespace FHIRLight.Library.Spark.Engine.Core
         {
             return this.ToUriString();
         }
+
+        public static Key Create(string type)
+        {
+            return new Key(null, type, null, null);
+        }
+
+        public static Key Create(string type, string resourceid)
+        {
+            return new Key(null, type, resourceid, null);
+        }
+
+        public static Key Create(string type, string resourceid, string versionid)
+        {
+            return new Key(null, type, resourceid, versionid);
+        }
     }
 }

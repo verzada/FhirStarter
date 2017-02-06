@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -12,28 +11,22 @@ using FHIRLight.Library.Interface;
 using FHIRLight.Library.Spark.Engine.Core;
 using FHIRLight.Library.Spark.Engine.Extensions;
 using FHIRLight.Library.Spark.Engine.Infrastructure;
-using FHIRLight.Services.Service;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
 
 namespace FHIRLight.Server.Controllers
 {
-    [RoutePrefix("fhir"), EnableCors("*", "*", "*", "*")]
+    [RoutePrefix("ninjectFhir"), EnableCors("*", "*", "*", "*")]
     [RouteDataValuesOnly]
     [ExceptionFilter]
-    public class FhirController : ApiController
+    public class NinjectFhirController : ApiController
     {
         private readonly ICollection<IFhirLightService> _lightServices;
         private readonly ServiceHandler _handler = new ServiceHandler();
 
-        public FhirController()
+        public NinjectFhirController(ICollection<IFhirLightService> services)
         {
-            var appConfig = ConfigurationManager.AppSettings;
-            if (appConfig["UnitTesting"].Equals("true"))
-            {
-                _lightServices = new List<IFhirLightService>
-                    {new ExamplePatientService()};
-            }
+            _lightServices = services;
         }
 
         [HttpGet, Route("{type}/{id}"), Route("{type}/identifier/{id}")]
@@ -135,11 +128,13 @@ namespace FHIRLight.Server.Controllers
         [HttpGet, Route("metadata")]
         public HttpResponseMessage MetaData()
         {
+
             var headers = Request.Headers;
             var accept = headers.Accept;
             var returnJson = accept.Any(x => x.MediaType.Contains(FhirMediaType.HeaderTypeJson));
 
             StringContent httpContent;
+           // var metaData = _lightService.CreateMetaData();
             var metaData = _handler.CreateMetadata(_lightServices);
             if (!returnJson)
             {
@@ -147,6 +142,7 @@ namespace FHIRLight.Server.Controllers
                 httpContent =
                     new StringContent(xml, Encoding.UTF8,
                         "application/xml");
+
             }
             else
             {

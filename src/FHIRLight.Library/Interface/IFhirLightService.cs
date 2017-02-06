@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net.Http;
 using FHIRLight.Library.Spark.Engine.Core;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
@@ -19,9 +20,9 @@ namespace FHIRLight.Library.Interface
 
         Base Read(string id);
 
-        FhirResponse Create(IKey key, Resource resource);
-        FhirResponse Update(IKey key, Resource resource);
-        FhirResponse Delete(IKey key);
+        HttpResponseMessage Create(IKey key, Resource resource);
+        HttpResponseMessage Update(IKey key, Resource resource);
+        HttpResponseMessage Delete(IKey key);
 
         Conformance CreateMetaData();
     }
