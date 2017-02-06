@@ -6,9 +6,9 @@ using FHIRLight.Library.Spark.Engine.Core;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
 
-namespace FHIRLight.Services.Service
+namespace FHIRLight.Server.Services
 {
-    public class SomeStupidService:IFhirLightService
+    public class SomeDifferentService:IFhirLightService
     {
         public List<string> GetSupportedResources()
         {

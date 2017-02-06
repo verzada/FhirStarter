@@ -1,5 +1,6 @@
 ﻿using System;
 using FHIRLight.Library.Interface;
+using FHIRLight.Server.Services;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
 using NUnit.Framework;
@@ -8,14 +9,14 @@ using NUnit.Framework.Constraints;
 namespace FHIRLight.Server.UnitTests.Service
 {
     [TestFixture]
-   public class ExamplePatientService
+   public class TestExamplePatientService
     {
         private IFhirLightService _patientService;
 
         [SetUp]
         public void Setup()
         {
-            _patientService = new Services.Service.ExamplePatientService();
+            _patientService = new ExamplePatientService();
         }
 
         [Test]

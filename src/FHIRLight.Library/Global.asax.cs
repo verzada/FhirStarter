@@ -1,11 +1,10 @@
 ﻿using System.Web.Http;
 using System.Web.Mvc;
-using System.Web.Optimization;
 using System.Web.Routing;
 using FHIRLight.Library.Spark.Engine.Extensions;
 using log4net.Config;
 
-namespace FHIRLight.Server
+namespace FHIRLight.Library
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
@@ -23,7 +22,7 @@ namespace FHIRLight.Server
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             GlobalConfiguration.Configure(Configure);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+          //  BundleConfig.RegisterBundles(BundleTable.Bundles);
 
 
             XmlConfigurator.Configure();

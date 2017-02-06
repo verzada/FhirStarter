@@ -56,7 +56,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Service\ExamplePatientService.cs" />
+    <Compile Include="Service\TestExamplePatientService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,12 +64,13 @@
       <Project>{27136165-08a5-4fb7-8c3e-f431518bd2d3}</Project>
       <Name>FHIRLight.Library</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\FHIRLight.Services\FHIRLight.Services.csproj">
-      <Project>{8f64e783-0044-4c52-a2a1-fb6324918207}</Project>
-      <Name>FHIRLight.Services</Name>
+    <ProjectReference Include="..\..\src\FHIRLight.Server\FHIRLight.Server.csproj">
+      <Project>{8b1d06ce-6a59-4012-bd7a-ab799fbf0df2}</Project>
+      <Name>FHIRLight.Server</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>
