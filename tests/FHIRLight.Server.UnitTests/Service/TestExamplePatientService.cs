@@ -1,5 +1,5 @@
 ﻿using System;
-using FHIRLight.Library.Interface;
+using FHIRLight.Core.Interface;
 using FHIRLight.Server.Services;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using FHIRLight.Library.Interface;
-using FHIRLight.Library.Spark.Engine.Core;
+using FHIRLight.Core.Interface;
+using FHIRLight.Core.Spark.Engine.Core;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
 

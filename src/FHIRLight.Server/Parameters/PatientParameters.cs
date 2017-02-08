@@ -1,4 +1,4 @@
-﻿using FHIRLight.Library.Parameters;
+﻿using FHIRLight.Core.Parameters;
 using Hl7.Fhir.Rest;
 
 namespace FHIRLight.Server.Parameters

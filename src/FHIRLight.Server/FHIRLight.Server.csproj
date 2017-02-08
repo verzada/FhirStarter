@@ -209,9 +209,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FHIRLight.Library\FHIRLight.Library.csproj">
+    <ProjectReference Include="..\FHIRLight.Core\FHIRLight.Core.csproj">
       <Project>{27136165-08a5-4fb7-8c3e-f431518bd2d3}</Project>
-      <Name>FHIRLight.Library</Name>
+      <Name>FHIRLight.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -247,6 +247,6 @@
   </Target>
   -->
   <Target Name="BeforeBuild">
-    <Copy SourceFiles="$(WDTargetDir)..\FHIRLight.Library\Global.asax" DestinationFolder="." />
+    <Copy SourceFiles="$(WDTargetDir)..\FHIRLight.Core\Global.asax" DestinationFolder="." />
   </Target>
 </Project>

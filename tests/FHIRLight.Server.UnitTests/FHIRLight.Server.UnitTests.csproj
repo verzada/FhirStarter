@@ -39,6 +39,10 @@
       <HintPath>..\..\src\packages\Hl7.Fhir.DSTU2.0.91.1\lib\net45\Hl7.Fhir.DSTU2.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Hl7.FhirPath, Version=0.4.1.0, Culture=neutral, PublicKeyToken=d706911480550fc3, processorArchitecture=MSIL">
+      <HintPath>..\..\src\packages\Hl7.FhirPath.0.4.1\lib\net45\Hl7.FhirPath.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=3.6.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\src\packages\NUnit.3.6.0\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -60,9 +64,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\FHIRLight.Library\FHIRLight.Library.csproj">
+    <ProjectReference Include="..\..\src\FHIRLight.Core\FHIRLight.Core.csproj">
       <Project>{27136165-08a5-4fb7-8c3e-f431518bd2d3}</Project>
-      <Name>FHIRLight.Library</Name>
+      <Name>FHIRLight.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\FHIRLight.Server\FHIRLight.Server.csproj">
       <Project>{8b1d06ce-6a59-4012-bd7a-ab799fbf0df2}</Project>
