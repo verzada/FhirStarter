@@ -4,10 +4,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FHIRLight.Library")]
+[assembly: AssemblyTitle("FHIRLight.Core")]
 [assembly: AssemblyDescription("Contains all of the necessary files for running a FhirLight Server")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Helse Nord IKT")]
 [assembly: AssemblyProduct("FHIRLight.Library")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
