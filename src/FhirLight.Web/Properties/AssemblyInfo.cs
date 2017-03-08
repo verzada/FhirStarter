@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FHIRLight.Core")]
-[assembly: AssemblyDescription("Contains the core libraries for FhirLight. Can be added to any libraries. For web server projects, please addd Fhirlight.Web")]
+[assembly: AssemblyTitle("FhirLight.Web")]
+[assembly: AssemblyDescription("Contains the web files needed for a Fhir web server. For just class libraries, only Fhirlight.Core is needed.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Helse Nord IKT")]
-[assembly: AssemblyProduct("FHIRLight.Core")]
+[assembly: AssemblyProduct("FhirLight.Web")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("27136165-08a5-4fb7-8c3e-f431518bd2d3")]
+[assembly: Guid("de7fbcd3-c1f5-4d57-8e97-ad1e104a7591")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -31,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.1")]
-[assembly: AssemblyFileVersion("1.0.0.1")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

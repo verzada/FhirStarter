@@ -32,6 +32,8 @@ Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "NuGet", ".nuget\NuGet.exe",
 		AttachLaunchAction = No
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FhirLight.Web", "FhirLight.Web\FhirLight.Web.csproj", "{DE7FBCD3-C1F5-4D57-8E97-AD1E104A7591}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,14 @@ Global
 		{FE25EC1B-D622-4C92-BAAF-AD0150BEEBC0}.Debug|x86.ActiveCfg = Release|x86
 		{FE25EC1B-D622-4C92-BAAF-AD0150BEEBC0}.Release|Any CPU.ActiveCfg = Release|x86
 		{FE25EC1B-D622-4C92-BAAF-AD0150BEEBC0}.Release|x86.ActiveCfg = Release|x86
+		{DE7FBCD3-C1F5-4D57-8E97-AD1E104A7591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE7FBCD3-C1F5-4D57-8E97-AD1E104A7591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE7FBCD3-C1F5-4D57-8E97-AD1E104A7591}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DE7FBCD3-C1F5-4D57-8E97-AD1E104A7591}.Debug|x86.Build.0 = Debug|Any CPU
+		{DE7FBCD3-C1F5-4D57-8E97-AD1E104A7591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE7FBCD3-C1F5-4D57-8E97-AD1E104A7591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE7FBCD3-C1F5-4D57-8E97-AD1E104A7591}.Release|x86.ActiveCfg = Release|Any CPU
+		{DE7FBCD3-C1F5-4D57-8E97-AD1E104A7591}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,5 +86,6 @@ Global
 		{52D180F8-B791-4EFC-93D4-144A14A55E9E} = {D5A0632F-77A2-4D0D-A8C3-AAECDA1494A8}
 		{27136165-08A5-4FB7-8C3E-F431518BD2D3} = {AFFE35A4-C41C-43FE-81B0-FF0C21C4BF01}
 		{FE25EC1B-D622-4C92-BAAF-AD0150BEEBC0} = {26FD208B-ED22-4D29-BE59-FCDC311461A9}
+		{DE7FBCD3-C1F5-4D57-8E97-AD1E104A7591} = {AFFE35A4-C41C-43FE-81B0-FF0C21C4BF01}
 	EndGlobalSection
 EndGlobal
