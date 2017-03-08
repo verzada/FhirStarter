@@ -11,10 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectUrl>https://github.com/verzada/FhirLight</projectUrl>
     <language>english</language>
-    <releaseNotes>First official release of FhirLight.Core. Core contains all the basic necessities to get a Fhir server up and running. See the project url for more information.</releaseNotes>
+    <releaseNotes>Removed files which were copied from FhirLight.Core nuget package. These files are added to the Fhirlight.Web since Fhirlight.Core is a library and it might get referenced by projects which shouldn't have the xslt or the Global.asax file.</releaseNotes>
     <tags>fhir fhirlight dstu2 ninject</tags>
   </metadata>
-  <files>
-    <file src="Global.asax" target="." />
-  </files>
 </package>

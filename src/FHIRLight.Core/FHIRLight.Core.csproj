@@ -159,9 +159,6 @@
     <Compile Include="Controllers\FhirController.cs" />
     <Compile Include="Filters\AbstractExceptionFilter.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Interface\IFhirLightService.cs" />
     <Compile Include="Interface\ServiceHandler.cs" />
     <Compile Include="Parameters\CommonParameters.cs" />
@@ -205,10 +202,6 @@
     <None Include="app.config" />
     <None Include="FHIRLight.Core.nuspec" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Global.asax" />
-    <Content Include="Spark.Engine\Resources\renderxmlashtml.xslt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Spark.Engine\Resources.resx" />
