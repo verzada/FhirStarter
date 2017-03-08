@@ -160,7 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Resources\renderxmlashtml.xslt" />
+    <Content Include="Spark.Engine\Resources\renderxmlashtml.xslt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FHIRLight.Web.nuspec" />
