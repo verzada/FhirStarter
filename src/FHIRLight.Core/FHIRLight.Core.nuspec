@@ -11,7 +11,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectUrl>https://github.com/verzada/FhirLight</projectUrl>
     <language>english</language>
-    <releaseNotes>Removed files which were copied from FhirLight.Core nuget package. These files are added to the Fhirlight.Web since Fhirlight.Core is a library and it might get referenced by projects which shouldn't have the xslt or the Global.asax file.</releaseNotes>
+    <summary>The main library for FhirLight. Contains logic from Spark.Engine which Furore made, but all of the MongoDB logic is removed so it's easier to make Fhir services which have different data sources.</summary>
+    <releaseNotes>Have changed some of the logic for conformance. The logic is not quite right yet, but at least now it is possible to change publisher name and description of a service. The text can be changed in the web.config running the service.</releaseNotes>
     <tags>fhir fhirlight dstu2 ninject</tags>
   </metadata>
 </package>

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using FHIRLight.Core.Interface;
 using FHIRLight.Core.Parameters;
+using FHIRLight.Core.Service;
 using FHIRLight.Core.Spark.Engine.Core;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
@@ -17,7 +19,7 @@ namespace FHIRLight.Server.Services
         }
         public List<string> GetSupportedResources()
         {
-            return new List<string> {nameof(Patient)};
+            return new List<string> {nameof(Patient), nameof(Bundle)};
         }
 
         public string GetAlias()
@@ -46,13 +48,13 @@ namespace FHIRLight.Server.Services
 
         public Base Read(SearchParams searchParams)
         {
-            throw new System.ArgumentException("Using " + nameof(SearchParams) +
+            throw new ArgumentException("Using " + nameof(SearchParams) +
                                         " in Read(SearchParams searchParams) should throw an exception which is put into an OperationOutcomes issues");
         }
 
         private static Base MockPatient()
         {
-            var date = new FhirDateTime(System.DateTime.Now);
+            var date = new FhirDateTime(DateTime.Now);
 
             return new Patient
             {
@@ -97,7 +99,7 @@ namespace FHIRLight.Server.Services
 
         public Conformance CreateMetaData()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

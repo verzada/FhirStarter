@@ -64,13 +64,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\FHIRLight.Core\FHIRLight.Core.csproj">
+    <ProjectReference Include="..\..\src\FHIRLight.Core\FhirLight.Core.csproj">
       <Project>{27136165-08a5-4fb7-8c3e-f431518bd2d3}</Project>
-      <Name>FHIRLight.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\FHIRLight.Server\FHIRLight.Server.csproj">
-      <Project>{8b1d06ce-6a59-4012-bd7a-ab799fbf0df2}</Project>
-      <Name>FHIRLight.Server</Name>
+      <Name>FhirLight.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -200,7 +200,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="FHIRLight.Core.nuspec" />
+    <None Include="FhirLight.Core.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

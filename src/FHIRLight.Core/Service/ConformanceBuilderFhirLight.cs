@@ -101,13 +101,12 @@ namespace FHIRLight.Core.Service
         public static Conformance AddCoreSearchParamsAllResources(this Conformance conformance,
             IEnumerable<IFhirLightService> services)
         {
-
-            var fhirCommonServices = services as IFhirLightService[] ?? services.ToArray();
+            var fhirLightServices = services as IFhirLightService[] ?? services.ToArray();
             var firstOrDefault = conformance.Rest.FirstOrDefault();
             if (firstOrDefault != null)
                 foreach (var r in firstOrDefault.Resource.ToList())
                 {
-                    foreach (var service in fhirCommonServices)
+                    foreach (var service in fhirLightServices)
                     {
                         var resourceService = service;
                         if (resourceService != null)

@@ -6,6 +6,7 @@ using System.Net.Http;
 using FHIRLight.Core.Service;
 using FHIRLight.Core.Spark.Engine.Core;
 using Hl7.Fhir.Model;
+using System.Web.Configuration;
 
 namespace FHIRLight.Core.Interface
 {
@@ -47,12 +48,6 @@ namespace FHIRLight.Core.Interface
         }
 
 
-        public IFhirLightService FindServiceFromList(IFhirLightService service, string type)
-        {
-            var services = new List<IFhirLightService> {service};
-            return FindServiceFromList(services, type);
-        }
-
         public  IFhirLightService FindServiceFromList(ICollection<IFhirLightService> services, string type)
         {
             if (services.Any())
@@ -72,21 +67,18 @@ namespace FHIRLight.Core.Interface
             throw new ArgumentException("The resource type " + type + " is not supported by the available service.");
         }
 
-        public Conformance CreateMetadata(IFhirLightService service)
-        {
-            var services = new List<IFhirLightService> {service};
-            return CreateMetadata(services);
-        }
-
         public Conformance CreateMetadata(ICollection<IFhirLightService> services)
         {
             if (services.Any())
             {
                 var serviceName = MetaDataName(services);
 
-                var vsn = ModelInfo.Version;
+                var fhirVersion = ModelInfo.Version;
 
-                var conformance = ConformanceBuilderFhirLight.CreateServer(serviceName, "My company whatever name", vsn);
+                var fhirPublisher = GetFhirPublisher();
+                var fhirDescription = GetFhirDescription();
+
+                var conformance = ConformanceBuilderFhirLight.CreateServer(serviceName, fhirPublisher, fhirVersion);
 
                 conformance.AddUsedResources(services, false, false,
                     Conformance.ResourceVersionPolicy.VersionedUpdate);
@@ -97,14 +89,34 @@ namespace FHIRLight.Core.Interface
 
                 conformance.AcceptUnknown = Conformance.UnknownContentCode.Both;
                 conformance.Experimental = true;
-                conformance.Format = new[] { "xml", "json" };
-                conformance.Description = "This FHIR SERVER is a reference Implementation server built in C# on HL7.Fhir.Core (nuget)";
+                conformance.Format = new[] {"xml", "json"};
+                conformance.Description = fhirDescription;
 
                 return conformance;
-
             }
-                return new Conformance();
+            return new Conformance();
         }
+
+        private static string GetFhirDescription()
+        {
+            var fhirDescription = WebConfigurationManager.AppSettings["FhirDescription"];
+            if (string.IsNullOrEmpty(fhirDescription))
+            {
+                fhirDescription = "Add FhirDescription key with the description of the service to appSettings in web.config.";
+            }
+            return fhirDescription;
+        }
+
+        private static string GetFhirPublisher()
+        {
+            var fhirPublisher = WebConfigurationManager.AppSettings["FhirPublisher"];
+            if (string.IsNullOrEmpty(fhirPublisher))
+            {
+                fhirPublisher = "Add FhirPublisher key with the name of the publisher to appSettings in web.config.";
+            }
+            return fhirPublisher;
+        }
+
 
         private string MetaDataName(ICollection<IFhirLightService> services)
         {

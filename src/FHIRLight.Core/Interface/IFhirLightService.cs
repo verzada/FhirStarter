@@ -23,7 +23,5 @@ namespace FHIRLight.Core.Interface
         HttpResponseMessage Create(IKey key, Resource resource);
         HttpResponseMessage Update(IKey key, Resource resource);
         HttpResponseMessage Delete(IKey key);
-
-        Conformance CreateMetaData();
     }
 }
