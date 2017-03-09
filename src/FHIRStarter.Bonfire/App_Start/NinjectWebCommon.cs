@@ -1,7 +1,7 @@
 using System;
 using System.Web;
-using FHIRStarter.Bonfire;
-using FHIRStarter.Bonfire.Interface;
+using FhirStarter.Bonfire.Interface;
+using FhirStarter.Bonfire;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
@@ -9,7 +9,7 @@ using Ninject.Web.Common;
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
 
-namespace FHIRStarter.Bonfire
+namespace FhirStarter.Bonfire
 {
     public static class NinjectWebCommon 
     {

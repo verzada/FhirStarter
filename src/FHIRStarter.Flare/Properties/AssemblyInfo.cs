@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FHIRStarter.Flare")]
-[assembly: AssemblyDescription("Contains the web files needed for a Fhir web server. For just class libraries, only Fhirlight.Core is needed.")]
+[assembly: AssemblyTitle("FhirStarter.Flare")]
+[assembly: AssemblyDescription("Contains the web files needed for a Fhir web server. For just class libraries, only FhirStarter.Bonefire is needed.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Helse Nord IKT")]
-[assembly: AssemblyProduct("FHIRStarter.Flare")]
+[assembly: AssemblyProduct("FhirStarter.Flare")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

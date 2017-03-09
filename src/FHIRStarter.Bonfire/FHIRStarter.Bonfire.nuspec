@@ -9,10 +9,10 @@
     <description>$description$</description>
     <copyright>$copyright$</copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <projectUrl>https://github.com/verzada/FhirLight</projectUrl>
+    <projectUrl>https://github.com/verzada/FhirStarter</projectUrl>
     <language>english</language>
     <summary>The main library for FhirStarter. Contains logic from Spark.Engine which Furore made, but all of the MongoDB logic is removed so it's easier to make Fhir services which have different data sources.</summary>
-    <releaseNotes>Changed name from FhirLight to FhirStarter. Makes more sense in the world of FHIR related products.</releaseNotes>
-    <tags>fhir fhirlight dstu2 ninject</tags>
+    <releaseNotes>Changed name from FHIRStarter to FhirStarter. Makes more sense in the world of FHIR related products in nuget.</releaseNotes>
+    <tags>fhir fhirstarter dstu2 ninject</tags>
   </metadata>
 </package>
