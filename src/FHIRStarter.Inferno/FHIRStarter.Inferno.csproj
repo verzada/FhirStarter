@@ -253,6 +253,6 @@
   </Target>
   -->
   <Target Name="BeforeBuild">
-    <Copy SourceFiles="$(WDTargetDir)..\FhirLight.Web\Global.asax" DestinationFolder="." />
+    <Copy SourceFiles="$(WDTargetDir)..\FhirStarter.Flare\Global.asax" DestinationFolder="." />
   </Target>
 </Project>

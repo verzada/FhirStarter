@@ -21,10 +21,10 @@ namespace FhirStarter.Bonfire.Controllers
     [ExceptionFilter]
     public class FhirController : ApiController
     {
-        private readonly ICollection<IFhirLightService> _lightServices;
+        private readonly ICollection<IFhirService> _lightServices;
         private readonly ServiceHandler _handler = new ServiceHandler();
 
-        public FhirController(ICollection<IFhirLightService> services) {
+        public FhirController(ICollection<IFhirService> services) {
         	_lightServices = services;
         }
 

@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FhirStarter.Inferno.Template")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("FhirStarter.Inferno")]
+[assembly: AssemblyDescription("Fhir server aka FhirStarter.Inferno - uses FhirStarter.Bonfire and FhirStarter.Flare")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FhirStarter.Inferno.Template")]
-[assembly: AssemblyCopyright("Copyright © 2017")]
+[assembly: AssemblyProduct("FhirStarter.Inferno")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

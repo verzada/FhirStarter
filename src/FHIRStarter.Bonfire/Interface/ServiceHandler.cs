@@ -12,7 +12,7 @@ namespace FhirStarter.Bonfire.Interface
 {
     public class ServiceHandler
     {
-        public HttpResponseMessage ResourceCreate(string type, Resource resource, IFhirLightService service)
+        public HttpResponseMessage ResourceCreate(string type, Resource resource, IFhirStarterService service)
         {
             if (service != null && !string.IsNullOrEmpty(type) && resource != null)
             {
@@ -25,7 +25,7 @@ namespace FhirStarter.Bonfire.Interface
             return new HttpResponseMessage(HttpStatusCode.Ambiguous);
         }
 
-        public HttpResponseMessage ResourceUpdate(string type, string id, Resource resource, IFhirLightService service)
+        public HttpResponseMessage ResourceUpdate(string type, string id, Resource resource, IFhirStarterService service)
         {
             if (service != null && !string.IsNullOrEmpty(type) && resource != null && !string.IsNullOrEmpty(id))
             {
@@ -37,7 +37,7 @@ namespace FhirStarter.Bonfire.Interface
             throw new ArgumentException("Service is null, cannot update resource of type " + type);
         }
 
-        public HttpResponseMessage ResourceDelete(string type, Key key, IFhirLightService service)
+        public HttpResponseMessage ResourceDelete(string type, Key key, IFhirStarterService service)
         {
            if (service != null)
             {
@@ -48,7 +48,7 @@ namespace FhirStarter.Bonfire.Interface
         }
 
 
-        public  IFhirLightService FindServiceFromList(ICollection<IFhirLightService> services, string type)
+        public  IFhirStarterService FindServiceFromList(ICollection<IFhirStarterService> services, string type)
         {
             if (services.Any())
             {
@@ -67,7 +67,7 @@ namespace FhirStarter.Bonfire.Interface
             throw new ArgumentException("The resource type " + type + " is not supported by the available service.");
         }
 
-        public Conformance CreateMetadata(ICollection<IFhirLightService> services)
+        public Conformance CreateMetadata(ICollection<IFhirStarterService> services)
         {
             if (services.Any())
             {
@@ -118,7 +118,7 @@ namespace FhirStarter.Bonfire.Interface
         }
 
 
-        private string MetaDataName(ICollection<IFhirLightService> services)
+        private string MetaDataName(ICollection<IFhirStarterService> services)
         {
             var serviceName = services.Count > 1 ? "The following services are available: " : "The following service is available: ";
 

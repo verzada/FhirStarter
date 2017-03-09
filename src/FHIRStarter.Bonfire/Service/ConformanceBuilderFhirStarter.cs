@@ -8,10 +8,10 @@ using Hl7.Fhir.Model;
 
 namespace FhirStarter.Bonfire.Service
 {
-    public static class ConformanceBuilderFhirLight
+    public static class ConformanceBuilderFhirStarter
     {
         public static Conformance AddUsedResources(this Conformance conformance,
-            IEnumerable<IFhirLightService> services, bool readhistory, bool updatecreate,
+            IEnumerable<IFhirStarterService> services, bool readhistory, bool updatecreate,
             Conformance.ResourceVersionPolicy versioning)
         {
             var totalAvailableResources = new List<string>();
@@ -58,7 +58,7 @@ namespace FhirStarter.Bonfire.Service
             return conformance;
         }
 
-        public static Conformance AddOperationDefintion(this Conformance conformance, IEnumerable<IFhirLightService> services)
+        public static Conformance AddOperationDefintion(this Conformance conformance, IEnumerable<IFhirStarterService> services)
         {
             var operationComponents = new List<Conformance.OperationComponent>();
 
@@ -99,14 +99,14 @@ namespace FhirStarter.Bonfire.Service
         }
 
         public static Conformance AddCoreSearchParamsAllResources(this Conformance conformance,
-            IEnumerable<IFhirLightService> services)
+            IEnumerable<IFhirStarterService> services)
         {
-            var fhirLightServices = services as IFhirLightService[] ?? services.ToArray();
+            var fhirStarterServices = services as IFhirStarterService[] ?? services.ToArray();
             var firstOrDefault = conformance.Rest.FirstOrDefault();
             if (firstOrDefault != null)
                 foreach (var r in firstOrDefault.Resource.ToList())
                 {
-                    foreach (var service in fhirLightServices)
+                    foreach (var service in fhirStarterServices)
                     {
                         var resourceService = service;
                         if (resourceService != null)

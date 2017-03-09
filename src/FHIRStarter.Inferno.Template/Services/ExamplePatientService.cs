@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using FHIRLight.Core.Interface;
-using FHIRLight.Core.Parameters;
-using FHIRLight.Core.Spark.Engine.Core;
+using FhirStarter.Bonfire.Interface;
+using FhirStarter.Bonfire.Parameters;
+using FhirStarter.Bonfire.Spark.Engine.Core;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
 
-namespace FhirStarter.Inferno.Template.Services
+namespace FhirStarter.Inferno.Services
 {
-    public class ExamplePatientService : IFhirLightService
+    public class ExamplePatientService : IFhirStarterService
     {
 
         public ExamplePatientService()
@@ -18,7 +17,7 @@ namespace FhirStarter.Inferno.Template.Services
         }
         public List<string> GetSupportedResources()
         {
-            return new List<string> {nameof(Patient), nameof(Bundle)};
+            return new List<string> {nameof(Patient)};
         }
 
         public string GetAlias()
@@ -47,13 +46,13 @@ namespace FhirStarter.Inferno.Template.Services
 
         public Base Read(SearchParams searchParams)
         {
-            throw new ArgumentException("Using " + nameof(SearchParams) +
+            throw new System.ArgumentException("Using " + nameof(SearchParams) +
                                         " in Read(SearchParams searchParams) should throw an exception which is put into an OperationOutcomes issues");
         }
 
         private static Base MockPatient()
         {
-            var date = new FhirDateTime(DateTime.Now);
+            var date = new FhirDateTime(System.DateTime.Now);
 
             return new Patient
             {
@@ -98,7 +97,7 @@ namespace FhirStarter.Inferno.Template.Services
 
         public Conformance CreateMetaData()
         {
-            throw new NotImplementedException();
+            throw new System.NotImplementedException();
         }
     }
 }
