@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FHIRLight.Core")]
-[assembly: AssemblyDescription("Contains the core libraries for FhirLight. Can be added to any libraries. For web server projects, please addd Fhirlight.Web")]
+[assembly: AssemblyTitle("FHIRStarter.Bonfire")]
+[assembly: AssemblyDescription("Contains the libraries for FHIRStarter. Can be added to any libraries. For web server projects, please addd FHIRStarter.Flare")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Helse Nord IKT")]
-[assembly: AssemblyProduct("FHIRLight.Core")]
+[assembly: AssemblyProduct("FHIRStarter.Bonfire")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.4")]
-[assembly: AssemblyFileVersion("1.0.0.4")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
