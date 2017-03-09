@@ -8,7 +8,7 @@ using Hl7.Fhir.Rest;
 
 namespace FhirStarter.Inferno.Services
 {
-    public class ExamplePatientService : IFhirStarterService
+    public class ExamplePatientService : IFhirService
     {
 
         public ExamplePatientService()

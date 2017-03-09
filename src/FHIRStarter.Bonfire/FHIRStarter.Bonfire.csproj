@@ -159,12 +159,12 @@
     <Compile Include="Controllers\FhirController.cs" />
     <Compile Include="Filters\AbstractExceptionFilter.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
-    <Compile Include="Interface\IFhirStarterService.cs" />
+    <Compile Include="Interface\IFhirService.cs" />
     <Compile Include="Interface\ServiceHandler.cs" />
     <Compile Include="Parameters\CommonParameters.cs" />
     <Compile Include="Parameters\OperatorType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\ConformanceBuilderFhirLight.cs" />
+    <Compile Include="Service\ConformanceBuilderFhirStarter.cs" />
     <Compile Include="Spark.Engine\Auxiliary\LimitedStream.cs" />
     <Compile Include="Spark.Engine\Auxiliary\XmlSignatureHelper.cs" />
     <Compile Include="Spark.Engine\Core\Const.cs" />

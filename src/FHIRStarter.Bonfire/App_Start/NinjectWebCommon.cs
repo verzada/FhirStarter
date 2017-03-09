@@ -61,7 +61,7 @@ namespace FhirStarter.Bonfire
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            var lightService = typeof(IFhirStarterService);
+            var lightService = typeof(IFhirService);
 
             foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
             {
@@ -69,8 +69,8 @@ namespace FhirStarter.Bonfire
                 {
                     if (lightService.IsAssignableFrom(classType) && !classType.IsInterface && !classType.IsAbstract)
                     {
-                        var instance = (IFhirStarterService) Activator.CreateInstance(classType);
-                        kernel.Bind<IFhirStarterService>().ToConstant(instance);                        
+                        var instance = (IFhirService) Activator.CreateInstance(classType);
+                        kernel.Bind<IFhirService>().ToConstant(instance);                        
                     }
                 }
             }            
