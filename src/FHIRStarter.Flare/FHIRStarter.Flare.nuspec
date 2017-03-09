@@ -1,0 +1,21 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>HelseNordIKT.FHIRStarter.Flare</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>verzada</authors>
+    <owners>$author$</owners>
+    <description>$description$</description>
+    <copyright>$copyright$</copyright>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://github.com/verzada/FhirLight</projectUrl>
+    <language>english</language>
+    <releaseNotes>Renamed to FHIRStarter.Flare</releaseNotes>
+    <summary>The web project adds a Global.asax file and a xslt to the web server. Should not be referenced to a library, only to a webservice.</summary>
+    <tags>fhir fhirlight dstu2 ninject</tags>
+  </metadata>
+  <files>
+    <file src="Global.asax" target="." />
+  </files>
+</package>
