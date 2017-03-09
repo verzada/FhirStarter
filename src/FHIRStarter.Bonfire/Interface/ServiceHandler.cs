@@ -4,11 +4,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Configuration;
-using FHIRStarter.Bonfire.Service;
-using FHIRStarter.Bonfire.Spark.Engine.Core;
+using FhirStarter.Bonfire.Service;
+using FhirStarter.Bonfire.Spark.Engine.Core;
 using Hl7.Fhir.Model;
 
-namespace FHIRStarter.Bonfire.Interface
+namespace FhirStarter.Bonfire.Interface
 {
     public class ServiceHandler
     {

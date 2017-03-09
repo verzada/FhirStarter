@@ -7,7 +7,7 @@ using FHIRLight.Core.Spark.Engine.Core;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
 
-namespace FHIRStarter.Inferno.Template.Services
+namespace FhirStarter.Inferno.Template.Services
 {
     public class ExamplePatientService : IFhirLightService
     {

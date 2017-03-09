@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FHIRStarter.Inferno</RootNamespace>
-    <AssemblyName>FHIRStarter.Inferno</AssemblyName>
+    <RootNamespace>FhirStarter.Inferno</RootNamespace>
+    <AssemblyName>FhirStarter.Inferno</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -211,13 +211,13 @@
     <Folder Include="Profile\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FHIRStarter.Bonfire\FHIRStarter.Bonfire.csproj">
+    <ProjectReference Include="..\FhirStarter.Bonfire\FhirStarter.Bonfire.csproj">
       <Project>{27136165-08a5-4fb7-8c3e-f431518bd2d3}</Project>
-      <Name>FHIRStarter.Bonfire</Name>
+      <Name>FhirStarter.Bonfire</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FHIRStarter.Flare\FHIRStarter.Flare.csproj">
+    <ProjectReference Include="..\FhirStarter.Flare\FhirStarter.Flare.csproj">
       <Project>{de7fbcd3-c1f5-4d57-8e97-ad1e104a7591}</Project>
-      <Name>FHIRStarter.Flare</Name>
+      <Name>FhirStarter.Flare</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

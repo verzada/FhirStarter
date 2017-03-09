@@ -1,7 +1,7 @@
 using System;
 using System.Net.Http;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.ExceptionHandling
+namespace FhirStarter.Bonfire.Spark.Engine.ExceptionHandling
 {
     public interface IExceptionResponseMessageFactory
     {

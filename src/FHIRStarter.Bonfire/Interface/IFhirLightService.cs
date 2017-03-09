@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
-using FHIRStarter.Bonfire.Spark.Engine.Core;
+using FhirStarter.Bonfire.Spark.Engine.Core;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
 
-namespace FHIRStarter.Bonfire.Interface
+namespace FhirStarter.Bonfire.Interface
 {
     public interface IFhirLightService
     {

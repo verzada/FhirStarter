@@ -8,10 +8,10 @@
 
 using System;
 using System.Collections.Generic;
-using FHIRStarter.Bonfire.Spark.Engine.Core;
+using FhirStarter.Bonfire.Spark.Engine.Core;
 using Hl7.Fhir.Model;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Extensions
+namespace FhirStarter.Bonfire.Spark.Engine.Extensions
 {
     public static class OperationOutcomeExtensions
     {

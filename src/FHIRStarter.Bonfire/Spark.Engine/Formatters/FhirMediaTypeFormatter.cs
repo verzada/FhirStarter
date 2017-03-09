@@ -12,11 +12,11 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Text;
-using FHIRStarter.Bonfire.Spark.Engine.Core;
-using FHIRStarter.Bonfire.Spark.Engine.Extensions;
+using FhirStarter.Bonfire.Spark.Engine.Core;
+using FhirStarter.Bonfire.Spark.Engine.Extensions;
 using Hl7.Fhir.Model;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Formatters
+namespace FhirStarter.Bonfire.Spark.Engine.Formatters
 {
     public abstract class FhirMediaTypeFormatter : MediaTypeFormatter
     {

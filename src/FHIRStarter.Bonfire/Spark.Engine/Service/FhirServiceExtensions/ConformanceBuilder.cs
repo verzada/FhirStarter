@@ -13,7 +13,7 @@ using Hl7.Fhir.Introspection;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Service.FhirServiceExtensions
+namespace FhirStarter.Bonfire.Spark.Engine.Service.FhirServiceExtensions
 {
 
     public static class ConformanceBuilder

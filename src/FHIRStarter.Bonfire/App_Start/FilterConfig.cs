@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace FHIRStarter.Bonfire
+namespace FhirStarter.Bonfire
 {
     public class FilterConfig
     {

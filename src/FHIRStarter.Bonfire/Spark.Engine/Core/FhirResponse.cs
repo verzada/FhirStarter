@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using Hl7.Fhir.Model;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Core
+namespace FhirStarter.Bonfire.Spark.Engine.Core
 {
     public class FhirResponse
     {

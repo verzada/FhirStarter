@@ -4,7 +4,7 @@ using System.Linq;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
 
-namespace FHIRStarter.Bonfire.Parameters
+namespace FhirStarter.Bonfire.Parameters
 {
     public class CommonParameters
     {

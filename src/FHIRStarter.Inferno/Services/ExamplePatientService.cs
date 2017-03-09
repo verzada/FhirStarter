@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
-using FHIRStarter.Bonfire.Interface;
-using FHIRStarter.Bonfire.Parameters;
-using FHIRStarter.Bonfire.Spark.Engine.Core;
+using FhirStarter.Bonfire.Interface;
+using FhirStarter.Bonfire.Parameters;
+using FhirStarter.Bonfire.Spark.Engine.Core;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
 
-namespace FHIRStarter.Inferno.Services
+namespace FhirStarter.Inferno.Services
 {
     public class ExamplePatientService : IFhirLightService
     {

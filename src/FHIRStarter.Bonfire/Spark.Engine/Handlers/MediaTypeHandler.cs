@@ -11,11 +11,11 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
-using FHIRStarter.Bonfire.Spark.Engine.Core;
-using FHIRStarter.Bonfire.Spark.Engine.Extensions;
+using FhirStarter.Bonfire.Spark.Engine.Core;
+using FhirStarter.Bonfire.Spark.Engine.Extensions;
 using Hl7.Fhir.Rest;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Handlers
+namespace FhirStarter.Bonfire.Spark.Engine.Handlers
 {
     public class FhirMediaTypeHandler : DelegatingHandler
     {

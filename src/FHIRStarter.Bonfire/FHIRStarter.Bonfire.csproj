@@ -7,8 +7,8 @@
     <ProjectGuid>{27136165-08A5-4FB7-8C3E-F431518BD2D3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FHIRStarter.Bonfire</RootNamespace>
-    <AssemblyName>FHIRStarter.Bonfire</AssemblyName>
+    <RootNamespace>FhirStarter.Bonfire</RootNamespace>
+    <AssemblyName>FhirStarter.Bonfire</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -200,7 +200,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="FHIRStarter.Bonfire.nuspec" />
+    <None Include="FhirStarter.Bonfire.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

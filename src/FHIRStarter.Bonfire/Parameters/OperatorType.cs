@@ -1,4 +1,4 @@
-﻿namespace FHIRStarter.Bonfire.Parameters
+﻿namespace FhirStarter.Bonfire.Parameters
 {
     public enum OperatorType
     {

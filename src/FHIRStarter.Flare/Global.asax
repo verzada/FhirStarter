@@ -1,1 +1,1 @@
-﻿<%@ Application Inherits="FHIRLight.Core.WebApiApplication" Language="C#" %>
+﻿<%@ Application Inherits="FHIRStarter.Bonfire.WebApiApplication" Language="C#" %>

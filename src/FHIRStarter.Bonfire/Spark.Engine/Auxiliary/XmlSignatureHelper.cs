@@ -11,7 +11,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.Xml;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Auxiliary
+namespace FhirStarter.Bonfire.Spark.Engine.Auxiliary
 {
     // This code contains parts of the code found at
     // http://www.wiktorzychla.com/2012/12/interoperable-xml-digital-signatures-c_20.html

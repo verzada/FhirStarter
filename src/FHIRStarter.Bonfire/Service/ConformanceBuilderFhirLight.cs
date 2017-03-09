@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using FHIRStarter.Bonfire.Interface;
-using FHIRStarter.Bonfire.Spark.Engine.Service.FhirServiceExtensions;
+using FhirStarter.Bonfire.Interface;
+using FhirStarter.Bonfire.Spark.Engine.Service.FhirServiceExtensions;
 using Hl7.Fhir.Introspection;
 using Hl7.Fhir.Model;
 
-namespace FHIRStarter.Bonfire.Service
+namespace FhirStarter.Bonfire.Service
 {
     public static class ConformanceBuilderFhirLight
     {

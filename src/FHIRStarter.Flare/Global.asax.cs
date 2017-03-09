@@ -1,18 +1,14 @@
 ﻿using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
-using FHIRLight.Core.Spark.Engine.Extensions;
+using FhirStarter.Bonfire.Spark.Engine.Extensions;
 using log4net.Config;
 
-namespace FHIRLight.Core
+// ReSharper disable once CheckNamespace
+namespace FhirStarter.Bonfire
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
-        //protected void Application_Start()
-        //{
-        //    GlobalConfiguration.Configure(WebApiConfig.Register);
-        //}
-
         protected void Application_Start()
         {
 
@@ -23,7 +19,6 @@ namespace FHIRLight.Core
 
             GlobalConfiguration.Configure(Configure);
           //  BundleConfig.RegisterBundles(BundleTable.Bundles);
-
 
             XmlConfigurator.Configure();
         }

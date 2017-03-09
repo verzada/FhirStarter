@@ -2,9 +2,9 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using FHIRStarter.Bonfire.Spark.Engine.Core;
+using FhirStarter.Bonfire.Spark.Engine.Core;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Filters
+namespace FhirStarter.Bonfire.Spark.Engine.Filters
 {
     public class FhirResponseHandler : DelegatingHandler
     {

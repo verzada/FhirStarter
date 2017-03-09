@@ -14,7 +14,7 @@ using Hl7.Fhir.Rest;
 
 //using System.Web.Http;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Core
+namespace FhirStarter.Bonfire.Spark.Engine.Core
 {
 
     public static class FhirMediaType

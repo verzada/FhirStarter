@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FHIRStarter.Bonfire.Spark.Engine {
+namespace FhirStarter.Bonfire.Spark.Engine {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>

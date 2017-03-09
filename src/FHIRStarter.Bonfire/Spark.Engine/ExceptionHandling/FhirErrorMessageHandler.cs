@@ -2,10 +2,10 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
-using FHIRStarter.Bonfire.Spark.Engine.Extensions;
+using FhirStarter.Bonfire.Spark.Engine.Extensions;
 using Hl7.Fhir.Model;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.ExceptionHandling
+namespace FhirStarter.Bonfire.Spark.Engine.ExceptionHandling
 {
     public class FhirErrorMessageHandler : DelegatingHandler
     {

@@ -10,7 +10,7 @@ using System;
 using System.Net;
 using Hl7.Fhir.Model;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Core
+namespace FhirStarter.Bonfire.Spark.Engine.Core
 {
     // Placed in a sub-namespace because you must be explicit about it if you want to throw this error directly
 

@@ -13,7 +13,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Hl7.Fhir.Rest;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Extensions
+namespace FhirStarter.Bonfire.Spark.Engine.Extensions
 {
     public static class HttpRequestExtensions
     {

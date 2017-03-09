@@ -3,7 +3,7 @@
 using System;
 using System.Globalization;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Search.Support
+namespace FhirStarter.Bonfire.Spark.Engine.Search.Support
 {
     /// <summary>
     /// Utility class for creating and unwrapping <see cref="Exception"/> instances.

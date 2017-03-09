@@ -7,7 +7,7 @@
  */
 
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Core
+namespace FhirStarter.Bonfire.Spark.Engine.Core
 {
     public static class FhirRestOp
     {

@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Search.Support
+namespace FhirStarter.Bonfire.Spark.Engine.Search.Support
 {
     public static class StringExtensions
     {

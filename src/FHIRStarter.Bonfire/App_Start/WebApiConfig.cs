@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace FHIRStarter.Bonfire
+namespace FhirStarter.Bonfire
 {
     public static class WebApiConfig
     {

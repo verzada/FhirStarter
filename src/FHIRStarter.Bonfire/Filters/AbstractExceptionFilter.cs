@@ -7,7 +7,7 @@ using System.Xml.Linq;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
 
-namespace FHIRStarter.Bonfire.Filters
+namespace FhirStarter.Bonfire.Filters
 {
     public abstract class AbstractExceptionFilter: ExceptionFilterAttribute
     {

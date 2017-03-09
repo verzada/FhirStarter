@@ -7,13 +7,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{AFFE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{D5A0632F-77A2-4D0D-A8C3-AAECDA1494A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHIRStarter.Bonfire", "FHIRStarter.Bonfire\FHIRStarter.Bonfire.csproj", "{27136165-08A5-4FB7-8C3E-F431518BD2D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FhirStarter.Bonfire", "FhirStarter.Bonfire\FhirStarter.Bonfire.csproj", "{27136165-08A5-4FB7-8C3E-F431518BD2D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHIRStarter.Flare", "FHIRStarter.Flare\FHIRStarter.Flare.csproj", "{DE7FBCD3-C1F5-4D57-8E97-AD1E104A7591}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FhirStarter.Flare", "FhirStarter.Flare\FhirStarter.Flare.csproj", "{DE7FBCD3-C1F5-4D57-8E97-AD1E104A7591}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHIRStarter.Inferno", "FHIRStarter.Inferno\FHIRStarter.Inferno.csproj", "{8B1D06CE-6A59-4012-BD7A-AB799FBF0DF2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FhirStarter.Inferno", "FhirStarter.Inferno\FhirStarter.Inferno.csproj", "{8B1D06CE-6A59-4012-BD7A-AB799FBF0DF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHIRStarter.Inferno.Template", "FHIRStarter.Inferno.Template\FHIRStarter.Inferno.Template.csproj", "{428E66FB-0093-4496-B237-FBA6C28C934B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FhirStarter.Inferno.Template", "FhirStarter.Inferno.Template\FhirStarter.Inferno.Template.csproj", "{428E66FB-0093-4496-B237-FBA6C28C934B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

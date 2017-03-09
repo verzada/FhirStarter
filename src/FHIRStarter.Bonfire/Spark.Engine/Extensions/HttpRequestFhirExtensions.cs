@@ -7,11 +7,11 @@
  */
 
 using System.Net.Http;
-using FHIRStarter.Bonfire.Spark.Engine.Core;
-using FHIRStarter.Bonfire.Spark.Engine.Service;
+using FhirStarter.Bonfire.Spark.Engine.Core;
+using FhirStarter.Bonfire.Spark.Engine.Service;
 using Hl7.Fhir.Rest;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Extensions
+namespace FhirStarter.Bonfire.Spark.Engine.Extensions
 {
     public static class HttpRequestFhirExtensions
     {

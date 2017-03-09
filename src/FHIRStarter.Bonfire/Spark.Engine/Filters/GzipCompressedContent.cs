@@ -11,9 +11,9 @@ using System.IO.Compression;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using FHIRStarter.Bonfire.Spark.Engine.Auxiliary;
+using FhirStarter.Bonfire.Spark.Engine.Auxiliary;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Filters 
+namespace FhirStarter.Bonfire.Spark.Engine.Filters 
 {
     /// <summary>
     ///   GZip compressed encoded <see cref="HttpContent"/>.

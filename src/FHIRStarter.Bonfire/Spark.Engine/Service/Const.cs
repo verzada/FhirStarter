@@ -7,7 +7,7 @@
  */
 
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Service
+namespace FhirStarter.Bonfire.Spark.Engine.Service
 {
     public static class Const
     {

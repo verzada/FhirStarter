@@ -8,11 +8,11 @@
 
 using System;
 using System.Collections.Generic;
-using FHIRStarter.Bonfire.Spark.Engine.Core;
+using FhirStarter.Bonfire.Spark.Engine.Core;
 using Hl7.Fhir.Model;
 
 // mh: KeyExtensions terugverplaatst naar Spark.Engine.Core omdat ze in dezelfde namespace moeten zitten als Key.
-namespace FHIRStarter.Bonfire.Spark.Engine.Extensions
+namespace FhirStarter.Bonfire.Spark.Engine.Extensions
 {
 
     public static class KeyExtensions

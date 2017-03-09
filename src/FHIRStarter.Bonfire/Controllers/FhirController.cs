@@ -6,15 +6,15 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using FHIRStarter.Bonfire.Filters;
-using FHIRStarter.Bonfire.Interface;
-using FHIRStarter.Bonfire.Spark.Engine.Core;
-using FHIRStarter.Bonfire.Spark.Engine.Extensions;
-using FHIRStarter.Bonfire.Spark.Engine.Infrastructure;
+using FhirStarter.Bonfire.Filters;
+using FhirStarter.Bonfire.Interface;
+using FhirStarter.Bonfire.Spark.Engine.Core;
+using FhirStarter.Bonfire.Spark.Engine.Infrastructure;
+using FhirStarter.Bonfire.Spark.Engine.Extensions;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
 
-namespace FHIRStarter.Bonfire.Controllers
+namespace FhirStarter.Bonfire.Controllers
 {
     [RoutePrefix("fhir"), EnableCors("*", "*", "*", "*")]
     [RouteDataValuesOnly]

@@ -1,12 +1,12 @@
 ﻿using System.Net.Http.Formatting;
 using System.Web.Http;
 using System.Web.Http.Validation;
-using FHIRStarter.Bonfire.Spark.Engine.ExceptionHandling;
-using FHIRStarter.Bonfire.Spark.Engine.Filters;
-using FHIRStarter.Bonfire.Spark.Engine.Formatters;
-using FHIRStarter.Bonfire.Spark.Engine.Handlers;
+using FhirStarter.Bonfire.Spark.Engine.ExceptionHandling;
+using FhirStarter.Bonfire.Spark.Engine.Filters;
+using FhirStarter.Bonfire.Spark.Engine.Formatters;
+using FhirStarter.Bonfire.Spark.Engine.Handlers;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Extensions
+namespace FhirStarter.Bonfire.Spark.Engine.Extensions
 {
     public static class HttpConfigurationFhirExtensions
     {

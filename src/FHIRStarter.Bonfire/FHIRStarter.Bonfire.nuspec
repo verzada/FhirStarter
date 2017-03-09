@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0"?>
 <package >
   <metadata>
-    <id>HelseNordIKT.FHIRStarter.Bonfire</id>
+    <id>FhirStarter.Bonfire</id>
     <version>$version$</version>
     <title>$title$</title>
     <authors>verzada</authors>
@@ -11,8 +11,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectUrl>https://github.com/verzada/FhirLight</projectUrl>
     <language>english</language>
-    <summary>The main library for FHIRStarter. Contains logic from Spark.Engine which Furore made, but all of the MongoDB logic is removed so it's easier to make Fhir services which have different data sources.</summary>
-    <releaseNotes>Changed name from FhirLight to FHIRStarter. Makes more sense in the world of FHIR related products.</releaseNotes>
+    <summary>The main library for FhirStarter. Contains logic from Spark.Engine which Furore made, but all of the MongoDB logic is removed so it's easier to make Fhir services which have different data sources.</summary>
+    <releaseNotes>Changed name from FhirLight to FhirStarter. Makes more sense in the world of FHIR related products.</releaseNotes>
     <tags>fhir fhirlight dstu2 ninject</tags>
   </metadata>
 </package>

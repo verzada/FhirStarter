@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace FHIRStarter.Bonfire.Spark.Engine.Auxiliary
+namespace FhirStarter.Bonfire.Spark.Engine.Auxiliary
 {
     public class LimitedStream : Stream
     {
