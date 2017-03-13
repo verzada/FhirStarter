@@ -35,7 +35,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="FhirStarter.Bonfire, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FhirStarter.Bonfire.1.0.0.5\lib\net452\FhirStarter.Bonfire.dll</HintPath>
+      <HintPath>..\packages\HelseNordIKT.FhirStarter.Bonfire.1.0.0.5\lib\net452\FhirStarter.Bonfire.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Hl7.Fhir.DSTU2.Core, Version=0.91.1.0, Culture=neutral, PublicKeyToken=d706911480550fc3, processorArchitecture=MSIL">
@@ -165,7 +165,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="FhirStarter.Flare.nuspec" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
