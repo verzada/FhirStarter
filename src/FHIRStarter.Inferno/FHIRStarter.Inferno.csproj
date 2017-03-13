@@ -210,6 +210,16 @@
     <Folder Include="Mapper\" />
     <Folder Include="Profile\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FhirStarter.Bonfire\FhirStarter.Bonfire.csproj">
+      <Project>{27136165-08a5-4fb7-8c3e-f431518bd2d3}</Project>
+      <Name>FhirStarter.Bonfire</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FhirStarter.Flare\FhirStarter.Flare.csproj">
+      <Project>{de7fbcd3-c1f5-4d57-8e97-ad1e104a7591}</Project>
+      <Name>FhirStarter.Flare</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
