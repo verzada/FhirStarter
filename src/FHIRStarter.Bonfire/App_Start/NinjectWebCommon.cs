@@ -1,7 +1,9 @@
 using System;
+using System.Reflection;
 using System.Web;
 using FhirStarter.Bonfire.Interface;
 using FhirStarter.Bonfire;
+using FhirStarter.Bonfire.Log;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
@@ -13,7 +15,8 @@ namespace FhirStarter.Bonfire
 {
     public static class NinjectWebCommon 
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        // ReSharper disable once InconsistentNaming
+        private static readonly Bootstrapper _bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
@@ -22,7 +25,7 @@ namespace FhirStarter.Bonfire
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+            _bootstrapper.Initialize(CreateKernel);
         }
         
         /// <summary>
@@ -30,7 +33,7 @@ namespace FhirStarter.Bonfire
         /// </summary>
         public static void Stop()
         {
-            bootstrapper.ShutDown();
+            _bootstrapper.ShutDown();
         }
         
         /// <summary>
@@ -61,19 +64,27 @@ namespace FhirStarter.Bonfire
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            var lightService = typeof(IFhirService);
 
-            foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
+            try
             {
-                foreach (Type classType in asm.GetTypes())
+                var fhirService = typeof(IFhirService);
+
+                foreach (var asm in AppDomain.CurrentDomain.GetAssemblies())
                 {
-                    if (lightService.IsAssignableFrom(classType) && !classType.IsInterface && !classType.IsAbstract)
+                    foreach (Type classType in asm.GetTypes())
                     {
-                        var instance = (IFhirService) Activator.CreateInstance(classType);
-                        kernel.Bind<IFhirService>().ToConstant(instance);                        
+                        if (fhirService.IsAssignableFrom(classType) && !classType.IsInterface && !classType.IsAbstract)
+                        {
+                            var instance = (IFhirService) Activator.CreateInstance(classType);
+                            kernel.Bind<IFhirService>().ToConstant(instance);
+                        }
                     }
                 }
-            }            
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                ExceptionLogger.LogReflectionTypeLoadException(ex);
+            }
 
         }        
     }
