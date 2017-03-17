@@ -188,7 +188,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Profile\FhirParameterFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CustomQueryService.cs" />
     <Compile Include="Services\ExamplePatientService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -205,7 +207,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Mapper\" />
-    <Folder Include="Profile\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FhirStarter.Bonfire\FhirStarter.Bonfire.csproj">
