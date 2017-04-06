@@ -61,8 +61,10 @@ namespace FhirStarter.Bonfire.Spark.Engine.Formatters
                         throw Error.Internal("The type {0} expected by the controller can not be deserialized",
                             type.Name);
 
-                    var fhirparser = new FhirJsonParser();
-                    var resource = fhirparser.Parse(body, type);
+                    //var fhirparser = new FhirJsonParser();
+                    //var resource = fhirparser.Parse(body, type);
+                    var fhirXmlParser = new FhirXmlParser();
+                    var resource = fhirXmlParser.Parse(body, type);
                     return resource;
                 }
                 catch (FormatException exc)

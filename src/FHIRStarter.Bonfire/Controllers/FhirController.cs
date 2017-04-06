@@ -21,17 +21,17 @@ namespace FhirStarter.Bonfire.Controllers
     [ExceptionFilter]
     public class FhirController : ApiController
     {
-        private readonly ICollection<IFhirService> _lightServices;
+        private readonly ICollection<IFhirService> _fhirServices;
         private readonly ServiceHandler _handler = new ServiceHandler();
 
         public FhirController(ICollection<IFhirService> services) {
-        	_lightServices = services;
+        	_fhirServices = services;
         }
 
         [HttpGet, Route("{type}/{id}"), Route("{type}/identifier/{id}")]
         public HttpResponseMessage Read(string type, string id)
         {
-            var service = _handler.FindServiceFromList(_lightServices, type);
+            var service = _handler.FindServiceFromList(_fhirServices, type);
             var result = service.Read(id);
             
             return SendResponse(result);
@@ -40,7 +40,7 @@ namespace FhirStarter.Bonfire.Controllers
         [HttpGet, Route("{type}")]
         public HttpResponseMessage Read(string type)
         {
-            var service = _handler.FindServiceFromList(_lightServices, type);
+            var service = _handler.FindServiceFromList(_fhirServices, type);
             var parameters = Request.GetSearchParams();
             if (!(parameters.Parameters.Count > 0)) return new HttpResponseMessage(HttpStatusCode.ExpectationFailed);
             var results = service.Read(parameters);
@@ -52,7 +52,7 @@ namespace FhirStarter.Bonfire.Controllers
         public HttpResponseMessage Query(string _query)
         {
             var searchParams = Request.GetSearchParams();
-            var service = _handler.FindServiceFromList(_lightServices, searchParams.Query);
+            var service = _handler.FindServiceFromList(_fhirServices, searchParams.Query);
             var result = service.Read(searchParams);
 
             return SendResponse(result);
@@ -61,21 +61,21 @@ namespace FhirStarter.Bonfire.Controllers
         [HttpPost, Route("{type}")]
         public HttpResponseMessage Create(string type, Resource resource)
         {
-            var service = _handler.FindServiceFromList(_lightServices, type);
+            var service = _handler.FindServiceFromList(_fhirServices, type);
             return _handler.ResourceCreate(type, resource, service);
         }
 
         [HttpPut, Route("{type}/{id}")]
         public HttpResponseMessage Update(string type, string id, Resource resource)
         {
-            var service = _handler.FindServiceFromList(_lightServices, type);
+            var service = _handler.FindServiceFromList(_fhirServices, type);
             return _handler.ResourceUpdate(type, id, resource, service);
         }
 
         [HttpDelete, Route("{type}/{id}")]
         public HttpResponseMessage Delete(string type, string id)
         {
-            var service = _handler.FindServiceFromList(_lightServices, type);
+            var service = _handler.FindServiceFromList(_fhirServices, type);
             return _handler.ResourceDelete(type, Key.Create(type, id), service);
         }
 
@@ -132,7 +132,7 @@ namespace FhirStarter.Bonfire.Controllers
             var returnJson = accept.Any(x => x.MediaType.Contains(FhirMediaType.HeaderTypeJson));
 
             StringContent httpContent;
-            var metaData = _handler.CreateMetadata(_lightServices);
+            var metaData = _handler.CreateMetadata(_fhirServices);
             if (!returnJson)
             {
                 var xml = FhirSerializer.SerializeToXml(metaData);
