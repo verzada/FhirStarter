@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using FhirStarter.Bonfire.Interface;
 using FhirStarter.Bonfire.Parameters;
@@ -41,7 +42,66 @@ namespace FhirStarter.Inferno.Services
 
         public OperationDefinition GetOperationDefinition()
         {
-            return new OperationDefinition();
+            var defintion = new OperationDefinition
+            {
+                Url = "http://testurl/url",
+                Name = GetAlias(),
+                Status = ConformanceResourceStatus.Active,
+                Kind = OperationDefinition.OperationKind.Query,
+                Experimental = false,
+                Code = GetAlias(),
+                Description = "Search parameters for the test query service",
+                System = true,
+                Instance = false,
+                Parameter =
+                   new List<OperationDefinition.ParameterComponent>
+                   {
+                        new OperationDefinition.ParameterComponent
+                        {
+                            Name = "Name",
+                            Use = OperationDefinition.OperationParameterUse.In,
+                            Type = nameof(String),
+                            Min = 0,
+                            Max = "1"
+                        },
+                        new OperationDefinition.ParameterComponent
+                        {
+                            Name = "Name:contains",
+                            Use = OperationDefinition.OperationParameterUse.In,
+                            Type = nameof(String),
+                            Min = 0,
+                            Max = "1"
+                        },
+                        new OperationDefinition.ParameterComponent
+                        {
+                            Name = "Name:exact",
+                            Use = OperationDefinition.OperationParameterUse.In,
+                            Type = nameof(String),
+                            Min = 0,
+                            Max = "1"
+                        },
+                        new OperationDefinition.ParameterComponent
+                        {
+                            Name = "Identifier",
+                            Use = OperationDefinition.OperationParameterUse.In,
+                            Type = nameof(String),
+                            Min = 0,
+                            Max = "1",
+                            Documentation = "Query against the following: REKVIRENTKODE, HPNR or HER-ID"
+                        },
+                        new OperationDefinition.ParameterComponent
+                        {
+                            Name = "_lastupdated",
+                            Use = OperationDefinition.OperationParameterUse.In,
+                            Type = nameof(String),
+                            Min = 0,
+                            Max = "2",
+                            Documentation =
+                                "Equals" + " -- Note that the date format is yyyy-MM-ddTHH:mm:ss --"
+                        }
+                   }
+            };
+            return defintion;
         }
 
         public Base Read(SearchParams searchParams)
