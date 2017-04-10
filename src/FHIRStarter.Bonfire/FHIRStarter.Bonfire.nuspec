@@ -12,7 +12,7 @@
     <projectUrl>https://github.com/verzada/FhirStarter</projectUrl>
     <language>english</language>
     <summary>The main library for FhirStarter. Contains logic from Spark.Engine which Furore made, but all of the MongoDB logic is removed so it's easier to make Fhir services which have different data sources.</summary>
-    <releaseNotes>Changed name from FHIRStarter to FhirStarter. Makes more sense in the world of FHIR related products in nuget.</releaseNotes>
+    <releaseNotes>Fixed the support for OperationDefinition. Check the example in FhirStarter.Inferno.Template to see how it is done.</releaseNotes>
     <tags>fhir fhirstarter dstu2 ninject</tags>
   </metadata>
 </package>

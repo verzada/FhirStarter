@@ -153,6 +153,7 @@
     <Compile Include="Controllers\FhirController.cs" />
     <Compile Include="Filters\AbstractExceptionFilter.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
+    <Compile Include="Helper\UrlHandler.cs" />
     <Compile Include="Interface\IFhirService.cs" />
     <Compile Include="Interface\ServiceHandler.cs" />
     <Compile Include="Log\ExceptionLogger.cs" />

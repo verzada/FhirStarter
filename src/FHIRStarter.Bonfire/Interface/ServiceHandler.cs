@@ -12,6 +12,16 @@ namespace FhirStarter.Bonfire.Interface
 {
     public class ServiceHandler
     {
+
+        public Base GetOperationDefinitions(string id, ICollection<IFhirService> services)
+        {
+            var service = services.FirstOrDefault(s => s.GetAlias().Equals(id));
+            if (service?.GetOperationDefinition() == null) return new OperationDefinition();
+
+            var operationDefinitions = service.GetOperationDefinition();
+            return operationDefinitions;
+        }
+
         public HttpResponseMessage ResourceCreate(string type, Resource resource, IFhirService service)
         {
             if (service != null && !string.IsNullOrEmpty(type) && resource != null)

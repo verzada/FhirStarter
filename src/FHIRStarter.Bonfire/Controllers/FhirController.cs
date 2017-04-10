@@ -31,6 +31,12 @@ namespace FhirStarter.Bonfire.Controllers
         [HttpGet, Route("{type}/{id}"), Route("{type}/identifier/{id}")]
         public HttpResponseMessage Read(string type, string id)
         {
+            if (type.Equals(nameof(OperationDefinition)))
+            {
+                var operationDefinitions = _handler.GetOperationDefinitions(id, _fhirServices);
+                return SendResponse(operationDefinitions);
+            }
+
             var service = _handler.FindServiceFromList(_fhirServices, type);
             var result = service.Read(id);
             
