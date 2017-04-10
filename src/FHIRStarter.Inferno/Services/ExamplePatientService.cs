@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Web;
 using FhirStarter.Bonfire.Interface;
 using FhirStarter.Bonfire.Parameters;
 using FhirStarter.Bonfire.Spark.Engine.Core;
@@ -11,6 +12,8 @@ namespace FhirStarter.Inferno.Services
 {
     public class ExamplePatientService : IFhirService
     {
+
+
 
         public ExamplePatientService()
         {
@@ -44,7 +47,7 @@ namespace FhirStarter.Inferno.Services
         {
             var defintion = new OperationDefinition
             {
-                Url = "http://testurl/url",
+                Url = Bonfire.Helper.UrlHandler.GetUrlForOperationDefinition(HttpContext.Current, "fhir/", nameof(Patient)),
                 Name = GetAlias(),
                 Status = ConformanceResourceStatus.Active,
                 Kind = OperationDefinition.OperationKind.Query,

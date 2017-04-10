@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Web;
 using FhirStarter.Bonfire.Interface;
 using FhirStarter.Bonfire.Parameters;
 using FhirStarter.Bonfire.Spark.Engine.Core;
@@ -11,13 +13,15 @@ namespace FhirStarter.Inferno.Services
     public class ExamplePatientService : IFhirService
     {
 
+
+
         public ExamplePatientService()
         {
-            
+
         }
         public List<string> GetSupportedResources()
         {
-            return new List<string> {nameof(Patient)};
+            return new List<string> { nameof(Patient) };
         }
 
         public string GetAlias()
@@ -41,13 +45,72 @@ namespace FhirStarter.Inferno.Services
 
         public OperationDefinition GetOperationDefinition()
         {
-            return new OperationDefinition();
+            var defintion = new OperationDefinition
+            {
+                Url = Bonfire.Helper.UrlHandler.GetUrlForOperationDefinition(HttpContext.Current, "fhir/", nameof(Patient)),
+                Name = GetAlias(),
+                Status = ConformanceResourceStatus.Active,
+                Kind = OperationDefinition.OperationKind.Query,
+                Experimental = false,
+                Code = GetAlias(),
+                Description = "Search parameters for the test query service",
+                System = true,
+                Instance = false,
+                Parameter =
+                    new List<OperationDefinition.ParameterComponent>
+                    {
+                        new OperationDefinition.ParameterComponent
+                        {
+                            Name = "Name",
+                            Use = OperationDefinition.OperationParameterUse.In,
+                            Type = nameof(String),
+                            Min = 0,
+                            Max = "1"
+                        },
+                        new OperationDefinition.ParameterComponent
+                        {
+                            Name = "Name:contains",
+                            Use = OperationDefinition.OperationParameterUse.In,
+                            Type = nameof(String),
+                            Min = 0,
+                            Max = "1"
+                        },
+                        new OperationDefinition.ParameterComponent
+                        {
+                            Name = "Name:exact",
+                            Use = OperationDefinition.OperationParameterUse.In,
+                            Type = nameof(String),
+                            Min = 0,
+                            Max = "1"
+                        },
+                        new OperationDefinition.ParameterComponent
+                        {
+                            Name = "Identifier",
+                            Use = OperationDefinition.OperationParameterUse.In,
+                            Type = nameof(String),
+                            Min = 0,
+                            Max = "1",
+                            Documentation = "Query against the following: REKVIRENTKODE, HPNR or HER-ID"
+                        },
+                        new OperationDefinition.ParameterComponent
+                        {
+                            Name = "_lastupdated",
+                            Use = OperationDefinition.OperationParameterUse.In,
+                            Type = nameof(String),
+                            Min = 0,
+                            Max = "2",
+                            Documentation =
+                                "Equals" + " -- Note that the date format is yyyy-MM-ddTHH:mm:ss --"
+                        }
+                    }
+            };
+            return defintion;
         }
 
         public Base Read(SearchParams searchParams)
         {
             throw new System.ArgumentException("Using " + nameof(SearchParams) +
-                                        " in Read(SearchParams searchParams) should throw an exception which is put into an OperationOutcomes issues");
+                                               " in Read(SearchParams searchParams) should throw an exception which is put into an OperationOutcomes issues");
         }
 
         private static Base MockPatient()
@@ -56,7 +119,7 @@ namespace FhirStarter.Inferno.Services
 
             return new Patient
             {
-                Meta = new Meta { LastUpdated = date.ToDateTimeOffset()},
+                Meta = new Meta { LastUpdated = date.ToDateTimeOffset() },
                 Id = "12345678901",
                 Active = true,
                 Name =
@@ -71,7 +134,7 @@ namespace FhirStarter.Inferno.Services
                     },
                 Gender = AdministrativeGender.Male,
                 BirthDate = "2000-01-01"
-                
+
             };
         }
 
