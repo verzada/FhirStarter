@@ -43,8 +43,8 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FhirStarter.Bonfire, Version=1.0.0.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HelseNordIKT.FhirStarter.Bonfire.1.0.0.7\lib\net452\FhirStarter.Bonfire.dll</HintPath>
+    <Reference Include="FhirStarter.Bonfire, Version=1.0.0.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HelseNordIKT.FhirStarter.Bonfire.1.0.0.8\lib\net452\FhirStarter.Bonfire.dll</HintPath>
     </Reference>
     <Reference Include="FhirStarter.Flare, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FhirStarter.Flare.1.0.0.6\lib\net452\FhirStarter.Flare.dll</HintPath>
