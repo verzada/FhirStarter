@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using FhirStarter.Bonfire.Interface;
 using FhirStarter.Bonfire.Spark.Engine.Service.FhirServiceExtensions;
-using Hl7.Fhir.Introspection;
 using Hl7.Fhir.Model;
+using Hl7.Fhir.Utility;
 
 namespace FhirStarter.Bonfire.Service
 {
