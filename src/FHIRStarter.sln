@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{AFFE35A4-C41C-43FE-81B0-FF0C21C4BF01}"
 EndProject
@@ -16,6 +16,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FHIRStarter.Flare.Nuget", "FHIRStarter.Flare.Nuget\FHIRStarter.Flare.Nuget.csproj", "{A45ECA3D-4D29-4FDA-9CEB-F218B09B80B9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Depends on Nuget", "Depends on Nuget", "{48243B1F-3E02-4AFA-A374-C35516D84771}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{85059F03-7734-41E2-B63C-BBA21378A97C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FhirStarter.UnitTests", "FhirStarter.Inferno.UnitTests\FhirStarter.UnitTests.csproj", "{5E8BF6ED-8A8A-4DC4-AB80-EE60F9D18F69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +69,14 @@ Global
 		{A45ECA3D-4D29-4FDA-9CEB-F218B09B80B9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A45ECA3D-4D29-4FDA-9CEB-F218B09B80B9}.Release|x86.ActiveCfg = Release|Any CPU
 		{A45ECA3D-4D29-4FDA-9CEB-F218B09B80B9}.Release|x86.Build.0 = Release|Any CPU
+		{5E8BF6ED-8A8A-4DC4-AB80-EE60F9D18F69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E8BF6ED-8A8A-4DC4-AB80-EE60F9D18F69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E8BF6ED-8A8A-4DC4-AB80-EE60F9D18F69}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5E8BF6ED-8A8A-4DC4-AB80-EE60F9D18F69}.Debug|x86.Build.0 = Debug|Any CPU
+		{5E8BF6ED-8A8A-4DC4-AB80-EE60F9D18F69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E8BF6ED-8A8A-4DC4-AB80-EE60F9D18F69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E8BF6ED-8A8A-4DC4-AB80-EE60F9D18F69}.Release|x86.ActiveCfg = Release|Any CPU
+		{5E8BF6ED-8A8A-4DC4-AB80-EE60F9D18F69}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,5 +86,6 @@ Global
 		{DE7FBCD3-C1F5-4D57-8E97-AD1E104A7591} = {AFFE35A4-C41C-43FE-81B0-FF0C21C4BF01}
 		{2D4E5795-16E9-4BED-A0E5-6068431C005C} = {48243B1F-3E02-4AFA-A374-C35516D84771}
 		{A45ECA3D-4D29-4FDA-9CEB-F218B09B80B9} = {48243B1F-3E02-4AFA-A374-C35516D84771}
+		{5E8BF6ED-8A8A-4DC4-AB80-EE60F9D18F69} = {85059F03-7734-41E2-B63C-BBA21378A97C}
 	EndGlobalSection
 EndGlobal

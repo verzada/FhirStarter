@@ -52,6 +52,10 @@
     <Reference Include="Hl7.Fhir.DSTU2.Core, Version=0.92.1.0, Culture=neutral, PublicKeyToken=d706911480550fc3, processorArchitecture=MSIL">
       <HintPath>..\packages\Hl7.Fhir.DSTU2.0.92.1\lib\net45\Hl7.Fhir.DSTU2.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Hl7.Fhir.DSTU2.Specification, Version=0.92.1.0, Culture=neutral, PublicKeyToken=d706911480550fc3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hl7.Fhir.Specification.DSTU2.0.92.1\lib\net45\Hl7.Fhir.DSTU2.Specification.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Hl7.Fhir.Support, Version=0.4.2.0, Culture=neutral, PublicKeyToken=d706911480550fc3, processorArchitecture=MSIL">
       <HintPath>..\packages\Hl7.Fhir.Support.0.4.2\lib\net45\Hl7.Fhir.Support.dll</HintPath>
     </Reference>
@@ -192,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Profile\Identification.Patient.Patient.xml" />
     <Content Include="Spark.Engine\Resources\renderxmlashtml.xslt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -205,6 +210,9 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="specification.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -215,7 +223,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Mapper\" />
-    <Folder Include="Profile\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -6,11 +6,14 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Xml;
+using System.Xml.Linq;
 using FhirStarter.Bonfire.Filters;
 using FhirStarter.Bonfire.Interface;
 using FhirStarter.Bonfire.Spark.Engine.Core;
 using FhirStarter.Bonfire.Spark.Engine.Infrastructure;
 using FhirStarter.Bonfire.Spark.Engine.Extensions;
+using FhirStarter.Bonfire.Validation;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
 
@@ -23,9 +26,12 @@ namespace FhirStarter.Bonfire.Controllers
     {
         private readonly ICollection<IFhirService> _fhirServices;
         private readonly ServiceHandler _handler = new ServiceHandler();
+        private readonly ProfileValidator _profileValidator;
 
-        public FhirController(ICollection<IFhirService> services) {
-        	_fhirServices = services;
+        public FhirController(ICollection<IFhirService> services, ProfileValidator profileValidator)
+        {
+            _fhirServices = services;
+            _profileValidator = profileValidator;
         }
 
         [HttpGet, Route("{type}/{id}"), Route("{type}/identifier/{id}")]
@@ -87,15 +93,12 @@ namespace FhirStarter.Bonfire.Controllers
 
         private HttpResponseMessage SendResponse(Base resource)
         {
-            //var validationResult = _validator.Validate(resource);
-            //if (validationResult.Issue.Count != 0)
-            //{
-            //    resource = validationResult;
-            //}
+            
             var headers = Request.Headers;
             var accept = headers.Accept;
             var returnJson = ReturnJson(accept);
 
+            resource = ValidateResource(resource);
             StringContent httpContent;
             if (!returnJson)
             {
@@ -114,7 +117,19 @@ namespace FhirStarter.Bonfire.Controllers
             return response;
         }
 
-        private static bool ReturnJson(HttpHeaderValueCollection<MediaTypeWithQualityHeaderValue> accept)
+        private Base ValidateResource(Base resource)
+        {
+            if (_profileValidator == null) return resource;
+            var resourceAsXDocument = XDocument.Parse(FhirSerializer.SerializeToXml(resource));
+            var validationResult = _profileValidator.Validate(resourceAsXDocument.CreateReader(), true);
+            if (validationResult.Issue.Count > 0)
+            {
+                resource = validationResult;
+            }
+            return resource;
+        }
+
+        private static bool ReturnJson(IEnumerable<MediaTypeWithQualityHeaderValue> accept)
         {
             var jsonHeaders = Hl7.Fhir.Rest.ContentType.JSON_CONTENT_HEADERS;
             var returnJson = false;
