@@ -224,6 +224,10 @@
       <Project>{de7fbcd3-c1f5-4d57-8e97-ad1e104a7591}</Project>
       <Name>FhirStarter.Flare</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FhirStarter.Serilog\FhirStarter.Serilog.csproj">
+      <Project>{be935db2-ba51-445f-8593-dccf0861b489}</Project>
+      <Name>FhirStarter.Serilog</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

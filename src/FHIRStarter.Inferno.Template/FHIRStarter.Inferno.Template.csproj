@@ -224,6 +224,12 @@
     <Folder Include="App_Data\" />
     <Folder Include="Mapper\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FhirStarter.Serilog\FhirStarter.Serilog.csproj">
+      <Project>{be935db2-ba51-445f-8593-dccf0861b489}</Project>
+      <Name>FhirStarter.Serilog</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -66,6 +66,7 @@
     <Compile Include="LoggerSerilog.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="FhirStarter.Serilog.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,7 +2,6 @@
 using System.IO;
 using System.Reflection;
 using System.Text;
-using System.Web.Configuration;
 
 namespace FhirStarter.Bonfire.Log
 {
@@ -24,23 +23,9 @@ namespace FhirStarter.Bonfire.Log
                 sb.AppendLine();
             }
             var errorMessage = sb.ToString();
-            WriteLog(errorMessage, GetLogLocation());
+            var logger = Serilog.LoggerSerilog.GetLogger();
+            logger.Error(errorMessage);
             Console.WriteLine(errorMessage);
-        }
-
-        private static string GetLogLocation()
-        {
-            var logLocation = WebConfigurationManager.AppSettings["LogLocation"];
-            if (string.IsNullOrEmpty(logLocation))
-            {
-               throw new ArgumentException("Need to add LogLocation to appSettings in web.config. Ex: " + @"C:\temp\log.log");
-            }
-            return logLocation;
-        }
-
-        private static void WriteLog(string log, string logLocation)
-        {
-            File.WriteAllText(@logLocation, log);
         }
     }
 }
