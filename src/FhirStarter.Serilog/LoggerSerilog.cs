@@ -149,7 +149,6 @@ namespace FhirStarter.Serilog
             //    .WriteTo.SplunkViaUdp(_splunkHost, _splunkPort).CreateLogger();
             //return log;
             throw new NotImplementedException("Not sure how to implement it yet since documentation for Serilog is lacking. I only find an obsolete method that might be removed soon");
-
         }
     }
 }
