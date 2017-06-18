@@ -137,16 +137,18 @@ namespace FhirStarter.Serilog
 
         public static Logger SetupSplunkTcpLogging()
         {
-            var log = new LoggerConfiguration()
-                .WriteTo.SplunkViaTcp(_splunkHost,_splunkPort).CreateLogger();
-            return log;
+            //var log = new LoggerConfiguration()
+            //    .WriteTo.SplunkViaTcp(_splunkHost, _splunkPort).CreateLogger();
+            //return log;
+           throw new NotImplementedException("Not sure how to implement it yet since documentation for Serilog is lacking. I only find an obsolete method that might be removed soon");
         }
 
         public static Logger SetupSplunkUdpLogging()
         {
-            var log = new LoggerConfiguration()
-                .WriteTo.SplunkViaUdp(_splunkHost, _splunkPort).CreateLogger();
-            return log;
+            //var log = new LoggerConfiguration()
+            //    .WriteTo.SplunkViaUdp(_splunkHost, _splunkPort).CreateLogger();
+            //return log;
+            throw new NotImplementedException("Not sure how to implement it yet since documentation for Serilog is lacking. I only find an obsolete method that might be removed soon");
 
         }
     }
