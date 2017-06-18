@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using FhirStarter.Bonfire;
 using FhirStarter.Bonfire.Spark.Engine.Extensions;
-using log4net.Config;
 
 // ReSharper disable once CheckNamespace
 namespace FhirStarter.Flare
@@ -21,7 +20,6 @@ namespace FhirStarter.Flare
             GlobalConfiguration.Configure(Configure);
           //  BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            XmlConfigurator.Configure();
         }
 
         private void Configure(HttpConfiguration config)
