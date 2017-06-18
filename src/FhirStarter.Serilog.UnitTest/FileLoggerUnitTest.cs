@@ -7,12 +7,12 @@ namespace FhirStarter.Serilog.UnitTest
     [Category("FileLogging")]
     public class FileLoggerUnitTest
     {
-        private Logger logger;
+        private Logger _logger;
 
         [SetUp]
         public void Setup()
         {
-            logger = LoggerSerilog.GetLogger();
+            _logger = LoggerSerilog.GetLogger();
         }
 
         [Test]
@@ -24,7 +24,7 @@ namespace FhirStarter.Serilog.UnitTest
         [Test]
         public void WriteToFile_Valid()
         {
-            logger.Information("This is a test to write to file");
+            _logger.Information("This is a test to write to file");
         }
     }
 }
