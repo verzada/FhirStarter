@@ -48,8 +48,8 @@
     <Reference Include="Serilog.Sinks.Splunk, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Serilog.Sinks.Splunk.2.2.1\lib\net45\Serilog.Sinks.Splunk.dll</HintPath>
     </Reference>
-    <Reference Include="Splunk.Logging.Common, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Splunk.Logging.Common.1.6.0\lib\net45\Splunk.Logging.Common.dll</HintPath>
+    <Reference Include="Splunk.Logging.Common, Version=1.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Splunk.Logging.Common.1.6.1\lib\net45\Splunk.Logging.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
