@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Web.Http.Filters;
 using System.Xml.Linq;
+using FhirStarter.Bonfire.Log;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
 
@@ -24,7 +25,7 @@ namespace FhirStarter.Bonfire.Filters
             var xmlDoc = XDocument.Parse(xml);
             var error = xmlDoc.ToString();
             var requestUrl = string.Empty;
-            var logger = Serilog.LoggerSerilog.GetLogger();
+            var logger = SetupSerilogLogging.GetLogger();
 
 
             if (context.Request != null && context.Request.RequestUri != null)

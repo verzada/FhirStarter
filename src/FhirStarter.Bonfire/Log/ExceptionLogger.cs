@@ -23,7 +23,7 @@ namespace FhirStarter.Bonfire.Log
                 sb.AppendLine();
             }
             var errorMessage = sb.ToString();
-            var logger = Serilog.LoggerSerilog.GetLogger();
+            var logger = SetupSerilogLogging.GetLogger();
             logger.Error(errorMessage);
             Console.WriteLine(errorMessage);
         }

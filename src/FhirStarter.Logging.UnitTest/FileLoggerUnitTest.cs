@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FhirStarter.Bonfire.Log;
+using NUnit.Framework;
 using Serilog.Core;
 
 namespace FhirStarter.Serilog.UnitTest
@@ -15,13 +16,13 @@ namespace FhirStarter.Serilog.UnitTest
         [SetUp]
         public void Setup()
         {
-            _logger = LoggerSerilog.GetLogger();
+            _logger = SetupSerilogLogging.GetLogger();
         }
 
         [Test]
         public void FileLoggingIsEnabled()
         {
-            Assert.IsTrue(LoggerSerilog.IsFileLoggingEnabled(), "File logging is not enabled, check settings");
+            Assert.IsTrue(SetupSerilogLogging.IsFileLoggingEnabled(), "File logging is not enabled, check settings");
         }
 
         [Test]

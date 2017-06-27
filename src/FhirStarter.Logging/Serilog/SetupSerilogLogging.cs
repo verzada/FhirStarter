@@ -3,9 +3,9 @@ using System.Configuration;
 using Serilog;
 using Serilog.Core;
 
-namespace FhirStarter.Serilog
+namespace FhirStarter.Logging.Serilog
 {
-    public static class LoggerSerilog
+    public static class SetupSerilogLogging
     {
         private static string SerilogFilePath = nameof(SerilogFilePath);
         private static string SerilogSplunkUrl = nameof(SerilogSplunkUrl);
@@ -15,7 +15,7 @@ namespace FhirStarter.Serilog
 
         private static string SplunkEventCollectorToken = nameof(SplunkEventCollectorToken);
 
-        private static string defaultArgumentException = "The AppKey " + SerilogFilePath + " or " + SerilogSplunkUrl +
+        private static readonly string DefaultArgumentException = "The AppKey " + SerilogFilePath + " or " + SerilogSplunkUrl +
                                                         " must contain a valid value. Both cannot be empty";
 
         private static string _filePath;
@@ -68,7 +68,7 @@ namespace FhirStarter.Serilog
 
             if (string.IsNullOrEmpty(_filePath) && string.IsNullOrEmpty(_splunkUrl) && string.IsNullOrEmpty(_splunkTcpOrUdp))
             {
-                throw new ArgumentException(defaultArgumentException);
+                throw new ArgumentException(DefaultArgumentException);
             }
         }
 
@@ -114,7 +114,7 @@ namespace FhirStarter.Serilog
                 return SetupSplunkUdpLogging();
             }
 
-            throw new ArgumentException(defaultArgumentException);
+            throw new ArgumentException(DefaultArgumentException);
         }
 
         public static Logger SetupFileLogging()

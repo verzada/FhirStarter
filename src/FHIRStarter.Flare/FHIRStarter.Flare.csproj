@@ -171,10 +171,6 @@
       <Project>{27136165-08a5-4fb7-8c3e-f431518bd2d3}</Project>
       <Name>FhirStarter.Bonfire</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FhirStarter.Serilog\FhirStarter.Serilog.csproj">
-      <Project>{be935db2-ba51-445f-8593-dccf0861b489}</Project>
-      <Name>FhirStarter.Serilog</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
