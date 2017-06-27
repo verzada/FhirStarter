@@ -4,6 +4,7 @@ using System.Web;
 using FhirStarter.Bonfire.Interface;
 using FhirStarter.Bonfire;
 using FhirStarter.Bonfire.Log;
+using FhirStarter.Bonfire.Validation;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
@@ -73,19 +74,33 @@ namespace FhirStarter.Bonfire
                 {
                     foreach (Type classType in asm.GetTypes())
                     {
-                        if (fhirService.IsAssignableFrom(classType) && !classType.IsInterface && !classType.IsAbstract)
-                        {
-                            var instance = (IFhirService) Activator.CreateInstance(classType);
-                            kernel.Bind<IFhirService>().ToConstant(instance);
-                        }
+                        BindIFhirServices(kernel, fhirService, classType);
+
+                        
                     }
                 }
+                BindProfileValidator(kernel);
             }
             catch (ReflectionTypeLoadException ex)
             {
                 ExceptionLogger.LogReflectionTypeLoadException(ex);
             }
 
-        }        
+        }
+
+        private static void BindProfileValidator(IKernel kernel)
+        {
+            var instance = new ProfileValidator(true, true, false, Assembly.GetExecutingAssembly());
+            kernel.Bind<ProfileValidator>().ToConstant(instance);
+        }
+
+        private static void BindIFhirServices(IKernel kernel, Type fhirService, Type classType)
+        {
+            if (fhirService.IsAssignableFrom(classType) && !classType.IsInterface && !classType.IsAbstract)
+            {
+                var instance = (IFhirService) Activator.CreateInstance(classType);
+                kernel.Bind<IFhirService>().ToConstant(instance);
+            }
+        }
     }
 }

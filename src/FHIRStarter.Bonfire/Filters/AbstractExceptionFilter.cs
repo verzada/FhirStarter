@@ -19,12 +19,36 @@ namespace FhirStarter.Bonfire.Filters
             if (exceptionType != expectedType && !(expectedType == typeof(Exception))) return;
             var outCome = GetOperationOutCome(context.Exception);
 
+            
             var xml = FhirSerializer.SerializeResourceToXml(outCome);
             var xmlDoc = XDocument.Parse(xml);
+            var error = xmlDoc.ToString();
+            var requestUrl = string.Empty;
+            var logger = Serilog.LoggerSerilog.GetLogger();
+
+
+            if (context.Request != null && context.Request.RequestUri != null)
+            {
+                requestUrl = context.Request.RequestUri.AbsoluteUri;
+            }
+
+            if (!string.IsNullOrEmpty(requestUrl))
+            {
+                var strBuilder = new StringBuilder();
+                strBuilder.AppendLine();
+                strBuilder.AppendLine("RequestUrl: " + requestUrl);
+                strBuilder.AppendLine("ErrorMessage: ");
+                strBuilder.AppendLine(error);
+                logger.Error(strBuilder.ToString());
+            }
+            else
+            {
+                logger.Error(error);
+            }
 
             context.Response = new HttpResponseMessage
             {                
-                Content = new StringContent(xmlDoc.ToString(), Encoding.UTF8, "application/xml"),
+                Content = new StringContent(error, Encoding.UTF8, "application/xml"),
                 StatusCode = HttpStatusCode.InternalServerError
             };
             

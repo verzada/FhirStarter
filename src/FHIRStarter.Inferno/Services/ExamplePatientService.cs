@@ -140,7 +140,12 @@ namespace FhirStarter.Inferno.Services
 
         public Base Read(string id)
         {
-            return MockPatient();
+            int expectAnInteger;
+            if (Int32.TryParse(id, out expectAnInteger))
+            {
+                return MockPatient();
+            }
+            throw new ArgumentException("Not an integer! The value was " + id);
         }
 
         public HttpResponseMessage Create(IKey key, Resource resource)
