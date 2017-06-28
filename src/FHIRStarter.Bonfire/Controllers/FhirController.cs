@@ -34,6 +34,12 @@ namespace FhirStarter.Bonfire.Controllers
             _profileValidator = profileValidator;
         }
 
+        public FhirController(ICollection<IFhirService> services)
+        {
+            _fhirServices = services;
+
+        }
+
         [HttpGet, Route("{type}/{id}"), Route("{type}/identifier/{id}")]
         public HttpResponseMessage Read(string type, string id)
         {
