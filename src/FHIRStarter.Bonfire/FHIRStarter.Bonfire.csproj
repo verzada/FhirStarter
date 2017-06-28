@@ -222,7 +222,6 @@
     <Compile Include="Validation\ProfileValidator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="FhirStarter.Bonfire.nuspec" />
     <None Include="packages.config" />
     <None Include="specification.zip">
