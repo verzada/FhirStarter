@@ -32,20 +32,20 @@ namespace FhirStarter.Bonfire.Log
         
         public static bool IsSplunkViaUrlEnabled()
         {
-            throw new NotImplementedException();
+            return false;
             //return !string.IsNullOrEmpty(_splunkUrl);
         }
 
         public static bool IsSplunkViaTcpEnabled()
         {
-            throw new NotImplementedException();
            // return !string.IsNullOrEmpty(_splunkTcpOrUdp) && _splunkTcpOrUdp.ToLower().Equals("tcp");
+            return false;
         }
 
         public static bool IsSplunkViaUdpEnabled()
         {
-            throw new NotImplementedException();
             //return !string.IsNullOrEmpty(_splunkTcpOrUdp) && _splunkTcpOrUdp.ToLower().Equals("udp");
+            return false;
         }
 
         public static bool IsSplunkEnabled()
