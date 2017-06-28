@@ -156,7 +156,7 @@
     <Content Include="Spark.Engine\Resources\renderxmlashtml.xslt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <!-- <None Include="app.config" /> -->
     <None Include="FhirStarter.Flare.nuspec" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
