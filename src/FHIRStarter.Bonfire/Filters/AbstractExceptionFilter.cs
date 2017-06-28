@@ -33,7 +33,7 @@ namespace FhirStarter.Bonfire.Filters
                 requestUrl = context.Request.RequestUri.AbsoluteUri;
             }
 
-            if (!string.IsNullOrEmpty(requestUrl))
+            if (!string.IsNullOrEmpty(requestUrl) && logger != null)
             {
                 var strBuilder = new StringBuilder();
                 strBuilder.AppendLine();
@@ -44,7 +44,7 @@ namespace FhirStarter.Bonfire.Filters
             }
             else
             {
-                logger.Error(error);
+                logger?.Error(error);
             }
 
             context.Response = new HttpResponseMessage

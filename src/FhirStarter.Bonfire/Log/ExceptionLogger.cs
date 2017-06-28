@@ -24,7 +24,8 @@ namespace FhirStarter.Bonfire.Log
             }
             var errorMessage = sb.ToString();
             var logger = SetupSerilogLogging.GetLogger();
-            logger.Error(errorMessage);
+            logger?.Error(errorMessage);
+
             Console.WriteLine(errorMessage);
         }
     }

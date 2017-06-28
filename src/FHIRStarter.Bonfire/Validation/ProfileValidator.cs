@@ -24,9 +24,9 @@ namespace FhirStarter.Bonfire.Validation
                 {                    
                     var coreSource = new CachedResolver(ZipSource.CreateValidationSource());
                     var profilePath = Path.Combine(directoryInfo.FullName) + ProfileLocation;
-                    var cachedResolver = new CachedResolver(new DirectorySource(profilePath, includeSubdirectories: true));                    
+                    var cachedResolver = new CachedResolver(new DirectorySource(profilePath, true));                    
                     var combinedSource = new MultiResolver(cachedResolver, coreSource);
-                    var settings = new Hl7.Fhir.Validation.ValidationSettings
+                    var settings = new ValidationSettings
                     {
                         EnableXsdValidation = validateXsd,
                         GenerateSnapshot = true,
