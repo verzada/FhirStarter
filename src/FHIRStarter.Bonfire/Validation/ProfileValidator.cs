@@ -14,35 +14,24 @@ namespace FhirStarter.Bonfire.Validation
         private readonly object _locked = "";
         private const string ProfileLocation = @"\Profile";
         private static Validator _validator;
-        public ProfileValidator(bool validateXsd, bool showTrace, bool reloadValidator, Assembly profileAssembly)
+        public ProfileValidator(bool validateXsd, bool showTrace, bool reloadValidator, string profileFolder)
         {
-            if (_validator == null || reloadValidator)
+            if (_validator != null && !reloadValidator) return;
+            var coreSource = new CachedResolver(ZipSource.CreateValidationSource());
+            var cachedResolver = new CachedResolver(new DirectorySource(profileFolder, includeSubdirectories: true));
+            var combinedSource = new MultiResolver(cachedResolver, coreSource);
+            var settings = new ValidationSettings
             {
-                var location = new Uri(profileAssembly.GetName().CodeBase);
-                var directoryInfo = new FileInfo(location.AbsolutePath).Directory;
-                if (directoryInfo != null)
-                {                    
-                    var coreSource = new CachedResolver(ZipSource.CreateValidationSource());
-                    var profilePath = Path.Combine(directoryInfo.FullName) + ProfileLocation;
-                    var cachedResolver = new CachedResolver(new DirectorySource(profilePath, true));                    
-                    var combinedSource = new MultiResolver(cachedResolver, coreSource);
-                    var settings = new ValidationSettings
-                    {
-                        EnableXsdValidation = validateXsd,
-                        GenerateSnapshot = true,
-                        Trace = showTrace,
-                        ResourceResolver = combinedSource
-                    };
-                    _validator = new Validator(settings);
-                }
-                else
-                {
-                    throw new IOException("Cannot retrieve directoryinfo");
-                }
-            }
-
-
+                EnableXsdValidation = validateXsd,
+                GenerateSnapshot = true,
+                Trace = showTrace,
+                ResourceResolver = combinedSource,
+                ResolveExteralReferences = true,
+                SkipConstraintValidation = false
+            };
+            _validator = new Validator(settings);
         }
+
 
         public OperationOutcome Validate(XmlReader reader, bool onlyErrors)
         {

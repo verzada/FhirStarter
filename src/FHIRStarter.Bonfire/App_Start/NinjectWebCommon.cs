@@ -1,4 +1,6 @@
 using System;
+using System.Configuration;
+using System.IO;
 using System.Reflection;
 using System.Web;
 using FhirStarter.Bonfire.Interface;
@@ -75,8 +77,6 @@ namespace FhirStarter.Bonfire
                     foreach (Type classType in asm.GetTypes())
                     {
                         BindIFhirServices(kernel, fhirService, classType);
-
-                        
                     }
                 }
                 BindProfileValidator(kernel);
@@ -90,8 +90,16 @@ namespace FhirStarter.Bonfire
 
         private static void BindProfileValidator(IKernel kernel)
         {
-            var instance = new ProfileValidator(true, true, false, Assembly.GetExecutingAssembly());
-            kernel.Bind<ProfileValidator>().ToConstant(instance);
+            var setting = ConfigurationManager.AppSettings["EnableValidation"];
+
+            var location = new Uri(Assembly.GetExecutingAssembly().GetName().CodeBase);
+            var directoryInfo = new FileInfo(location.AbsolutePath).Directory;
+            if (setting == null || !Convert.ToBoolean(setting)) return;
+            if (directoryInfo != null)
+            {
+                var instance = new ProfileValidator(true, true, false, directoryInfo.FullName + @"\Resources\StructureDefinitions");
+                kernel.Bind<ProfileValidator>().ToConstant(instance);
+            }
         }
 
         private static void BindIFhirServices(IKernel kernel, Type fhirService, Type classType)
