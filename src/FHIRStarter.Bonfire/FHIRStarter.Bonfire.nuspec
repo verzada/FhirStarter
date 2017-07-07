@@ -12,7 +12,7 @@
     <projectUrl>https://github.com/verzada/FhirStarter</projectUrl>
     <language>english</language>
     <summary>The main library for FhirStarter. Contains logic from Spark.Engine which Furore made, but all of the MongoDB logic is removed so it's easier to make Fhir services which have different data sources.</summary>
-    <releaseNotes>Removed app.config in FhirStarter.Bonfire to avoid problems with future DSTU2 updates</releaseNotes>
+    <releaseNotes>Changed back to Log4Net. Added logging of exceptions - will return json or xml based on what's in the accept header</releaseNotes>
     <tags>fhir fhirstarter dstu2 ninject</tags>
   </metadata>
 </package>
