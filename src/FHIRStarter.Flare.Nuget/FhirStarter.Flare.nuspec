@@ -12,7 +12,7 @@
     <projectUrl>https://github.com/verzada/FhirStarter</projectUrl>
     <language>english</language>
     <releaseNotes>Removed app.config for Flare. Updated the nuget dependencies</releaseNotes>
-    <summary>The web project adds a Global.asax file and a xslt to the web server. Should not be referenced to a library, only to a webservice.</summary>
+    <summary>Updated references to internal and external projects. Added log4net reference</summary>
     <tags>fhir fhirstarter dstu2 ninject</tags>
   </metadata>
   <files>
