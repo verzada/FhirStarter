@@ -34,8 +34,8 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FhirStarter.Bonfire, Version=1.0.18.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HelseNordIKT.FhirStarter.Bonfire.1.0.18\lib\net452\FhirStarter.Bonfire.dll</HintPath>
+    <Reference Include="FhirStarter.Bonfire, Version=1.0.20.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HelseNordIKT.FhirStarter.Bonfire.1.0.20\lib\net452\FhirStarter.Bonfire.dll</HintPath>
     </Reference>
     <Reference Include="Hl7.Fhir.DSTU2.Core, Version=0.92.1.0, Culture=neutral, PublicKeyToken=d706911480550fc3, processorArchitecture=MSIL">
       <HintPath>..\packages\Hl7.Fhir.DSTU2.0.92.1\lib\net45\Hl7.Fhir.DSTU2.Core.dll</HintPath>
@@ -82,21 +82,6 @@
     <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.2.5.0\lib\net45\Serilog.dll</HintPath>
-    </Reference>
-    <Reference Include="Serilog.Sinks.File, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.Sinks.File.3.2.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
-    </Reference>
-    <Reference Include="Serilog.Sinks.Literate, Version=2.1.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.Sinks.Literate.2.1.0\lib\net45\Serilog.Sinks.Literate.dll</HintPath>
-    </Reference>
-    <Reference Include="Serilog.Sinks.RollingFile, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.Sinks.RollingFile.3.3.0\lib\net45\Serilog.Sinks.RollingFile.dll</HintPath>
-    </Reference>
-    <Reference Include="Serilog.Sinks.Splunk, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Serilog.Sinks.Splunk.2.3.0\lib\net45\Serilog.Sinks.Splunk.dll</HintPath>
     </Reference>
     <Reference Include="Splunk.Logging.Common, Version=1.6.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Splunk.Logging.Common.1.6.1\lib\net45\Splunk.Logging.Common.dll</HintPath>
