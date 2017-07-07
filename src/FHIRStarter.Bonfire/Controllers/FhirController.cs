@@ -99,7 +99,6 @@ namespace FhirStarter.Bonfire.Controllers
 
         private HttpResponseMessage SendResponse(Base resource)
         {
-            
             var headers = Request.Headers;
             var accept = headers.Accept;
             var returnJson = ReturnJson(accept);

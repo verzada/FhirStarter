@@ -4,14 +4,17 @@ using System.Net.Http;
 using System.Text;
 using System.Web.Http.Filters;
 using System.Xml.Linq;
-using FhirStarter.Bonfire.Log;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
+using System.Web;
+using FhirStarter.Bonfire.Spark.Engine.Core;
 
 namespace FhirStarter.Bonfire.Filters
 {
     public abstract class AbstractExceptionFilter: ExceptionFilterAttribute
     {
+        private static readonly log4net.ILog Log =
+            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public override void OnException(HttpActionExecutedContext context)
         {
@@ -20,39 +23,39 @@ namespace FhirStarter.Bonfire.Filters
             if (exceptionType != expectedType && !(expectedType == typeof(Exception))) return;
             var outCome = GetOperationOutCome(context.Exception);
 
-            
             var xml = FhirSerializer.SerializeResourceToXml(outCome);
             var xmlDoc = XDocument.Parse(xml);
             var error = xmlDoc.ToString();
-            var requestUrl = string.Empty;
-            var logger = SetupSerilogLogging.GetLogger();
 
+            Log.Error(error);
+            SetResponseForClient(context, outCome);
+            
+        }
 
-            if (context.Request != null && context.Request.RequestUri != null)
+        private static void SetResponseForClient(HttpActionExecutedContext context, Resource outCome)
+        {
+            // "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
+            var acceptEntry = HttpContext.Current.Request.Headers["Accept"];
+            var acceptJson = acceptEntry.Contains(FhirMediaType.HeaderTypeJson);
+
+            if (acceptJson)
             {
-                requestUrl = context.Request.RequestUri.AbsoluteUri;
-            }
-
-            if (!string.IsNullOrEmpty(requestUrl) && logger != null)
-            {
-                var strBuilder = new StringBuilder();
-                strBuilder.AppendLine();
-                strBuilder.AppendLine("RequestUrl: " + requestUrl);
-                strBuilder.AppendLine("ErrorMessage: ");
-                strBuilder.AppendLine(error);
-                logger.Error(strBuilder.ToString());
+                var json = FhirSerializer.SerializeToJson(outCome);
+                context.Response = new HttpResponseMessage
+                {
+                    Content = new StringContent(json, Encoding.UTF8, "application/json"),
+                    StatusCode = HttpStatusCode.InternalServerError
+                };
             }
             else
             {
-                logger?.Error(error);
+                var xml = FhirSerializer.SerializeToXml(outCome);
+                context.Response = new HttpResponseMessage
+                {
+                    Content = new StringContent(xml, Encoding.UTF8, "application/xml"),
+                    StatusCode = HttpStatusCode.InternalServerError
+                };
             }
-
-            context.Response = new HttpResponseMessage
-            {                
-                Content = new StringContent(error, Encoding.UTF8, "application/xml"),
-                StatusCode = HttpStatusCode.InternalServerError
-            };
-            
         }
 
         protected abstract Resource GetOperationOutCome(Exception exception);

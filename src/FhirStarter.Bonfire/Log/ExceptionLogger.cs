@@ -7,6 +7,9 @@ namespace FhirStarter.Bonfire.Log
 {
     public static class ExceptionLogger
     {
+        private static readonly log4net.ILog Log =
+            log4net.LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         //http://stackoverflow.com/questions/1091853/error-message-unable-to-load-one-or-more-of-the-requested-types-retrieve-the-l
         public static void LogReflectionTypeLoadException(ReflectionTypeLoadException ex)
         {
@@ -23,8 +26,7 @@ namespace FhirStarter.Bonfire.Log
                 sb.AppendLine();
             }
             var errorMessage = sb.ToString();
-            var logger = SetupSerilogLogging.GetLogger();
-            logger?.Error(errorMessage);
+             Log.Error(errorMessage);
 
             Console.WriteLine(errorMessage);
         }

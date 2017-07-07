@@ -1,6 +1,5 @@
-﻿using FhirStarter.Bonfire.Log;
+﻿using log4net.Repository.Hierarchy;
 using NUnit.Framework;
-using Serilog.Core;
 
 namespace FhirStarter.Serilog.UnitTest
 {
@@ -16,7 +15,7 @@ namespace FhirStarter.Serilog.UnitTest
         [SetUp]
         public void Setup()
         {
-            _logger = SetupSerilogLogging.GetLogger();
+_logger = new RootLogger();
         }
 
         [Test]

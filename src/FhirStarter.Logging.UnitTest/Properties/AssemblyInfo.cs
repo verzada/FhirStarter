@@ -1,7 +1,6 @@
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 [assembly: AssemblyTitle("FhirStarter.Serilog.UnitTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
