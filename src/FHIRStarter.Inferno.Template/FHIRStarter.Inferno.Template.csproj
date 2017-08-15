@@ -44,7 +44,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="FhirStarter.Bonfire, Version=1.0.20.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HelseNordIKT.FhirStarter.Bonfire.1.0.22\lib\net452\FhirStarter.Bonfire.dll</HintPath>
+      <HintPath>..\packages\HelseNordIKT.FhirStarter.Bonfire.1.0.23\lib\net452\FhirStarter.Bonfire.dll</HintPath>
     </Reference>
     <Reference Include="FhirStarter.Flare, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FhirStarter.Flare.1.0.9\lib\net452\FhirStarter.Flare.dll</HintPath>
