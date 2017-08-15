@@ -8,6 +8,7 @@ using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
 using System.Web;
 using FhirStarter.Bonfire.Spark.Engine.Core;
+using Newtonsoft.Json;
 
 namespace FhirStarter.Bonfire.Filters
 {
@@ -26,8 +27,8 @@ namespace FhirStarter.Bonfire.Filters
             var xml = FhirSerializer.SerializeResourceToXml(outCome);
             var xmlDoc = XDocument.Parse(xml);
             var error = xmlDoc.ToString();
-
-            Log.Error(error);
+            var htmlDecode = WebUtility.HtmlDecode(error);
+            Log.Error(htmlDecode);
             SetResponseForClient(context, outCome);
             
         }
