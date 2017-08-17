@@ -8,7 +8,7 @@ using FhirStarter.Bonfire.Spark.Engine.Core;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
 
-namespace FhirStarter.Inferno.Services
+namespace FhirStarter.Inferno.Template.Services
 {
     public class ExamplePatientService : IFhirService
     {
@@ -154,11 +154,6 @@ namespace FhirStarter.Inferno.Services
         }
 
         public HttpResponseMessage Delete(IKey key)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Conformance CreateMetaData()
         {
             throw new System.NotImplementedException();
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Web;
+using FhirStarter.Bonfire.Helper;
 using FhirStarter.Bonfire.Interface;
 using FhirStarter.Bonfire.Parameters;
 using FhirStarter.Bonfire.Spark.Engine.Core;
@@ -12,13 +13,6 @@ namespace FhirStarter.Inferno.Services
 {
     public class ExamplePatientService : IFhirService
     {
-
-
-
-        public ExamplePatientService()
-        {
-            
-        }
         public List<string> GetSupportedResources()
         {
             return new List<string> {nameof(Patient)};
@@ -47,7 +41,7 @@ namespace FhirStarter.Inferno.Services
         {
             var defintion = new OperationDefinition
             {
-                Url = Bonfire.Helper.UrlHandler.GetUrlForOperationDefinition(HttpContext.Current, "fhir/", nameof(Patient)),
+                Url = UrlHandler.GetUrlForOperationDefinition(HttpContext.Current, "fhir/", nameof(Patient)),
                 Name = GetAlias(),
                 Status = ConformanceResourceStatus.Active,
                 Kind = OperationDefinition.OperationKind.Query,
@@ -109,13 +103,13 @@ namespace FhirStarter.Inferno.Services
 
         public Base Read(SearchParams searchParams)
         {
-            throw new System.ArgumentException("Using " + nameof(SearchParams) +
+            throw new ArgumentException("Using " + nameof(SearchParams) +
                                         " in Read(SearchParams searchParams) should throw an exception which is put into an OperationOutcomes issues");
         }
 
         private static Base MockPatient()
         {
-            var date = new FhirDateTime(System.DateTime.Now);
+            var date = new FhirDateTime(DateTime.Now);
 
             return new Patient
             {
@@ -150,22 +144,17 @@ namespace FhirStarter.Inferno.Services
 
         public HttpResponseMessage Create(IKey key, Resource resource)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public HttpResponseMessage Update(IKey key, Resource resource)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public HttpResponseMessage Delete(IKey key)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Conformance CreateMetaData()
-        {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }
