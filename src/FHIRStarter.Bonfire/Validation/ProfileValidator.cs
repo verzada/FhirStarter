@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
+﻿using System.Linq;
 using System.Xml;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Specification.Source;
@@ -18,7 +15,7 @@ namespace FhirStarter.Bonfire.Validation
         {
             if (_validator != null && !reloadValidator) return;
             var coreSource = new CachedResolver(ZipSource.CreateValidationSource());
-            var cachedResolver = new CachedResolver(new DirectorySource(profileFolder, includeSubdirectories: true));
+            var cachedResolver = new CachedResolver(new DirectorySource(profileFolder, new DirectorySourceSettings{IncludeSubDirectories = true}));
             var combinedSource = new MultiResolver(cachedResolver, coreSource);
             var settings = new ValidationSettings
             {
@@ -31,7 +28,6 @@ namespace FhirStarter.Bonfire.Validation
             };
             _validator = new Validator(settings);
         }
-
 
         public OperationOutcome Validate(XmlReader reader, bool onlyErrors)
         {
@@ -50,8 +46,6 @@ namespace FhirStarter.Bonfire.Validation
                 result.Issue = invalidItems;
                 return result;
             }
-
-
         }
     }
 }

@@ -6,7 +6,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using System.Xml;
 using System.Xml.Linq;
 using FhirStarter.Bonfire.Filters;
 using FhirStarter.Bonfire.Interface;
@@ -27,6 +26,9 @@ namespace FhirStarter.Bonfire.Controllers
         private readonly ICollection<IFhirService> _fhirServices;
         private readonly ServiceHandler _handler = new ServiceHandler();
         private readonly ProfileValidator _profileValidator;
+
+        private readonly FhirXmlSerializer _fhirXmlSerializer = new FhirXmlSerializer();
+        private readonly FhirJsonSerializer _fhirJsonSerializer  = new FhirJsonSerializer();
 
         public FhirController(ICollection<IFhirService> services, ProfileValidator profileValidator)
         {
@@ -107,7 +109,7 @@ namespace FhirStarter.Bonfire.Controllers
             StringContent httpContent;
             if (!returnJson)
             {
-                var xml = FhirSerializer.SerializeToXml(resource);
+                var xml = _fhirXmlSerializer.SerializeToString(resource);
                 httpContent =
                     new StringContent(xml, Encoding.UTF8,
                      FhirMediaType.XmlResource);
@@ -115,7 +117,7 @@ namespace FhirStarter.Bonfire.Controllers
             else
             {
                 httpContent =
-                    new StringContent(FhirSerializer.SerializeToJson(resource), Encoding.UTF8,
+                    new StringContent(_fhirJsonSerializer.SerializeToString(resource), Encoding.UTF8,
                      FhirMediaType.JsonResource);
             }
             var response = new HttpResponseMessage(HttpStatusCode.OK) { Content = httpContent };
@@ -125,7 +127,7 @@ namespace FhirStarter.Bonfire.Controllers
         private Base ValidateResource(Base resource)
         {
             if (_profileValidator == null) return resource;
-            var resourceAsXDocument = XDocument.Parse(FhirSerializer.SerializeToXml(resource));
+            var resourceAsXDocument = XDocument.Parse(_fhirXmlSerializer.SerializeToString(resource));
             var validationResult = _profileValidator.Validate(resourceAsXDocument.CreateReader(), true);
             if (validationResult.Issue.Count > 0)
             {
@@ -161,7 +163,7 @@ namespace FhirStarter.Bonfire.Controllers
             var metaData = _handler.CreateMetadata(_fhirServices);
             if (!returnJson)
             {
-                var xml = FhirSerializer.SerializeToXml(metaData);
+                var xml = _fhirXmlSerializer.SerializeToString(metaData);
                 httpContent =
                     new StringContent(xml, Encoding.UTF8,
                         "application/xml");
@@ -169,7 +171,7 @@ namespace FhirStarter.Bonfire.Controllers
             else
             {
                 httpContent =
-                    new StringContent(FhirSerializer.SerializeToJson(metaData), Encoding.UTF8,
+                    new StringContent(_fhirJsonSerializer.SerializeToString(metaData), Encoding.UTF8,
                         "application/json");
             }
             var response = new HttpResponseMessage(HttpStatusCode.OK) { Content = httpContent };

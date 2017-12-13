@@ -24,7 +24,8 @@ namespace FhirStarter.Bonfire.Filters
             if (exceptionType != expectedType && !(expectedType == typeof(Exception))) return;
             var outCome = GetOperationOutCome(context.Exception);
 
-            var xml = FhirSerializer.SerializeResourceToXml(outCome);
+            var fhirXmlSerializer = new FhirXmlSerializer();
+            var xml = fhirXmlSerializer.SerializeToString(outCome);
             var xmlDoc = XDocument.Parse(xml);
             var error = xmlDoc.ToString();
             var htmlDecode = WebUtility.HtmlDecode(error);
@@ -41,7 +42,8 @@ namespace FhirStarter.Bonfire.Filters
 
             if (acceptJson)
             {
-                var json = FhirSerializer.SerializeToJson(outCome);
+                var fhirJsonSerializer = new FhirJsonSerializer();
+                var json = fhirJsonSerializer.SerializeToString(outCome);
                 context.Response = new HttpResponseMessage
                 {
                     Content = new StringContent(json, Encoding.UTF8, "application/json"),
@@ -50,7 +52,8 @@ namespace FhirStarter.Bonfire.Filters
             }
             else
             {
-                var xml = FhirSerializer.SerializeToXml(outCome);
+                var fhirXmlSerializer = new FhirXmlSerializer();
+                var xml = fhirXmlSerializer.SerializeToString(outCome);
                 context.Response = new HttpResponseMessage
                 {
                     Content = new StringContent(xml, Encoding.UTF8, "application/xml"),
