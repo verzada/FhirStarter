@@ -80,25 +80,29 @@ namespace FhirStarter.Bonfire.Spark.Engine.Formatters
             return Task.Factory.StartNew(() =>
             {
                 XmlWriter writer = new XmlTextWriter(writeStream, new UTF8Encoding(false));
+                var xmlSerializer = new FhirXmlSerializer();
                 var summary = RequestMessage.RequestSummary();
 
                 if (type == typeof(OperationOutcome)) 
                 {
                     var resource = (Resource)value;
-                    FhirSerializer.SerializeResource(resource, writer, summary);
+                   xmlSerializer.Serialize(resource, writer, summary);
                 }
                 else if (typeof(Resource).IsAssignableFrom(type))
                 {
                     var resource = (Resource)value;
-                    FhirSerializer.SerializeResource(resource, writer, summary);
+                    xmlSerializer.Serialize(resource, writer, summary);
                 }
-                else if (type == typeof(FhirResponse))
+                else
                 {
                     var response = (value as FhirResponse);
-                    if (response != null && response.HasBody)
-                    FhirSerializer.SerializeResource(response.Resource, writer, summary);
+                    if (type == typeof(FhirResponse))
+                    {
+                        if (response != null && response.HasBody)
+                            xmlSerializer.Serialize(response.Resource, writer, summary);
+                    }
                 }
-                
+
                 writer.Flush();
             });
         }

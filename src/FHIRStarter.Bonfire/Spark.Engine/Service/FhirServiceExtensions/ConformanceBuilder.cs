@@ -219,7 +219,8 @@ namespace FhirStarter.Bonfire.Spark.Engine.Service.FhirServiceExtensions
 
         public static string ConformanceToXML(this Conformance conformance)
         {
-            return FhirSerializer.SerializeResourceToXml(conformance);
+            var xmlSerializer = new FhirXmlSerializer();
+            return xmlSerializer.SerializeToString(conformance);
         }
     }
 }

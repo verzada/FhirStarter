@@ -66,24 +66,24 @@ namespace FhirStarter.Bonfire.Spark.Engine.Formatters
                 using(var streamwriter = new StreamWriter(writeStream))
                 using (JsonWriter writer = new JsonTextWriter(streamwriter))
                 {
+                    var fhirJsonSerizlizer = new FhirJsonSerializer();
                     var summary = RequestMessage.RequestSummary();
 
                     if (type == typeof(OperationOutcome))
                     {
                         Resource resource = (Resource)value;
-                        FhirSerializer.SerializeResource(resource, writer);
+                       fhirJsonSerizlizer.Serialize(resource, writer);
                     }
                     else if (typeof(Resource).IsAssignableFrom(type))
                     {
                         var resource = (Resource)value;
-                        FhirSerializer.SerializeResource(resource, writer);
+                        fhirJsonSerizlizer.Serialize(resource, writer);
                     }
                     else if (typeof(FhirResponse).IsAssignableFrom(type))
                     {
-                        var response = value as FhirResponse;
-                        if (response != null && response.HasBody)
+                        if (value is FhirResponse response && response.HasBody)
                         {
-                            FhirSerializer.SerializeResource(response.Resource, writer, summary);
+                            fhirJsonSerizlizer.Serialize(response.Resource, writer, summary);
                         }
                     }
                   
