@@ -190,7 +190,6 @@
   </ItemGroup>
   <ItemGroup>
     <!-- <None Include="app.config" /> -->
-    <None Include="app.config" />
     <None Include="FhirStarter.Bonfire.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
