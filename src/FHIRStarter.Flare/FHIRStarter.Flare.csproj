@@ -142,7 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <!-- <None Include="app.config" /> -->
-    <None Include="app.config" />
     <None Include="FhirStarter.Flare.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
